@@ -1,3 +1,3 @@
 # CustomProfiles
 
-This is where she makes a mod.
+A nice mod to customize your profile
