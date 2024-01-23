@@ -143,7 +143,7 @@ class $modify(GJAccountSettingsLayer)
 			this,
 			menu_selector(ProfilesConfig::onReturn)
 		);
-		for (int i = 0; i < 10; ++i) {
+		for (int i = 0; i < Layer->getChildrenCount(); ++i) {
 			auto nodelol = (CCLayer*)Layer->getChildren()->objectAtIndex(i);
 
 			if (i == 1)
