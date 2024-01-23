@@ -131,8 +131,15 @@ class $modify(GJAccountSettingsLayer)
 		if (!GJAccountSettingsLayer::init(a1)) return false;
 
 
-	
+		/*std::cout << "version:" << Loader::get()->getVersion().getPatch() << std::endl;*/
 
+#ifdef GEODE_IS_ANDROID
+		return true;
+#endif
+		/*if (Loader::get()->getVersion() == 2.205)
+		{
+		}*/
+#ifdef GEODE_IS_WINDOWS
 		GameManager::sharedState()->setGameVariable("weaclosexd", false);
 		auto butonCancel = ButtonSprite::create("Cancel", 65, 70, "bigFont.fnt", "GJ_button_01.png", 25, 1);
 		auto winSize = CCDirector::sharedDirector()->getWinSize();
@@ -143,32 +150,32 @@ class $modify(GJAccountSettingsLayer)
 			this,
 			menu_selector(ProfilesConfig::onReturn)
 		);
-		//for (int i = 0; i < Layer->getChildrenCount(); ++i) {
-		//	auto nodelol = (CCLayer*)Layer->getChildren()->objectAtIndex(i);
+		for (int i = 0; i < Layer->getChildrenCount(); ++i) {
+			auto nodelol = (CCLayer*)Layer->getChildren()->objectAtIndex(i);
 
-		//	/*if (i == 1)
-		//	{
-		//		auto buttonsas = (CCLayer*)nodelol->getChildren()->objectAtIndex(8);
-		//		buttonsas->setVisible(false);
+			if (i == 1)
+			{
+				auto buttonsas = (CCLayer*)nodelol->getChildren()->objectAtIndex(8);
+				buttonsas->setVisible(false);
 
-		//		CancelBtn->setContentSize(buttonsas->getContentSize());
-		//		CancelBtn->setPosition(buttonsas->getPosition());
-		//		CancelBtn->setScale(buttonsas->getScale());
-		//		CancelBtn->setZOrder(buttonsas->getZOrder());
-		//		auto spras = (CCLayer*)buttonsas->getChildren()->objectAtIndex(0);
-		//		butonCancel->setContentSize(spras->getContentSize());
-		//		butonCancel->setPosition(spras->getPosition());
-		//		nodelol->addChild(CancelBtn);
-		//	}*/
+				CancelBtn->setContentSize(buttonsas->getContentSize());
+				CancelBtn->setPosition(buttonsas->getPosition());
+				CancelBtn->setScale(buttonsas->getScale());
+				CancelBtn->setZOrder(buttonsas->getZOrder());
+				auto spras = (CCLayer*)buttonsas->getChildren()->objectAtIndex(0);
+				butonCancel->setContentSize(spras->getContentSize());
+				butonCancel->setPosition(spras->getPosition());
+				nodelol->addChild(CancelBtn);
+			}
 
-		//	/*if (nodelol->isVisible() == false)
-		//	{
-		//		nodelol->setVisible(true);
-		//	}*/
-		//}
+			/*if (nodelol->isVisible() == false)
+			{
+				nodelol->setVisible(true);
+			}*/
+		}
 		CCSize size = { 440,290 };
-		/*Layer->setVisible(false);
-		Layer->setZOrder(15);*/
+		Layer->setVisible(false);
+		Layer->setZOrder(15);
 		/*auto config = ProfilesConfig::create(this);*/
 		auto BG = cocos2d::extension::CCScale9Sprite::create("GJ_square01.png");
 		BG->setPosition(winSize / 2);
@@ -185,10 +192,10 @@ class $modify(GJAccountSettingsLayer)
 
 		auto fadeIn = CCFadeIn::create(0.04f);  // O cualquier duración que desees
 		auto scaleTo = CCScaleTo::create(0.04f, 1.0f);  // Escalar el fondo al tamaño original
-		
+
 		auto fadeInWithEase = CCEaseBackOut::create(fadeIn);
 		auto scaleToWithEase = CCEaseBackOut::create(scaleTo);
-		
+
 		auto spawn = CCSpawn::create(fadeInWithEase, scaleToWithEase, nullptr);
 
 		auto Exit = CCSprite::createWithSpriteFrameName("GJ_deleteBtn_001.png");
@@ -212,11 +219,11 @@ class $modify(GJAccountSettingsLayer)
 		label->setScale(0.55);
 		this->addChild(label);
 		auto elmenu = CCMenu::create();
-		
-	    elmenu->addChild(ExitBtn);
+
+		elmenu->addChild(ExitBtn);
 
 
-		
+
 		auto label2 = CCLabelBMFont::create("Corners", "bigfont.fnt");
 		label2->setPosition(winSize / 2);
 		/*label2->setPositionX(0);*/
@@ -238,10 +245,10 @@ class $modify(GJAccountSettingsLayer)
 			this,
 			menu_selector(ProfilesConfig::corner1));
 		/*toggle1->setSizeMult(1.5);*/
-		
 
 
-		
+
+
 
 
 
@@ -268,7 +275,7 @@ class $modify(GJAccountSettingsLayer)
 			this,
 			menu_selector(ProfilesConfig::corner2));
 		/*toggle1->setSizeMult(1.5);*/
-		
+
 		/*toggle2->activate();*/
 
 
@@ -297,14 +304,14 @@ class $modify(GJAccountSettingsLayer)
 			this,
 			menu_selector(ProfilesConfig::corner3));
 		/*toggle1->setSizeMult(1.5);*/
-		
+
 		/*toggle2->activate();*/
 
 
 
 
 		toggle3->setPosition(winSize / 2);
-		toggle3->setPositionX(toggle3->getPositionX() +87);
+		toggle3->setPositionX(toggle3->getPositionX() + 87);
 		toggle3->setPositionY(toggle3->getPositionY() + 49);
 
 		toggle3->setTag(13);
@@ -327,7 +334,7 @@ class $modify(GJAccountSettingsLayer)
 			this,
 			menu_selector(ProfilesConfig::color1));
 		/*toggle1->setSizeMult(1.5);*/
-		
+
 		/*togglecolor1->activate();*/
 
 		togglecolor1->setTag(21);
@@ -343,7 +350,7 @@ class $modify(GJAccountSettingsLayer)
 		togglecolor1->setPositionY(togglecolor1->getPositionY() - 40);
 
 
-		
+
 
 		auto labelcolor1 = CCLabelBMFont::create("Animate", "bigfont.fnt");
 		labelcolor1->setPosition(togglecolor1->getPosition());
@@ -361,7 +368,7 @@ class $modify(GJAccountSettingsLayer)
 			menu_selector(ProfilesConfig::color2));
 		togglecolor2->setTag(22);
 		/*toggle1->setSizeMult(1.5);*/
-		
+
 		/*toggle2->activate();*/
 
 
@@ -372,7 +379,7 @@ class $modify(GJAccountSettingsLayer)
 		togglecolor2->setPositionY(togglecolor2->getPositionY() - 40);
 
 
-		
+
 
 		auto labelcolor2 = CCLabelBMFont::create("Invert", "bigfont.fnt");
 		labelcolor2->setPosition(togglecolor2->getPosition());
@@ -390,10 +397,10 @@ class $modify(GJAccountSettingsLayer)
 			this,
 			menu_selector(ProfilesConfig::color3));
 		/*toggle1->setSizeMult(1.5);*/
-		
+
 		/*togglecolor3->activate()*/;
 
-		
+
 
 
 		togglecolor3->setPosition(winSize / 2);
@@ -444,7 +451,7 @@ class $modify(GJAccountSettingsLayer)
 			togglecolor3->toggle(1);
 		}
 
-	
+
 		auto labelcolor3 = CCLabelBMFont::create("Normal", "bigfont.fnt");
 		labelcolor3->setPosition(togglecolor3->getPosition());
 		labelcolor3->setPositionX(labelcolor3->getPositionX() + 53);
@@ -456,14 +463,14 @@ class $modify(GJAccountSettingsLayer)
 		menuglowxd->addChild(labelcolor3);
 		this->addChild(label2);
 		this->addChild(waexd);
-		
 
-		menuglowxd->setPosition(-1,-11);
+
+		menuglowxd->setPosition(-1, -11);
 		/*menuglowxd->setPosition(BG->getPositionX(), BG->getPositionY());*/
 		/*menuglowxd->setPositionX(menuglowxd->getPositionX() - 350);
 		menuglowxd->setPositionY(menuglowxd->getPositionY() - 177);*/
 
-		this->addChild(menuglowxd,2);
+		this->addChild(menuglowxd, 2);
 
 
 
@@ -474,11 +481,11 @@ class $modify(GJAccountSettingsLayer)
 		auto label3 = CCLabelBMFont::create("Colors", "bigfont.fnt");
 		label3->setPosition(winSize / 2);
 		/*label3->setPositionX(label3->getPositionX() - 65);*/
-		label3->setPositionY(label3->getPositionY() -10);
+		label3->setPositionY(label3->getPositionY() - 10);
 
 		waexd2->setPosition(winSize / 2);
 		/*waexd2->setPositionX(waexd2->getPositionX() - 65);*/
-		waexd2->setPositionY(waexd2->getPositionY() -52);
+		waexd2->setPositionY(waexd2->getPositionY() - 52);
 		waexd2->setColor(ccBLACK);
 		waexd2->setOpacity(77);
 		label3->setScale(0.55);
@@ -524,12 +531,12 @@ class $modify(GJAccountSettingsLayer)
 		optionsmenu->addChild(disableinfo);
 		optionsmenu->addChild(infolabel);
 
-		optionsmenu->setPosition(BG->getPositionX()+196, BG->getPositionY()-116);
+		optionsmenu->setPosition(BG->getPositionX() + 196, BG->getPositionY() - 116);
 		/*optionsmenu->setPosition(winSize / 2);*/
 	/*	optionsmenu->setPosition(optionsmenu->getPositionX() + 131, optionsmenu->getPositionY() - 133);*/
-		
+
 		this->addChild(optionsmenu, 2);
-		this->addChild(elmenu,2);
+		this->addChild(elmenu, 2);
 
 		elmenu->setPosition(BG->getPositionX(), BG->getPositionY());
 		elmenu->setPositionX(elmenu->getPositionX() - 210);
@@ -537,8 +544,8 @@ class $modify(GJAccountSettingsLayer)
 
 		BG->runAction(spawn);
 
-		
-		
+
+
 		elmenu->setTag(50);
 		optionsmenu->setTag(51);
 		label->setTag(52);
@@ -551,6 +558,8 @@ class $modify(GJAccountSettingsLayer)
 		/*ProfilesConfig::create(this)->show();*/
 		/*FLAlertLayer::create("OMG", "Si funciona! :D", "OK")->show();*/
 		return true;
+#endif
+		
 	}
 };
 void updateColors(float dt,CCLayerGradient* gradient)
