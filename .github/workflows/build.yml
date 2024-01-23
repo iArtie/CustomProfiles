@@ -34,7 +34,7 @@ jobs:
         uses: geode-sdk/build-geode-mod@main
         with:
           bindings: iArtie/bindings
-          bindings-ref: CustomProfiles
+          bindings-ref: main
           combine: true
           target: ${{matrix.config.target}}
   package:
@@ -43,7 +43,7 @@ jobs:
     needs: ['build']
 
     steps:
-      - uses: geode-sdk/build-geode-mod@combine
+      - uses: geode-sdk/build-geode-mod/combine@main
         id: build
       
       - uses: actions/upload-artifact@v3
