@@ -146,7 +146,7 @@ class $modify(GJAccountSettingsLayer)
 		for (int i = 0; i < Layer->getChildrenCount(); ++i) {
 			auto nodelol = (CCLayer*)Layer->getChildren()->objectAtIndex(i);
 
-			if (i == 1)
+			/*if (i == 1)
 			{
 				auto buttonsas = (CCLayer*)nodelol->getChildren()->objectAtIndex(8);
 				buttonsas->setVisible(false);
@@ -159,7 +159,7 @@ class $modify(GJAccountSettingsLayer)
 				butonCancel->setContentSize(spras->getContentSize());
 				butonCancel->setPosition(spras->getPosition());
 				nodelol->addChild(CancelBtn);
-			}
+			}*/
 
 			/*if (nodelol->isVisible() == false)
 			{
