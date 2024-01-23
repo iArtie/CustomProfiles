@@ -1,6 +1,6 @@
 {
 	"geode": "2.0.0",
-	"version": "v1.0.1",
+	"version": "v1.0.2",
 	"id": "bitz.customprofiles",
 	"name": "CustomProfiles",
 	"developer": "BitZ",
@@ -8,5 +8,10 @@
 	"gd": {
 		"android": "2.205",
 		"win": "2.204"
+	},
+	"repository": "https://github.com/iArtie/CustomProfiles",
+	"issues": {
+		"info": "Post your issues on the <cp>Issue tracking repository</c>.",
+		"url": "https://github.com/iArtie/CustomProfiles/issues/new/choose"
 	}
 }
