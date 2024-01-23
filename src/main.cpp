@@ -133,103 +133,103 @@ class $modify(GJAccountSettingsLayer)
 
 	
 
-	//	GameManager::sharedState()->setGameVariable("weaclosexd", false);
-	//	auto butonCancel = ButtonSprite::create("Cancel", 65, 70, "bigFont.fnt", "GJ_button_01.png", 25, 1);
-	//	auto winSize = CCDirector::sharedDirector()->getWinSize();
-	//	auto Layer = (CCLayer*)this->getChildren()->objectAtIndex(0);
+		GameManager::sharedState()->setGameVariable("weaclosexd", false);
+		auto butonCancel = ButtonSprite::create("Cancel", 65, 70, "bigFont.fnt", "GJ_button_01.png", 25, 1);
+		auto winSize = CCDirector::sharedDirector()->getWinSize();
+		auto Layer = (CCLayer*)this->getChildren()->objectAtIndex(0);
 
-	//	auto CancelBtn = CCMenuItemSpriteExtra::create(
-	//		butonCancel,
-	//		this,
-	//		menu_selector(ProfilesConfig::onReturn)
-	//	);
-	//	for (int i = 0; i < Layer->getChildrenCount(); ++i) {
-	//		auto nodelol = (CCLayer*)Layer->getChildren()->objectAtIndex(i);
+		auto CancelBtn = CCMenuItemSpriteExtra::create(
+			butonCancel,
+			this,
+			menu_selector(ProfilesConfig::onReturn)
+		);
+		for (int i = 0; i < Layer->getChildrenCount(); ++i) {
+			auto nodelol = (CCLayer*)Layer->getChildren()->objectAtIndex(i);
 
-	//		/*if (i == 1)
-	//		{
-	//			auto buttonsas = (CCLayer*)nodelol->getChildren()->objectAtIndex(8);
-	//			buttonsas->setVisible(false);
+			/*if (i == 1)
+			{
+				auto buttonsas = (CCLayer*)nodelol->getChildren()->objectAtIndex(8);
+				buttonsas->setVisible(false);
 
-	//			CancelBtn->setContentSize(buttonsas->getContentSize());
-	//			CancelBtn->setPosition(buttonsas->getPosition());
-	//			CancelBtn->setScale(buttonsas->getScale());
-	//			CancelBtn->setZOrder(buttonsas->getZOrder());
-	//			auto spras = (CCLayer*)buttonsas->getChildren()->objectAtIndex(0);
-	//			butonCancel->setContentSize(spras->getContentSize());
-	//			butonCancel->setPosition(spras->getPosition());
-	//			nodelol->addChild(CancelBtn);
-	//		}*/
+				CancelBtn->setContentSize(buttonsas->getContentSize());
+				CancelBtn->setPosition(buttonsas->getPosition());
+				CancelBtn->setScale(buttonsas->getScale());
+				CancelBtn->setZOrder(buttonsas->getZOrder());
+				auto spras = (CCLayer*)buttonsas->getChildren()->objectAtIndex(0);
+				butonCancel->setContentSize(spras->getContentSize());
+				butonCancel->setPosition(spras->getPosition());
+				nodelol->addChild(CancelBtn);
+			}*/
 
-	//		/*if (nodelol->isVisible() == false)
-	//		{
-	//			nodelol->setVisible(true);
-	//		}*/
-	//	}
-	//	CCSize size = { 440,290 };
-	//	/*Layer->setVisible(false);
-	//	Layer->setZOrder(15);*/
-	//	/*auto config = ProfilesConfig::create(this);*/
-	//	auto BG = cocos2d::extension::CCScale9Sprite::create("GJ_square01.png");
-	//	BG->setPosition(winSize / 2);
-	//	BG->setContentSize(size);
-	//	BG->setScale(0);
-	//	this->addChild(BG);
-	//	auto waexd = cocos2d::extension::CCScale9Sprite::create("square02b_001.png");
-	//	waexd->setContentSize({ 360,55 });
-
-
-	//	auto waexd2 = cocos2d::extension::CCScale9Sprite::create("square02b_001.png");
-	//	waexd2->setContentSize({ 360,55 });
+			/*if (nodelol->isVisible() == false)
+			{
+				nodelol->setVisible(true);
+			}*/
+		}
+		CCSize size = { 440,290 };
+		/*Layer->setVisible(false);
+		Layer->setZOrder(15);*/
+		/*auto config = ProfilesConfig::create(this);*/
+		auto BG = cocos2d::extension::CCScale9Sprite::create("GJ_square01.png");
+		BG->setPosition(winSize / 2);
+		BG->setContentSize(size);
+		BG->setScale(0);
+		this->addChild(BG);
+		auto waexd = cocos2d::extension::CCScale9Sprite::create("square02b_001.png");
+		waexd->setContentSize({ 360,55 });
 
 
-	//	auto fadeIn = CCFadeIn::create(0.04f);  // O cualquier duración que desees
-	//	auto scaleTo = CCScaleTo::create(0.04f, 1.0f);  // Escalar el fondo al tamaño original
-	//	
-	//	auto fadeInWithEase = CCEaseBackOut::create(fadeIn);
-	//	auto scaleToWithEase = CCEaseBackOut::create(scaleTo);
-	//	
-	//	auto spawn = CCSpawn::create(fadeInWithEase, scaleToWithEase, nullptr);
-
-	//	auto Exit = CCSprite::createWithSpriteFrameName("GJ_deleteBtn_001.png");
-
-	//	Exit->setScale(0.95f);
-	//	auto ExitBtn = CCMenuItemSpriteExtra::create(
-	//		Exit,
-	//		this,
-	//		menu_selector(GJAccountSettingsLayer::onClose)
-	//	);
-
-	//	auto onSpr = CCSprite::createWithSpriteFrameName("GJ_checkOn_001.png");
-	//	auto offSpr = CCSprite::createWithSpriteFrameName("GJ_checkOff_001.png");
-
-	//	onSpr->setScale(.7);
-	//	offSpr->setScale(.7);
-	//	auto label = CCLabelBMFont::create("CustomProfiles Options", "bigfont.fnt");
-	//	label->setPosition(winSize / 2);
-	//	/*label->setPositionX(label->getPositionX() - 65);*/
-	//	label->setPositionY(label->getPositionY() + 120);
-	//	label->setScale(0.55);
-	//	this->addChild(label);
-	//	auto elmenu = CCMenu::create();
-	//	
-	//    elmenu->addChild(ExitBtn);
+		auto waexd2 = cocos2d::extension::CCScale9Sprite::create("square02b_001.png");
+		waexd2->setContentSize({ 360,55 });
 
 
-	//	
-	//	auto label2 = CCLabelBMFont::create("Corners", "bigfont.fnt");
-	//	label2->setPosition(winSize / 2);
-	//	/*label2->setPositionX(0);*/
-	//	label2->setPositionY(label2->getPositionY() + 80);
+		auto fadeIn = CCFadeIn::create(0.04f);  // O cualquier duración que desees
+		auto scaleTo = CCScaleTo::create(0.04f, 1.0f);  // Escalar el fondo al tamaño original
+		
+		auto fadeInWithEase = CCEaseBackOut::create(fadeIn);
+		auto scaleToWithEase = CCEaseBackOut::create(scaleTo);
+		
+		auto spawn = CCSpawn::create(fadeInWithEase, scaleToWithEase, nullptr);
 
-	//	waexd->setPosition(winSize / 2);
-	//	/*waexd->setPositionX(waexd->getPositionX() - 65);*/
-	//	waexd->setPositionY(waexd->getPositionY() + 38);
-	//	waexd->setColor(ccBLACK);
-	//	waexd->setOpacity(77);
-	//	label2->setScale(0.55);
+		auto Exit = CCSprite::createWithSpriteFrameName("GJ_deleteBtn_001.png");
 
-	//	auto menuglowxd = CCMenu::create();
+		Exit->setScale(0.95f);
+		auto ExitBtn = CCMenuItemSpriteExtra::create(
+			Exit,
+			this,
+			menu_selector(GJAccountSettingsLayer::onClose)
+		);
+
+		auto onSpr = CCSprite::createWithSpriteFrameName("GJ_checkOn_001.png");
+		auto offSpr = CCSprite::createWithSpriteFrameName("GJ_checkOff_001.png");
+
+		onSpr->setScale(.7);
+		offSpr->setScale(.7);
+		auto label = CCLabelBMFont::create("CustomProfiles Options", "bigfont.fnt");
+		label->setPosition(winSize / 2);
+		/*label->setPositionX(label->getPositionX() - 65);*/
+		label->setPositionY(label->getPositionY() + 120);
+		label->setScale(0.55);
+		this->addChild(label);
+		auto elmenu = CCMenu::create();
+		
+	    elmenu->addChild(ExitBtn);
+
+
+		
+		auto label2 = CCLabelBMFont::create("Corners", "bigfont.fnt");
+		label2->setPosition(winSize / 2);
+		/*label2->setPositionX(0);*/
+		label2->setPositionY(label2->getPositionY() + 80);
+
+		waexd->setPosition(winSize / 2);
+		/*waexd->setPositionX(waexd->getPositionX() - 65);*/
+		waexd->setPositionY(waexd->getPositionY() + 38);
+		waexd->setColor(ccBLACK);
+		waexd->setOpacity(77);
+		label2->setScale(0.55);
+
+		auto menuglowxd = CCMenu::create();
 
 	//	//Corners buttons
 	//	auto toggle1 = CCMenuItemToggler::create(
@@ -548,8 +548,8 @@ class $modify(GJAccountSettingsLayer)
 	//	waexd2->setTag(56);
 	//	menuglowxd->setTag(57);
 	//	BG->setTag(58);
-	//	/*ProfilesConfig::create(this)->show();*/
-	//	/*FLAlertLayer::create("OMG", "Si funciona! :D", "OK")->show();*/
+		/*ProfilesConfig::create(this)->show();*/
+		/*FLAlertLayer::create("OMG", "Si funciona! :D", "OK")->show();*/
 		return true;
 	}
 };
