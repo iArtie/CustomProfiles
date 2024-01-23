@@ -167,8 +167,8 @@ class $modify(GJAccountSettingsLayer)
 			}*/
 		}
 		CCSize size = { 440,290 };
-		Layer->setVisible(false);
-		Layer->setZOrder(15);
+		/*Layer->setVisible(false);
+		Layer->setZOrder(15);*/
 		/*auto config = ProfilesConfig::create(this);*/
 		auto BG = cocos2d::extension::CCScale9Sprite::create("GJ_square01.png");
 		BG->setPosition(winSize / 2);
