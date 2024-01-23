@@ -902,6 +902,59 @@ class $modify(ProfilePage)
 
 					}
 				}
+				//For android
+#ifdef GEODE_IS_ANDROID
+				if (contentSize.width == 697 && contentSize.height == 320)
+				{
+					cocos2d::CCMenu* scale9Sprite = dynamic_cast<cocos2d::CCMenu*>(pObj);
+					/*scale9Sprite->setColor(ccBLACK);
+					scale9Sprite->setOpacity(32);*/
+					if (this->m_ownProfile == true)
+					{
+
+						/*auto infobutton = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(10);
+						if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
+						{
+							infobutton->setPositionY(+100000);
+						}*/
+						for (int i = 0; i < scale9Sprite->getChildrenCount(); ++i) {
+							auto nodelolas = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(i);
+							CCSize contentSize2 = nodelolas->getContentSize();
+							if (contentSize2.width >= 10 && contentSize2.width <= 12)
+							{
+								if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
+								{
+									/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
+									nodelolas->setPositionY(+100000);
+								}
+							}
+						}
+					}
+					else
+					{
+						for (int i = 0; i < scale9Sprite->getChildrenCount(); ++i) {
+							auto nodelolas = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(i);
+							CCSize contentSize2 = nodelolas->getContentSize();
+							if (contentSize2.width >= 10 && contentSize2.width <= 12)
+							{
+								if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
+								{
+									/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
+									nodelolas->setPositionY(+100000);
+								}
+							}
+
+							/*if (nodelol->isVisible() == false)
+							{
+								nodelol->setVisible(true);
+							}*/
+						}
+
+
+					}
+
+				}
+#endif
 			}
 
 		}
@@ -918,7 +971,6 @@ class $modify(ProfilePage)
 		{
 			Mod::get()->setSettingValue("Square-corners", false);
 			Mod::get()->setSettingValue("No-corners", false);
-			FLAlertLayer::create("Oh no!", "We are here!", "OK")->show();
 			GameManager::sharedState()->setGameVariable("profilecorner1", true);
 			GameManager::sharedState()->setGameVariable("profilecorner2", false);
 			GameManager::sharedState()->setGameVariable("profilecorner3", false);
@@ -1058,8 +1110,61 @@ class $modify(ProfilePage)
 						
 						
 					}
+
 				}
-				
+				//For android
+#ifdef GEODE_IS_ANDROID
+				if (contentSize.width == 697 && contentSize.height == 320)
+				{
+					cocos2d::CCMenu* scale9Sprite = dynamic_cast<cocos2d::CCMenu*>(pObj);
+					/*scale9Sprite->setColor(ccBLACK);
+					scale9Sprite->setOpacity(32);*/
+					if (this->m_ownProfile == true)
+					{
+
+						/*auto infobutton = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(10);
+						if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
+						{
+							infobutton->setPositionY(+100000);
+						}*/
+						for (int i = 0; i < scale9Sprite->getChildrenCount(); ++i) {
+							auto nodelolas = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(i);
+							CCSize contentSize2 = nodelolas->getContentSize();
+							if (contentSize2.width >= 10 && contentSize2.width <= 12)
+							{
+								if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
+								{
+									/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
+									nodelolas->setPositionY(+100000);
+								}
+							}
+						}
+					}
+					else
+					{
+						for (int i = 0; i < scale9Sprite->getChildrenCount(); ++i) {
+							auto nodelolas = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(i);
+							CCSize contentSize2 = nodelolas->getContentSize();
+							if (contentSize2.width >= 10 && contentSize2.width <= 12)
+							{
+								if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
+								{
+									/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
+									nodelolas->setPositionY(+100000);
+								}
+							}
+
+							/*if (nodelol->isVisible() == false)
+							{
+								nodelol->setVisible(true);
+							}*/
+						}
+
+
+					}
+
+				}
+#endif
 				
 			}
 
