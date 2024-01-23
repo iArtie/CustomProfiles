@@ -59,3 +59,6 @@
 *.opendb
 /.vs/CustomProfiles/FileContentIndex/1e8361e3-abff-42fb-9cd6-035f88532bb3.vsidx
 /.vs/CustomProfiles/FileContentIndex
+/.vs/cmake.db
+/.vs/CustomProfiles/v17/ipch/73ea34b91050d983.ipch
+/.vs/slnx.sqlite
