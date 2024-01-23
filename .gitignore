@@ -62,3 +62,5 @@
 /.vs/cmake.db
 /.vs/CustomProfiles/v17/ipch/73ea34b91050d983.ipch
 /.vs/slnx.sqlite
+/.vs/VSWorkspaceState.json
+/.gitignore
