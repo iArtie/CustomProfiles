@@ -851,122 +851,137 @@ class $modify(ProfilePage)
 		auto Layer = (CCLayer*)this->getChildren()->objectAtIndex(0);
 		CCObject* pObj = nullptr;
 
-		CCARRAY_FOREACH(((CCLayer*)(this->getChildren()->objectAtIndex(0)))->getChildren(), pObj) {
+		auto menu = Layer->getChildByID("main-menu");
 
-			if (instanceof<cocos2d::CCMenu>(pObj)) {
+		auto infobutton = menu->getChildByID("info-button");
 
-				cocos2d::CCMenu* scale9Sprite = dynamic_cast<cocos2d::CCMenu*>(pObj);
-				CCSize contentSize = scale9Sprite->getContentSize();
-				/*scale9Sprite->setColor(ccBLACK);
-				scale9Sprite->setOpacity(32);*/
-				if (contentSize.width == 569 && contentSize.height == 320)
-				{
-					cocos2d::CCMenu* scale9Sprite = dynamic_cast<cocos2d::CCMenu*>(pObj);
-					/*scale9Sprite->setColor(ccBLACK);
-					scale9Sprite->setOpacity(32);*/
-					if (this->m_ownProfile == true)
-					{
+		if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
+		{
+			/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
+			infobutton->setPositionY(+100000);
+		}
+		//auto menu = this->getChildByID("main-menu");
 
-						for (int i = 0; i < scale9Sprite->getChildrenCount(); ++i) {
-							auto nodelolas = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(i);
-							CCSize contentSize2 = nodelolas->getContentSize();
-							if (contentSize2.width >= 10 && contentSize2.width <= 12)
-							{
-								if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
-								{
-									/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
-									nodelolas->setPositionY(+100000);
-								}
-							}
-						}
-					}
-					else
-					{
-						for (int i = 0; i < scale9Sprite->getChildrenCount(); ++i) {
-							auto nodelolas = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(i);
-							CCSize contentSize2 = nodelolas->getContentSize();
-							if (contentSize2.width >= 10 && contentSize2.width <= 12)
-							{
-								if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
-								{
-									/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
-									nodelolas->setPositionY(+100000);
-								}
-							}
+		//auto infobutton = menu->getChildByID("info-button");
 
-							/*if (nodelol->isVisible() == false)
-							{
-								nodelol->setVisible(true);
-							}*/
-						}
+		//if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
+		//{
+		//	/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
+		//	infobutton->setPositionY(+100000);
+		//}
+		//CCARRAY_FOREACH(((CCLayer*)(this->getChildren()->objectAtIndex(0)))->getChildren(), pObj) {
+
+		//	if (instanceof<cocos2d::CCMenu>(pObj)) {
+
+		//		cocos2d::CCMenu* scale9Sprite = dynamic_cast<cocos2d::CCMenu*>(pObj);
+		//		CCSize contentSize = scale9Sprite->getContentSize();
+		//		/*scale9Sprite->setColor(ccBLACK);
+		//		scale9Sprite->setOpacity(32);*/
+		//		if (contentSize.width == 569 && contentSize.height == 320)
+		//		{
+		//			cocos2d::CCMenu* scale9Sprite = dynamic_cast<cocos2d::CCMenu*>(pObj);
+		//			/*scale9Sprite->setColor(ccBLACK);
+		//			scale9Sprite->setOpacity(32);*/
+		//			if (this->m_ownProfile == true)
+		//			{
+
+		//				for (int i = 0; i < scale9Sprite->getChildrenCount(); ++i) {
+		//					auto nodelolas = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(i);
+		//					CCSize contentSize2 = nodelolas->getContentSize();
+		//					if (contentSize2.width >= 10 && contentSize2.width <= 12)
+		//					{
+		//						if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
+		//						{
+		//							/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
+		//							nodelolas->setPositionY(+100000);
+		//						}
+		//					}
+		//				}
+		//			}
+		//			else
+		//			{
+		//				for (int i = 0; i < scale9Sprite->getChildrenCount(); ++i) {
+		//					auto nodelolas = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(i);
+		//					CCSize contentSize2 = nodelolas->getContentSize();
+		//					if (contentSize2.width >= 10 && contentSize2.width <= 12)
+		//					{
+		//						if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
+		//						{
+		//							/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
+		//							nodelolas->setPositionY(+100000);
+		//						}
+		//					}
+
+		//					/*if (nodelol->isVisible() == false)
+		//					{
+		//						nodelol->setVisible(true);
+		//					}*/
+		//				}
 
 
-					}
-				}
+		//			}
+		//		}
+	}
 				//For android
 #ifdef GEODE_IS_ANDROID
-				if (contentSize.width == 697 && contentSize.height == 320)
-				{
-					cocos2d::CCMenu* scale9Sprite = dynamic_cast<cocos2d::CCMenu*>(pObj);
-					/*scale9Sprite->setColor(ccBLACK);
-					scale9Sprite->setOpacity(32);*/
-					if (this->m_ownProfile == true)
-					{
+				//if (contentSize.width == 697 && contentSize.height == 320)
+				//{
+				//	cocos2d::CCMenu* scale9Sprite = dynamic_cast<cocos2d::CCMenu*>(pObj);
+				//	/*scale9Sprite->setColor(ccBLACK);
+				//	scale9Sprite->setOpacity(32);*/
+				//	if (this->m_ownProfile == true)
+				//	{
 
-						/*auto infobutton = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(10);
-						if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
-						{
-							infobutton->setPositionY(+100000);
-						}*/
-						for (int i = 0; i < scale9Sprite->getChildrenCount(); ++i) {
-							auto nodelolas = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(i);
-							CCSize contentSize2 = nodelolas->getContentSize();
-							if (contentSize2.width >= 10 && contentSize2.width <= 12)
-							{
-								if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
-								{
-									/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
-									nodelolas->setPositionY(+100000);
-								}
-							}
-						}
-					}
-					else
-					{
-						for (int i = 0; i < scale9Sprite->getChildrenCount(); ++i) {
-							auto nodelolas = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(i);
-							CCSize contentSize2 = nodelolas->getContentSize();
-							if (contentSize2.width >= 10 && contentSize2.width <= 12)
-							{
-								if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
-								{
-									/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
-									nodelolas->setPositionY(+100000);
-								}
-							}
+				//		/*auto infobutton = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(10);
+				//		if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
+				//		{
+				//			infobutton->setPositionY(+100000);
+				//		}*/
+				//		for (int i = 0; i < scale9Sprite->getChildrenCount(); ++i) {
+				//			auto nodelolas = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(i);
+				//			CCSize contentSize2 = nodelolas->getContentSize();
+				//			if (contentSize2.width >= 10 && contentSize2.width <= 12)
+				//			{
+				//				if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
+				//				{
+				//					/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
+				//					nodelolas->setPositionY(+100000);
+				//				}
+				//			}
+				//		}
+				//	}
+				//	else
+				//	{
+				//		for (int i = 0; i < scale9Sprite->getChildrenCount(); ++i) {
+				//			auto nodelolas = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(i);
+				//			CCSize contentSize2 = nodelolas->getContentSize();
+				//			if (contentSize2.width >= 10 && contentSize2.width <= 12)
+				//			{
+				//				if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
+				//				{
+				//					/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
+				//					nodelolas->setPositionY(+100000);
+				//				}
+				//			}
 
-							/*if (nodelol->isVisible() == false)
-							{
-								nodelol->setVisible(true);
-							}*/
-						}
+				//			/*if (nodelol->isVisible() == false)
+				//			{
+				//				nodelol->setVisible(true);
+				//			}*/
+				//		}
 
 
-					}
+				//	}
 
-				}
+				//}
 #endif
-			}
-
-		}
-		
-	}
+	
 	TodoReturn loadPageFromUserInfo(GJUserScore* asas)
 	{
-	
+
 		ProfilePage::loadPageFromUserInfo(asas);
-	
-		
+
+
 #ifdef GEODE_IS_ANDROID
 		if (Mod::get()->getSettingValue<bool>("Round-corners") == true)
 		{
@@ -1030,7 +1045,7 @@ class $modify(ProfilePage)
 			GameManager::sharedState()->setGameVariable("disableinfolabel", false);
 
 		}
-		
+
 #endif
 		/*std::cout << OBM(&GJUserScore::m_color3) << std::endl;*/
 		//color1 offset is 360
@@ -1040,7 +1055,7 @@ class $modify(ProfilePage)
 		auto Layer = (CCLayer*)this->getChildren()->objectAtIndex(0);
 		auto blackSize = CCSize(438, 293);
 		auto laweaxd = (CCSprite*)Layer->getChildren()->objectAtIndex(0);
-		
+
 		//7121
 		auto pqwtest = (CCSprite*)Layer->getChildren()->objectAtIndex(3);
 
@@ -1051,125 +1066,142 @@ class $modify(ProfilePage)
 			GameManager::sharedState()->setGameVariable("profilecolor3", true);
 			GameManager::sharedState()->setGameVariable("startingmodsas", true);
 		}
-		CCSize newNodeSize = { 0, 100 };
-		CCObject* pObj = nullptr;
-		auto layerChild = dynamic_cast<CCLayer*>(this->getChildren()->objectAtIndex(0));
-		CCARRAY_FOREACH(layerChild->getChildren(), pObj) {
-			CCNode* currentNode = (CCNode*)pObj;
-			CCPoint xy = currentNode->getPosition();
-			currentNode->getContentSize();
 
-			CCSize contentSize = currentNode->getContentSize();
+		auto menu = Layer->getChildByID("main-menu");
 
-			if (instanceof<cocos2d::CCMenu>(pObj)) {
+		auto infobutton = menu->getChildByID("info-button");
 
-				if (contentSize.width == 569 && contentSize.height == 320)
-				{
-					cocos2d::CCMenu* scale9Sprite = dynamic_cast<cocos2d::CCMenu*>(pObj);
-					/*scale9Sprite->setColor(ccBLACK);
-					scale9Sprite->setOpacity(32);*/
-					if (this->m_ownProfile == true)
-					{
+		if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
+		{
+			/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
+			infobutton->setPositionY(+100000);
+		}
+	
+		//CCSize newNodeSize = { 0, 100 };
+		//CCObject* pObj = nullptr;
+		//auto layerChild = dynamic_cast<CCLayer*>(this->getChildren()->objectAtIndex(0));
+		//CCARRAY_FOREACH(layerChild->getChildren(), pObj) {
+		//	CCNode* currentNode = (CCNode*)pObj;
+		//	CCPoint xy = currentNode->getPosition();
+		//	currentNode->getContentSize();
 
-						/*auto infobutton = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(10);
-						if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
-						{
-							infobutton->setPositionY(+100000);
-						}*/
-						for (int i = 0; i < scale9Sprite->getChildrenCount(); ++i) {
-							auto nodelolas = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(i);
-							CCSize contentSize2 = nodelolas->getContentSize();
-							if (contentSize2.width >= 10 && contentSize2.width <= 12)
-							{
-								if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
-								{
-									/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
-									nodelolas->setPositionY(+100000);
-								}
-							}
-						}
-					}
-					else
-					{
-						for (int i = 0; i < scale9Sprite->getChildrenCount(); ++i) {
-							auto nodelolas = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(i);
-							CCSize contentSize2 = nodelolas->getContentSize();
-							if (contentSize2.width  >= 10 && contentSize2.width <= 12)
-							{
-								if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
-								{
-									/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
-									nodelolas->setPositionY(+100000);
-								}
-							}
+		//	CCSize contentSize = currentNode->getContentSize();
 
-							/*if (nodelol->isVisible() == false)
-							{
-								nodelol->setVisible(true);
-							}*/
-						}
-						
-						
-					}
+		//	if (instanceof<cocos2d::CCMenu>(pObj)) {
 
-				}
+		//		if (contentSize.width == 569 && contentSize.height == 320)
+		//		{
+		//			cocos2d::CCMenu* scale9Sprite = dynamic_cast<cocos2d::CCMenu*>(pObj);
+		//			/*scale9Sprite->setColor(ccBLACK);
+		//			scale9Sprite->setOpacity(32);*/
+		//			if (this->m_ownProfile == true)
+		//			{
+
+		//				/*auto infobutton = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(10);
+		//				if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
+		//				{
+		//					infobutton->setPositionY(+100000);
+		//				}*/
+		//				for (int i = 0; i < scale9Sprite->getChildrenCount(); ++i) {
+		//					auto nodelolas = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(i);
+		//					CCSize contentSize2 = nodelolas->getContentSize();
+		//					if (contentSize2.width >= 10 && contentSize2.width <= 12)
+		//					{
+		//						if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
+		//						{
+		//							/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
+		//							nodelolas->setPositionY(+100000);
+		//						}
+		//					}
+		//				}
+		//			}
+		//			else
+		//			{
+		//				for (int i = 0; i < scale9Sprite->getChildrenCount(); ++i) {
+		//					auto nodelolas = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(i);
+		//					CCSize contentSize2 = nodelolas->getContentSize();
+		//					if (contentSize2.width  >= 10 && contentSize2.width <= 12)
+		//					{
+		//						if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
+		//						{
+		//							/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
+		//							nodelolas->setPositionY(+100000);
+		//						}
+		//					}
+
+		//					/*if (nodelol->isVisible() == false)
+		//					{
+		//						nodelol->setVisible(true);
+		//					}*/
+		//				}
+		//				
+		//				
+		//			}
+
+		//		}
+	
 				//For android
 #ifdef GEODE_IS_ANDROID
-				if (contentSize.width == 697 && contentSize.height == 320)
-				{
-					cocos2d::CCMenu* scale9Sprite = dynamic_cast<cocos2d::CCMenu*>(pObj);
-					/*scale9Sprite->setColor(ccBLACK);
-					scale9Sprite->setOpacity(32);*/
-					if (this->m_ownProfile == true)
-					{
+		//if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
+		//{
+		//	/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
+		//	infobutton->setPositionY(+100000);
+		//}
+				//if (contentSize.width == 697 && contentSize.height == 320)
+				//{
+				//	cocos2d::CCMenu* scale9Sprite = dynamic_cast<cocos2d::CCMenu*>(pObj);
+				//	/*scale9Sprite->setColor(ccBLACK);
+				//	scale9Sprite->setOpacity(32);*/
+				//	if (this->m_ownProfile == true)
+				//	{
 
-						/*auto infobutton = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(10);
-						if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
-						{
-							infobutton->setPositionY(+100000);
-						}*/
-						for (int i = 0; i < scale9Sprite->getChildrenCount(); ++i) {
-							auto nodelolas = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(i);
-							CCSize contentSize2 = nodelolas->getContentSize();
-							if (contentSize2.width >= 10 && contentSize2.width <= 12)
-							{
-								if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
-								{
-									/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
-									nodelolas->setPositionY(+100000);
-								}
-							}
-						}
-					}
-					else
-					{
-						for (int i = 0; i < scale9Sprite->getChildrenCount(); ++i) {
-							auto nodelolas = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(i);
-							CCSize contentSize2 = nodelolas->getContentSize();
-							if (contentSize2.width >= 10 && contentSize2.width <= 12)
-							{
-								if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
-								{
-									/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
-									nodelolas->setPositionY(+100000);
-								}
-							}
+				//		/*auto infobutton = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(10);
+				//		if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
+				//		{
+				//			infobutton->setPositionY(+100000);
+				//		}*/
+				//		for (int i = 0; i < scale9Sprite->getChildrenCount(); ++i) {
+				//			auto nodelolas = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(i);
+				//			CCSize contentSize2 = nodelolas->getContentSize();
+				//			if (contentSize2.width >= 10 && contentSize2.width <= 12)
+				//			{
+				//				if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
+				//				{
+				//					/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
+				//					nodelolas->setPositionY(+100000);
+				//				}
+				//			}
+				//		}
+				//	}
+				//	else
+				//	{
+				//		for (int i = 0; i < scale9Sprite->getChildrenCount(); ++i) {
+				//			auto nodelolas = (CCMenuItemSpriteExtra*)scale9Sprite->getChildren()->objectAtIndex(i);
+				//			CCSize contentSize2 = nodelolas->getContentSize();
+				//			if (contentSize2.width >= 10 && contentSize2.width <= 12)
+				//			{
+				//				if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
+				//				{
+				//					/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
+				//					nodelolas->setPositionY(+100000);
+				//				}
+				//			}
 
-							/*if (nodelol->isVisible() == false)
-							{
-								nodelol->setVisible(true);
-							}*/
-						}
+				//			/*if (nodelol->isVisible() == false)
+				//			{
+				//				nodelol->setVisible(true);
+				//			}*/
+				//		}
 
 
-					}
+				//	}
 
-				}
+				//}
 #endif
 				
-			}
+			
 
-		}
+	
 
 		if (Layer->getChildByTag(3) == nullptr)
 		{
