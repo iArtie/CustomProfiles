@@ -54,11 +54,18 @@
 			"type": "bool",
 			"default": true
 		}
-		
+
 	},
 	"repository": "https://github.com/iArtie/CustomProfiles",
 	"issues": {
 		"info": "Post your issues on the <cp>Issue tracking repository</c>.",
 		"url": "https://github.com/iArtie/CustomProfiles/issues/new/choose"
-	}
+	},
+	"dependencies": [
+		{
+			"id": "geode.node-ids",
+			"version": ">=v1.1.4",
+			"importance": "required"
+		}
+	]
 }
