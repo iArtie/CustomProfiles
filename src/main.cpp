@@ -583,6 +583,8 @@ void updateColors(float dt,CCLayerGradient* gradient)
 	}
 }
 
+//hiii this is a test for mac :D
+
 
 class $modify(InfoLayer)
 {
