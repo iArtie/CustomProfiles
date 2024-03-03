@@ -7,6 +7,7 @@
 	"description": "My first mod to geode, a port for the original CustomProfiles now available with new features!",
 	"gd": {
 		"android": "2.205",
+		"mac" : "2.200",
 		"win": "2.204"
 	},
 	"settings": {
