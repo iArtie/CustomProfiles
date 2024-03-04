@@ -1264,28 +1264,42 @@ class $modify(CommentCell)
 				Idk2->setZOrder(-1);
 				this->addChild(Idk2);
 			}
-		}
+			else
+			{
+				CCObject* pObj = nullptr;
+				CCARRAY_FOREACH(((CCLayer*)(this->getChildren()->objectAtIndex(1)))->getChildren(), pObj) {
 
-	}
-	TodoReturn updateBGColor(int a1)
-	{
-		CommentCell::updateBGColor(a1);
-		CCObject* pObj = nullptr;
-	 
-		if (this->m_comment->m_levelID == 0 || this->m_comment->m_hasLevelID == 1) {
+					if (instanceof<cocos2d::extension::CCScale9Sprite>(pObj)) {
 
-			CCARRAY_FOREACH(((CCLayer*)(this->getChildren()->objectAtIndex(1)))->getChildren(), pObj) {
+						cocos2d::extension::CCScale9Sprite* scale9Sprite = dynamic_cast<cocos2d::extension::CCScale9Sprite*>(pObj);
+						scale9Sprite->setColor(ccBLACK);
+						scale9Sprite->setOpacity(32);
+					}
 
-				if (instanceof<cocos2d::extension::CCScale9Sprite>(pObj)) {
-
-					cocos2d::extension::CCScale9Sprite* scale9Sprite = dynamic_cast<cocos2d::extension::CCScale9Sprite*>(pObj);
-					scale9Sprite->setColor(ccBLACK);
-					scale9Sprite->setOpacity(32);
 				}
-
 			}
 		}
+
 	}
+	//TodoReturn updateBGColor(int a1)
+	//{
+	//	CommentCell::updateBGColor(a1);
+	//	CCObject* pObj = nullptr;
+	// 
+	//	if (this->m_comment->m_levelID == 0 || this->m_comment->m_hasLevelID == 1) {
+
+	//		CCARRAY_FOREACH(((CCLayer*)(this->getChildren()->objectAtIndex(1)))->getChildren(), pObj) {
+
+	//			if (instanceof<cocos2d::extension::CCScale9Sprite>(pObj)) {
+
+	//				cocos2d::extension::CCScale9Sprite* scale9Sprite = dynamic_cast<cocos2d::extension::CCScale9Sprite*>(pObj);
+	//				scale9Sprite->setColor(ccBLACK);
+	//				scale9Sprite->setOpacity(32);
+	//			}
+
+	//		}
+	//	}
+	//}
 
 	int weawa = 0;
 #include <sstream>
