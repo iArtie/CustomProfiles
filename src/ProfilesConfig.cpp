@@ -69,8 +69,11 @@ void ProfilesConfig::onOptionsBtnClick(CCObject* sender) {
 		}
 	}
 	auto Layer = (CCLayer*)parentNode2->getChildren()->objectAtIndex(9);
-			Layer->setScale(0);
+		
 			Layer->setVisible(true);
+
+#ifdef GEODE_IS_WINDOWS
+			Layer->setScale(0);
 			auto fadeIn = CCFadeIn::create(0.04f);  // O cualquier duración que desees
 			auto scaleTo = CCScaleTo::create(0.04f, 1.0f);  // Escalar el fondo al tamaño original
 
@@ -79,6 +82,8 @@ void ProfilesConfig::onOptionsBtnClick(CCObject* sender) {
 
 			auto spawn = CCSpawn::create(fadeInWithEase, scaleToWithEase, nullptr);
 			Layer->runAction(spawn);
+#endif // !GEODE_IS_WINDOWS
+
 	
 }
 
