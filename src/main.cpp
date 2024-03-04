@@ -612,7 +612,7 @@ class $modify(GJAccountSettingsLayer)
 		auto BG = cocos2d::extension::CCScale9Sprite::create("GJ_square01.png");
 		BG->setPosition(winSize / 2);
 		BG->setContentSize(size);
-		BG->setScale(0);
+		
 		this->addChild(BG);
 		auto waexd = cocos2d::extension::CCScale9Sprite::create("square02b_001.png");
 		waexd->setContentSize({ 360,55 });
@@ -628,7 +628,7 @@ class $modify(GJAccountSettingsLayer)
 		auto fadeInWithEase = CCEaseBackOut::create(fadeIn);
 		auto scaleToWithEase = CCEaseBackOut::create(scaleTo);
 
-		auto spawn = CCSpawn::create(fadeInWithEase, scaleToWithEase, nullptr);
+	
 
 		auto Exit = CCSprite::createWithSpriteFrameName("GJ_deleteBtn_001.png");
 
@@ -974,7 +974,7 @@ class $modify(GJAccountSettingsLayer)
 		elmenu->setPositionX(elmenu->getPositionX() - 210);
 		elmenu->setPositionY(elmenu->getPositionY() + 135);
 
-		BG->runAction(spawn);
+	
 
 
 
