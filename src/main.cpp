@@ -143,7 +143,7 @@ class $modify(GJAccountSettingsLayer)
 #ifdef GEODE_IS_MAC
 
 
-		return true;
+		return GJAccountSettingsLayer::init(a1);
 #endif
 		/*if (Loader::get()->getVersion() == 2.205)
 		{
