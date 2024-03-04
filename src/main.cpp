@@ -571,424 +571,6 @@ class $modify(GJAccountSettingsLayer)
 #endif
 		
 #ifdef GEODE_IS_MACOS
-		handleTouchPriority(this);
-		GameManager::sharedState()->setGameVariable("weaclosexd", false);
-		auto butonCancel = ButtonSprite::create("Cancel", 65, 70, "bigFont.fnt", "GJ_button_01.png", 25, 1);
-		auto winSize = CCDirector::sharedDirector()->getWinSize();
-		auto Layer = (CCLayer*)this->getChildren()->objectAtIndex(0);
-
-		auto CancelBtn = CCMenuItemSpriteExtra::create(
-			butonCancel,
-			this,
-			menu_selector(ProfilesConfig::onReturn)
-		);
-		for (int i = 0; i < Layer->getChildrenCount(); ++i) {
-			auto nodelol = (CCLayer*)Layer->getChildren()->objectAtIndex(i);
-
-			if (i == 1)
-			{
-				auto buttonsas = (CCLayer*)nodelol->getChildren()->objectAtIndex(8);
-				buttonsas->setVisible(false);
-
-				CancelBtn->setContentSize(buttonsas->getContentSize());
-				CancelBtn->setPosition(buttonsas->getPosition());
-				CancelBtn->setScale(buttonsas->getScale());
-				CancelBtn->setZOrder(buttonsas->getZOrder());
-				auto spras = (CCLayer*)buttonsas->getChildren()->objectAtIndex(0);
-				butonCancel->setContentSize(spras->getContentSize());
-				butonCancel->setPosition(spras->getPosition());
-				nodelol->addChild(CancelBtn);
-			}
-
-			/*if (nodelol->isVisible() == false)
-			{
-				nodelol->setVisible(true);
-			}*/
-		}
-		CCSize size = { 440,290 };
-		Layer->setVisible(false);
-		Layer->setZOrder(15);
-		/*auto config = ProfilesConfig::create(this);*/
-		auto BG = cocos2d::extension::CCScale9Sprite::create("GJ_square01.png");
-		BG->setPosition(winSize / 2);
-		BG->setContentSize(size);
-		
-		this->addChild(BG);
-		auto waexd = cocos2d::extension::CCScale9Sprite::create("square02b_001.png");
-		waexd->setContentSize({ 360,55 });
-
-
-		auto waexd2 = cocos2d::extension::CCScale9Sprite::create("square02b_001.png");
-		waexd2->setContentSize({ 360,55 });
-
-
-		auto fadeIn = CCFadeIn::create(0.04f);  // O cualquier duración que desees
-		auto scaleTo = CCScaleTo::create(0.04f, 1.0f);  // Escalar el fondo al tamaño original
-
-		auto fadeInWithEase = CCEaseBackOut::create(fadeIn);
-		auto scaleToWithEase = CCEaseBackOut::create(scaleTo);
-
-	
-
-		auto Exit = CCSprite::createWithSpriteFrameName("GJ_deleteBtn_001.png");
-
-		Exit->setScale(0.95f);
-		auto ExitBtn = CCMenuItemSpriteExtra::create(
-			Exit,
-			this,
-			menu_selector(GJAccountSettingsLayer::onClose)
-		);
-
-		auto onSpr = CCSprite::createWithSpriteFrameName("GJ_checkOn_001.png");
-		auto offSpr = CCSprite::createWithSpriteFrameName("GJ_checkOff_001.png");
-
-		onSpr->setScale(.7);
-		offSpr->setScale(.7);
-		auto label = CCLabelBMFont::create("CustomProfiles Options", "bigfont.fnt");
-		label->setPosition(winSize / 2);
-		/*label->setPositionX(label->getPositionX() - 65);*/
-		label->setPositionY(label->getPositionY() + 120);
-		label->setScale(0.55);
-		this->addChild(label);
-		auto elmenu = CCMenu::create();
-
-		elmenu->addChild(ExitBtn);
-
-
-
-		auto label2 = CCLabelBMFont::create("Corners", "bigfont.fnt");
-		label2->setPosition(winSize / 2);
-		/*label2->setPositionX(0);*/
-		label2->setPositionY(label2->getPositionY() + 80);
-
-		waexd->setPosition(winSize / 2);
-		/*waexd->setPositionX(waexd->getPositionX() - 65);*/
-		waexd->setPositionY(waexd->getPositionY() + 38);
-		waexd->setColor(ccBLACK);
-		waexd->setOpacity(77);
-		label2->setScale(0.55);
-
-		auto menuglowxd = CCMenu::create();
-
-		//Corners buttons
-		auto toggle1 = CCMenuItemToggler::create(
-			offSpr,
-			onSpr,
-			this,
-			menu_selector(ProfilesConfig::corner1));
-		/*toggle1->setSizeMult(1.5);*/
-
-
-
-
-
-
-
-		toggle1->setPosition(winSize / 2);
-		toggle1->setPositionX(toggle1->getPositionX() - 150);
-		toggle1->setPositionY(toggle1->getPositionY() + 49);
-
-
-
-		toggle1->setTag(11);
-
-		auto labelcorner1 = CCLabelBMFont::create("Round", "bigfont.fnt");
-		labelcorner1->setPosition(toggle1->getPosition());
-		labelcorner1->setPositionX(labelcorner1->getPositionX() + 57);
-		labelcorner1->setPositionY(labelcorner1->getPositionY() + 1);
-		labelcorner1->setScale(0.75);
-
-		menuglowxd->addChild(toggle1);
-		menuglowxd->addChild(labelcorner1);
-
-		auto toggle2 = CCMenuItemToggler::create(
-			offSpr,
-			onSpr,
-			this,
-			menu_selector(ProfilesConfig::corner2));
-		/*toggle1->setSizeMult(1.5);*/
-
-		/*toggle2->activate();*/
-
-
-
-
-		toggle2->setPosition(winSize / 2);
-		toggle2->setPositionX(toggle2->getPositionX() - 38);
-		toggle2->setPositionY(toggle2->getPositionY() + 49);
-
-
-		toggle2->setTag(12);
-
-		auto labelcorner2 = CCLabelBMFont::create("Square", "bigfont.fnt");
-		labelcorner2->setPosition(toggle2->getPosition());
-		labelcorner2->setPositionX(labelcorner2->getPositionX() + 61);
-		labelcorner2->setPositionY(labelcorner2->getPositionY() + 1);
-		labelcorner2->setScale(0.75);
-
-		menuglowxd->addChild(toggle2);
-		menuglowxd->addChild(labelcorner2);
-
-
-		auto toggle3 = CCMenuItemToggler::create(
-			offSpr,
-			onSpr,
-			this,
-			menu_selector(ProfilesConfig::corner3));
-		/*toggle1->setSizeMult(1.5);*/
-
-		/*toggle2->activate();*/
-
-
-
-
-		toggle3->setPosition(winSize / 2);
-		toggle3->setPositionX(toggle3->getPositionX() + 87);
-		toggle3->setPositionY(toggle3->getPositionY() + 49);
-
-		toggle3->setTag(13);
-
-		auto labelcorner3 = CCLabelBMFont::create("None", "bigfont.fnt");
-		labelcorner3->setPosition(toggle3->getPosition());
-		labelcorner3->setPositionX(labelcorner3->getPositionX() + 50);
-		labelcorner3->setPositionY(labelcorner3->getPositionY() + 1);
-		labelcorner3->setScale(0.75);
-
-		menuglowxd->addChild(toggle3);
-		menuglowxd->addChild(labelcorner3);
-
-
-		//Color options
-
-		auto togglecolor1 = CCMenuItemToggler::create(
-			offSpr,
-			onSpr,
-			this,
-			menu_selector(ProfilesConfig::color1));
-		/*toggle1->setSizeMult(1.5);*/
-
-		/*togglecolor1->activate();*/
-
-		togglecolor1->setTag(21);
-
-		menuglowxd->setPosition(winSize / 2);
-		menuglowxd->setPositionX(menuglowxd->getPositionX() - 350);
-		menuglowxd->setPositionY(menuglowxd->getPositionY() - 177);
-
-
-
-		togglecolor1->setPosition(winSize / 2);
-		togglecolor1->setPositionX(togglecolor1->getPositionX() - 150);
-		togglecolor1->setPositionY(togglecolor1->getPositionY() - 40);
-
-
-
-
-		auto labelcolor1 = CCLabelBMFont::create("Animate", "bigfont.fnt");
-		labelcolor1->setPosition(togglecolor1->getPosition());
-		labelcolor1->setPositionX(labelcolor1->getPositionX() + 57);
-		labelcolor1->setPositionY(labelcolor1->getPositionY() + 1);
-		labelcolor1->setScale(0.60);
-
-		menuglowxd->addChild(togglecolor1);
-		menuglowxd->addChild(labelcolor1);
-
-		auto togglecolor2 = CCMenuItemToggler::create(
-			offSpr,
-			onSpr,
-			this,
-			menu_selector(ProfilesConfig::color2));
-		togglecolor2->setTag(22);
-		/*toggle1->setSizeMult(1.5);*/
-
-		/*toggle2->activate();*/
-
-
-
-
-		togglecolor2->setPosition(winSize / 2);
-		togglecolor2->setPositionX(togglecolor2->getPositionX() - 38);
-		togglecolor2->setPositionY(togglecolor2->getPositionY() - 40);
-
-
-
-
-		auto labelcolor2 = CCLabelBMFont::create("Invert", "bigfont.fnt");
-		labelcolor2->setPosition(togglecolor2->getPosition());
-		labelcolor2->setPositionX(labelcolor2->getPositionX() + 61);
-		labelcolor2->setPositionY(labelcolor2->getPositionY() + 1);
-		labelcolor2->setScale(0.75);
-
-		menuglowxd->addChild(togglecolor2);
-		menuglowxd->addChild(labelcolor2);
-
-
-		auto togglecolor3 = CCMenuItemToggler::create(
-			offSpr,
-			onSpr,
-			this,
-			menu_selector(ProfilesConfig::color3));
-		/*toggle1->setSizeMult(1.5);*/
-
-		/*togglecolor3->activate()*/;
-
-
-
-
-		togglecolor3->setPosition(winSize / 2);
-		togglecolor3->setPositionX(togglecolor3->getPositionX() + 87);
-		togglecolor3->setPositionY(togglecolor3->getPositionY() - 40);
-
-		togglecolor3->setTag(25);
-		//Corners
-		if (GameManager::sharedState()->getGameVariable("profilecorner1") == true)
-		{
-			toggle1->toggle(1);
-			toggle2->toggle(0);
-			toggle3->toggle(0);
-		}
-
-		if (GameManager::sharedState()->getGameVariable("profilecorner2") == true)
-		{
-			toggle1->toggle(0);
-			toggle2->toggle(1);
-			toggle3->toggle(0);
-		}
-
-		if (GameManager::sharedState()->getGameVariable("profilecorner3") == true)
-		{
-			toggle1->toggle(0);
-			toggle2->toggle(0);
-			toggle3->toggle(1);
-		}
-		//Colors
-		if (GameManager::sharedState()->getGameVariable("profilecolor1") == true)
-		{
-			togglecolor1->toggle(1);
-			togglecolor2->toggle(0);
-			togglecolor3->toggle(0);
-		}
-
-		if (GameManager::sharedState()->getGameVariable("profilecolor2") == true)
-		{
-			togglecolor1->toggle(0);
-			togglecolor2->toggle(1);
-			togglecolor3->toggle(0);
-		}
-
-		if (GameManager::sharedState()->getGameVariable("profilecolor3") == true)
-		{
-			togglecolor1->toggle(0);
-			togglecolor2->toggle(0);
-			togglecolor3->toggle(1);
-		}
-
-
-		auto labelcolor3 = CCLabelBMFont::create("Normal", "bigfont.fnt");
-		labelcolor3->setPosition(togglecolor3->getPosition());
-		labelcolor3->setPositionX(labelcolor3->getPositionX() + 53);
-		labelcolor3->setPositionY(labelcolor3->getPositionY() + 1);
-		labelcolor3->setScale(0.60);
-		togglecolor3->setTag(25);
-
-		menuglowxd->addChild(togglecolor3);
-		menuglowxd->addChild(labelcolor3);
-		this->addChild(label2);
-		this->addChild(waexd);
-
-
-		menuglowxd->setPosition(-1, -11);
-		/*menuglowxd->setPosition(BG->getPositionX(), BG->getPositionY());*/
-		/*menuglowxd->setPositionX(menuglowxd->getPositionX() - 350);
-		menuglowxd->setPositionY(menuglowxd->getPositionY() - 177);*/
-
-		this->addChild(menuglowxd, 2);
-
-
-
-
-
-
-
-		auto label3 = CCLabelBMFont::create("Colors", "bigfont.fnt");
-		label3->setPosition(winSize / 2);
-		/*label3->setPositionX(label3->getPositionX() - 65);*/
-		label3->setPositionY(label3->getPositionY() - 10);
-
-		waexd2->setPosition(winSize / 2);
-		/*waexd2->setPositionX(waexd2->getPositionX() - 65);*/
-		waexd2->setPositionY(waexd2->getPositionY() - 52);
-		waexd2->setColor(ccBLACK);
-		waexd2->setOpacity(77);
-		label3->setScale(0.55);
-		this->addChild(label3);
-		this->addChild(waexd2);
-		auto Options = CCSprite::createWithSpriteFrameName("GJ_optionsBtn_001.png");
-
-		Options->setScale(0.7f);
-		auto OptionsBtn = CCMenuItemSpriteExtra::create(
-			Options,
-			this,
-			menu_selector(ProfilesConfig::onOptionsBtnClick)
-		);
-
-
-		/*OptionsBtn->setScale(0.7);*/
-
-		auto disableinfo = CCMenuItemToggler::create(
-			offSpr,
-			onSpr,
-			this,
-			menu_selector(ProfilesConfig::disableInfolabel));
-		if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
-		{
-			disableinfo->toggle(1);
-		}
-
-		if (GameManager::sharedState()->getGameVariable("disableinfolabel") == false)
-		{
-			disableinfo->toggle(0);
-		}
-		auto infolabel = CCLabelBMFont::create("Disable info button", "bigfont.fnt");
-
-		disableinfo->setPosition(OptionsBtn->getPosition());
-		disableinfo->setPositionX(disableinfo->getPositionX() - 390);
-
-
-		infolabel->setPosition(disableinfo->getPosition());
-		infolabel->setPositionX(infolabel->getPositionX() + 100);
-		infolabel->setScale(0.5);
-		auto optionsmenu = CCMenu::create();
-		optionsmenu->addChild(OptionsBtn);
-		optionsmenu->addChild(disableinfo);
-		optionsmenu->addChild(infolabel);
-
-		optionsmenu->setPosition(BG->getPositionX() + 196, BG->getPositionY() - 116);
-		/*optionsmenu->setPosition(winSize / 2);*/
-	/*	optionsmenu->setPosition(optionsmenu->getPositionX() + 131, optionsmenu->getPositionY() - 133);*/
-
-		this->addChild(optionsmenu, 2);
-		this->addChild(elmenu, 2);
-
-		elmenu->setPosition(BG->getPositionX(), BG->getPositionY());
-		elmenu->setPositionX(elmenu->getPositionX() - 210);
-		elmenu->setPositionY(elmenu->getPositionY() + 135);
-
-	
-
-
-
-		elmenu->setTag(50);
-		optionsmenu->setTag(51);
-		label->setTag(52);
-		label2->setTag(53);
-		label3->setTag(54);
-		waexd->setTag(55);
-		waexd2->setTag(56);
-		menuglowxd->setTag(57);
-		BG->setTag(58);
-		/*ProfilesConfig::create(this)->show();*/
-		/*FLAlertLayer::create("OMG", "Si funciona! :D", "OK")->show();*/
 		return true;
 #endif
 	}
@@ -1365,71 +947,71 @@ class $modify(ProfilePage)
 
 #endif
 
-//#ifdef GEODE_IS_MACOS
-//		if (Mod::get()->getSettingValue<bool>("Round-corners") == true)
-//		{
-//			Mod::get()->setSettingValue("Square-corners", false);
-//			Mod::get()->setSettingValue("No-corners", false);
-//			GameManager::sharedState()->setGameVariable("profilecorner1", true);
-//			GameManager::sharedState()->setGameVariable("profilecorner2", false);
-//			GameManager::sharedState()->setGameVariable("profilecorner3", false);
-//		}
-//		if (Mod::get()->getSettingValue<bool>("Square-corners") == true)
-//		{
-//			Mod::get()->setSettingValue("Round-corners", false);
-//			Mod::get()->setSettingValue("No-corners", false);
-//			GameManager::sharedState()->setGameVariable("profilecorner1", false);
-//			GameManager::sharedState()->setGameVariable("profilecorner2", true);
-//			GameManager::sharedState()->setGameVariable("profilecorner3", false);
-//		}
-//		if (Mod::get()->getSettingValue<bool>("No-corners") == true)
-//		{
-//			Mod::get()->setSettingValue("Square-corners", false);
-//			Mod::get()->setSettingValue("Round-corners", false);
-//			GameManager::sharedState()->setGameVariable("profilecorner1", false);
-//			GameManager::sharedState()->setGameVariable("profilecorner2", false);
-//			GameManager::sharedState()->setGameVariable("profilecorner3", true);
-//		}
-//
-//		if (Mod::get()->getSettingValue<bool>("Animate-colors") == true)
-//		{
-//			Mod::get()->setSettingValue("Invert-Colors", false);
-//			Mod::get()->setSettingValue("Normal-colors", false);
-//			GameManager::sharedState()->setGameVariable("profilecolor1", true);
-//			GameManager::sharedState()->setGameVariable("profilecolor2", false);
-//			GameManager::sharedState()->setGameVariable("profilecolor3", false);
-//		}
-//
-//		if (Mod::get()->getSettingValue<bool>("Invert-Colors") == true)
-//		{
-//			Mod::get()->setSettingValue("Animate-colors", false);
-//			Mod::get()->setSettingValue("Normal-colors", false);
-//			GameManager::sharedState()->setGameVariable("profilecolor1", false);
-//			GameManager::sharedState()->setGameVariable("profilecolor2", true);
-//			GameManager::sharedState()->setGameVariable("profilecolor3", false);
-//		}
-//
-//		if (Mod::get()->getSettingValue<bool>("Normal-colors") == true)
-//		{
-//			Mod::get()->setSettingValue("Animate-colors", false);
-//			Mod::get()->setSettingValue("Invert-Colors", false);
-//			GameManager::sharedState()->setGameVariable("profilecolor1", false);
-//			GameManager::sharedState()->setGameVariable("profilecolor2", false);
-//			GameManager::sharedState()->setGameVariable("profilecolor3", true);
-//		}
-//
-//		if (Mod::get()->getSettingValue<bool>("Disable-info-button") == true)
-//		{
-//			GameManager::sharedState()->setGameVariable("disableinfolabel", true);
-//
-//		}
-//		if (Mod::get()->getSettingValue<bool>("Disable-info-button") == false)
-//		{
-//			GameManager::sharedState()->setGameVariable("disableinfolabel", false);
-//
-//		}
-//
-//#endif
+#ifdef GEODE_IS_MACOS
+		if (Mod::get()->getSettingValue<bool>("Round-corners") == true)
+		{
+			Mod::get()->setSettingValue("Square-corners", false);
+			Mod::get()->setSettingValue("No-corners", false);
+			GameManager::sharedState()->setGameVariable("profilecorner1", true);
+			GameManager::sharedState()->setGameVariable("profilecorner2", false);
+			GameManager::sharedState()->setGameVariable("profilecorner3", false);
+		}
+		if (Mod::get()->getSettingValue<bool>("Square-corners") == true)
+		{
+			Mod::get()->setSettingValue("Round-corners", false);
+			Mod::get()->setSettingValue("No-corners", false);
+			GameManager::sharedState()->setGameVariable("profilecorner1", false);
+			GameManager::sharedState()->setGameVariable("profilecorner2", true);
+			GameManager::sharedState()->setGameVariable("profilecorner3", false);
+		}
+		if (Mod::get()->getSettingValue<bool>("No-corners") == true)
+		{
+			Mod::get()->setSettingValue("Square-corners", false);
+			Mod::get()->setSettingValue("Round-corners", false);
+			GameManager::sharedState()->setGameVariable("profilecorner1", false);
+			GameManager::sharedState()->setGameVariable("profilecorner2", false);
+			GameManager::sharedState()->setGameVariable("profilecorner3", true);
+		}
+
+		if (Mod::get()->getSettingValue<bool>("Animate-colors") == true)
+		{
+			Mod::get()->setSettingValue("Invert-Colors", false);
+			Mod::get()->setSettingValue("Normal-colors", false);
+			GameManager::sharedState()->setGameVariable("profilecolor1", true);
+			GameManager::sharedState()->setGameVariable("profilecolor2", false);
+			GameManager::sharedState()->setGameVariable("profilecolor3", false);
+		}
+
+		if (Mod::get()->getSettingValue<bool>("Invert-Colors") == true)
+		{
+			Mod::get()->setSettingValue("Animate-colors", false);
+			Mod::get()->setSettingValue("Normal-colors", false);
+			GameManager::sharedState()->setGameVariable("profilecolor1", false);
+			GameManager::sharedState()->setGameVariable("profilecolor2", true);
+			GameManager::sharedState()->setGameVariable("profilecolor3", false);
+		}
+
+		if (Mod::get()->getSettingValue<bool>("Normal-colors") == true)
+		{
+			Mod::get()->setSettingValue("Animate-colors", false);
+			Mod::get()->setSettingValue("Invert-Colors", false);
+			GameManager::sharedState()->setGameVariable("profilecolor1", false);
+			GameManager::sharedState()->setGameVariable("profilecolor2", false);
+			GameManager::sharedState()->setGameVariable("profilecolor3", true);
+		}
+
+		if (Mod::get()->getSettingValue<bool>("Disable-info-button") == true)
+		{
+			GameManager::sharedState()->setGameVariable("disableinfolabel", true);
+
+		}
+		if (Mod::get()->getSettingValue<bool>("Disable-info-button") == false)
+		{
+			GameManager::sharedState()->setGameVariable("disableinfolabel", false);
+
+		}
+
+#endif
 		/*std::cout << OBM(&GJUserScore::m_color3) << std::endl;*/
 		//color1 offset is 360
 		//color2 offset is 364
