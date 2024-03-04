@@ -139,10 +139,16 @@ class $modify(GJAccountSettingsLayer)
 
 		return true;
 #endif
+
+#ifdef GEODE_IS_MAC
+
+
+		return true;
+#endif
 		/*if (Loader::get()->getVersion() == 2.205)
 		{
 		}*/
-#ifdef GEODE_IS_WINDOWS || GEODE_IS_MAC
+#ifdef GEODE_IS_WINDOWS
 		handleTouchPriority(this);
 		GameManager::sharedState()->setGameVariable("weaclosexd", false);
 		auto butonCancel = ButtonSprite::create("Cancel", 65, 70, "bigFont.fnt", "GJ_button_01.png", 25, 1);
@@ -873,6 +879,72 @@ class $modify(ProfilePage)
 
 
 #ifdef GEODE_IS_ANDROID
+		if (Mod::get()->getSettingValue<bool>("Round-corners") == true)
+		{
+			Mod::get()->setSettingValue("Square-corners", false);
+			Mod::get()->setSettingValue("No-corners", false);
+			GameManager::sharedState()->setGameVariable("profilecorner1", true);
+			GameManager::sharedState()->setGameVariable("profilecorner2", false);
+			GameManager::sharedState()->setGameVariable("profilecorner3", false);
+		}
+		if (Mod::get()->getSettingValue<bool>("Square-corners") == true)
+		{
+			Mod::get()->setSettingValue("Round-corners", false);
+			Mod::get()->setSettingValue("No-corners", false);
+			GameManager::sharedState()->setGameVariable("profilecorner1", false);
+			GameManager::sharedState()->setGameVariable("profilecorner2", true);
+			GameManager::sharedState()->setGameVariable("profilecorner3", false);
+		}
+		if (Mod::get()->getSettingValue<bool>("No-corners") == true)
+		{
+			Mod::get()->setSettingValue("Square-corners", false);
+			Mod::get()->setSettingValue("Round-corners", false);
+			GameManager::sharedState()->setGameVariable("profilecorner1", false);
+			GameManager::sharedState()->setGameVariable("profilecorner2", false);
+			GameManager::sharedState()->setGameVariable("profilecorner3", true);
+		}
+
+		if (Mod::get()->getSettingValue<bool>("Animate-colors") == true)
+		{
+			Mod::get()->setSettingValue("Invert-Colors", false);
+			Mod::get()->setSettingValue("Normal-colors", false);
+			GameManager::sharedState()->setGameVariable("profilecolor1", true);
+			GameManager::sharedState()->setGameVariable("profilecolor2", false);
+			GameManager::sharedState()->setGameVariable("profilecolor3", false);
+		}
+
+		if (Mod::get()->getSettingValue<bool>("Invert-Colors") == true)
+		{
+			Mod::get()->setSettingValue("Animate-colors", false);
+			Mod::get()->setSettingValue("Normal-colors", false);
+			GameManager::sharedState()->setGameVariable("profilecolor1", false);
+			GameManager::sharedState()->setGameVariable("profilecolor2", true);
+			GameManager::sharedState()->setGameVariable("profilecolor3", false);
+		}
+
+		if (Mod::get()->getSettingValue<bool>("Normal-colors") == true)
+		{
+			Mod::get()->setSettingValue("Animate-colors", false);
+			Mod::get()->setSettingValue("Invert-Colors", false);
+			GameManager::sharedState()->setGameVariable("profilecolor1", false);
+			GameManager::sharedState()->setGameVariable("profilecolor2", false);
+			GameManager::sharedState()->setGameVariable("profilecolor3", true);
+		}
+
+		if (Mod::get()->getSettingValue<bool>("Disable-info-button") == true)
+		{
+			GameManager::sharedState()->setGameVariable("disableinfolabel", true);
+
+		}
+		if (Mod::get()->getSettingValue<bool>("Disable-info-button") == false)
+		{
+			GameManager::sharedState()->setGameVariable("disableinfolabel", false);
+
+		}
+
+#endif
+
+#ifdef GEODE_IS_MAC
 		if (Mod::get()->getSettingValue<bool>("Round-corners") == true)
 		{
 			Mod::get()->setSettingValue("Square-corners", false);
