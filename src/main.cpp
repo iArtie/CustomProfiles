@@ -142,7 +142,7 @@ class $modify(GJAccountSettingsLayer)
 		/*if (Loader::get()->getVersion() == 2.205)
 		{
 		}*/
-#ifdef GEODE_IS_WINDOWS
+#ifdef GEODE_IS_WINDOWS || GEODE_IS_MAC
 		handleTouchPriority(this);
 		GameManager::sharedState()->setGameVariable("weaclosexd", false);
 		auto butonCancel = ButtonSprite::create("Cancel", 65, 70, "bigFont.fnt", "GJ_button_01.png", 25, 1);
