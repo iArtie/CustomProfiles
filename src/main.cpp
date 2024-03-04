@@ -151,6 +151,8 @@ class $modify(GJAccountSettingsLayer)
 #ifdef GEODE_IS_WINDOWS
 		handleTouchPriority(this);
 		GameManager::sharedState()->setGameVariable("weaclosexd", false);
+
+	
 		auto butonCancel = ButtonSprite::create("Cancel", 65, 70, "bigFont.fnt", "GJ_button_01.png", 25, 1);
 		auto winSize = CCDirector::sharedDirector()->getWinSize();
 		auto Layer = (CCLayer*)this->getChildren()->objectAtIndex(0);
