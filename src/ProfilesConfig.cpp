@@ -388,8 +388,9 @@ void ProfilesConfig::onReturn(CCObject* sender) {
 
 	auto fadeInWithEase = CCEaseBackOut::create(fadeIn);
 	auto scaleToWithEase = CCEaseBackOut::create(scaleTo);
-
+#ifdef GEODE_IS_WINDOWS
 	auto spawn = CCSpawn::create(fadeInWithEase, scaleToWithEase, nullptr);
+#endif // !GEODE_IS_WINDOWS
 	for (int i = 0; i < parentNode3->getChildrenCount(); ++i) {
 		auto nodelolas = (CCMenuItemSpriteExtra*)parentNode3->getChildren()->objectAtIndex(i);
 		CCSize contentSize2 = nodelolas->getContentSize();
