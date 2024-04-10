@@ -599,7 +599,7 @@ void updateColors(float dt,CCLayerGradient* gradient)
 
 class $modify(InfoLayer)
 {
-	TodoReturn setupCommentsBrowser(cocos2d::CCArray*a1)
+	void setupCommentsBrowser(cocos2d::CCArray*a1)
 	{
 		InfoLayer::setupCommentsBrowser(a1);
 
@@ -837,7 +837,7 @@ class $modify(ProfilePage)
 		return true;
 	}
 
-	TodoReturn setupCommentsBrowser(cocos2d::CCArray * a1)
+	void setupCommentsBrowser(cocos2d::CCArray * a1)
 	{
 		ProfilePage::setupCommentsBrowser(a1);
 		
@@ -878,7 +878,7 @@ class $modify(ProfilePage)
 	
 
 	
-	TodoReturn loadPageFromUserInfo(GJUserScore* asas)
+	void loadPageFromUserInfo(GJUserScore* asas)
 	{
 
 		ProfilePage::loadPageFromUserInfo(asas);
