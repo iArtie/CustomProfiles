@@ -718,6 +718,7 @@ class $modify(InfoLayer)
 			Idk->setOpacity(77);
 			Idk->setZOrder(1);
 			Idk->setContentSize(comment);
+			
 			/*auto BG = cocos2d::extension::CCScale9Sprite::create("bitZ_square03.png");*/
 			layerlol1->setZOrder(6);
 			
@@ -1188,6 +1189,7 @@ class $modify(ProfilePage)
 			Idk->setContentSize(players);
 			Idk->setColor({ 154,154,154 });
 			Idk->setOpacity(77);
+			Idk->setID("ccscale-icons"_spr);
 			Layer->addChild(Idk);
 
 			auto Idk2 = cocos2d::extension::CCScale9Sprite::create("square02c_001.png");
@@ -1195,7 +1197,7 @@ class $modify(ProfilePage)
             Idk2->setContentSize(comments);
             Idk2->setColor({ 154,154,154 });
             Idk2->setOpacity(77);
-
+			Idk2->setID("ccscale-comments"_spr);
 
 
             Idk2->setZOrder(layerlol1->getZOrder() + 3);
