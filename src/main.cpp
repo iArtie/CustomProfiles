@@ -114,14 +114,14 @@ cocos2d::ccColor4B ToColor4B(ccColor3B sourceColor)
 }
 
 $on_mod(Loaded) {
-	Mod::get()->addCustomSetting<SettingsValues>("Corners-section", "none");
-	Mod::get()->addCustomSetting<SettingsValues>("Colors-section", "none");
-	Mod::get()->addCustomSetting<SettingsValues>("Extras-section", "none");
+	//Mod::get()->addCustomSetting<SettingsValues>("Corners-section", "none");
+	//Mod::get()->addCustomSetting<SettingsValues>("Colors-section", "none");
+	//Mod::get()->addCustomSetting<SettingsValues>("Extras-section", "none");
 
-	Mod::get()->addCustomSetting<SettingTestValue>("Account-settings", "none");
-	Mod::get()->addCustomSetting<SettingAppValue>("ColorOptions", 3);
-	//Config thing? hope it works
-	Mod::get()->addCustomSetting<CornerSettingsValue>("CornersOptions", 1);
+	//Mod::get()->addCustomSetting<SettingTestValue>("Account-settings", "none");
+	//Mod::get()->addCustomSetting<SettingAppValue>("ColorOptions", 3);
+	////Config thing? hope it works
+	//Mod::get()->addCustomSetting<CornerSettingsValue>("CornersOptions", 1);
 	
 }
 class $modify(GJAccountSettingsLayer)
