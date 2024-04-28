@@ -494,24 +494,68 @@ protected:
         this->setContentSize({ width, 40.f });
         auto menu = CCMenu::create();
 
-        CCSprite* toggleOn = CCSprite::createWithSpriteFrameName("GJ_checkOn_001.png");
-        CCSprite* toggleOff = CCSprite::createWithSpriteFrameName("GJ_checkOff_001.png");
-        toggleOn->setScale(.7F);
-        toggleOff->setScale(.7F);
+        //Sprite 1
+        CCSprite* toggleOn1 = CCSprite::createWithSpriteFrameName("GJ_checkOn_001.png");
+        CCSprite* toggleOff1 = CCSprite::createWithSpriteFrameName("GJ_checkOff_001.png");
+
+        toggleOn1->setScale(.7F);
+        toggleOff1->setScale(.7F);
+        //Sprite 2
+        CCSprite* toggleOn2 = CCSprite::createWithSpriteFrameName("GJ_checkOn_001.png");
+        CCSprite* toggleOff2 = CCSprite::createWithSpriteFrameName("GJ_checkOff_001.png");
+
+        toggleOn2->setScale(.7F);
+        toggleOff2->setScale(.7F);
+        //Sprite 3
+
+        CCSprite* toggleOn3 = CCSprite::createWithSpriteFrameName("GJ_checkOn_001.png");
+        CCSprite* toggleOff3 = CCSprite::createWithSpriteFrameName("GJ_checkOff_001.png");
+
+
+        toggleOn3->setScale(.7F);
+        toggleOff3->setScale(.7F);
+
+        //Sprite 4
+
+        CCSprite* toggleOn4 = CCSprite::createWithSpriteFrameName("GJ_checkOn_001.png");
+        CCSprite* toggleOff4 = CCSprite::createWithSpriteFrameName("GJ_checkOff_001.png");
+
+
+        toggleOn4->setScale(.7F);
+        toggleOff4->setScale(.7F);
         menu->setPosition(width / 2, 23.f);
 
         auto labelcorner1 = CCLabelBMFont::create("Animate", "bigfont.fnt");
 
         
-        option1Btn = CCMenuItemToggler::createWithStandardSprites(this, menu_selector(SettingAppNode::onOptionsClick), 0.6);
+        option1Btn = CCMenuItemToggler::create(
+            toggleOn1,
+            toggleOff1,
+            this,
+            menu_selector(SettingAppNode::onOptionsClick)
+        );
 
         auto labelcorner2 = CCLabelBMFont::create("Invert", "bigfont.fnt");
-        option2Btn = CCMenuItemToggler::createWithStandardSprites(this, menu_selector(SettingAppNode::onOptionsClick), 0.6);
+        option2Btn = CCMenuItemToggler::create(
+            toggleOn2,
+            toggleOff2,
+            this,
+            menu_selector(SettingAppNode::onOptionsClick)
+        );
 
         auto labelcorner3 = CCLabelBMFont::create("Normal", "bigfont.fnt");
-        option3Btn = CCMenuItemToggler::createWithStandardSprites(this, menu_selector(SettingAppNode::onOptionsClick), 0.6);
-
-        brBtn = CCMenuItemToggler::createWithStandardSprites(this, menu_selector(SettingAppNode::onOptionsClick), 1.0);
+        option3Btn = CCMenuItemToggler::create(
+            toggleOn3,
+            toggleOff3,
+            this,
+            menu_selector(SettingAppNode::onOptionsClick)
+        );
+        brBtn = CCMenuItemToggler::create(
+            toggleOn4,
+            toggleOff4,
+            this,
+            menu_selector(SettingAppNode::onOptionsClick)
+        );
         labelcorner1->setScale(.45f);
         labelcorner1->setPosition({ -130,-5 });
 
@@ -553,9 +597,9 @@ protected:
     }
 
     void onOptionsClick(CCObject* sender) {
-        option1Btn->toggle(false);
-        option2Btn->toggle(false);
-        option3Btn->toggle(false);
+        option1Btn->toggle(true);
+        option2Btn->toggle(true);
+        option3Btn->toggle(true);
         /*   brBtn->toggle(true);*/
         m_currentPos = tagToCorner(sender->getTag());
         this->dispatchChanged();
@@ -601,9 +645,9 @@ protected:
 
         // Geode calls this to reset the setting's value back to default
         void resetToDefault() override {
-            option1Btn->toggle(false);
-            option2Btn->toggle(false);
-            option3Btn->toggle(true);
+            option1Btn->toggle(true);
+            option2Btn->toggle(true);
+            option3Btn->toggle(false);
       /*      brBtn->toggle(false);*/
             m_currentPos = DEFAULT_POSS;
         }
