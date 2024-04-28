@@ -16,48 +16,6 @@ SettingNode* CornerSettingsValue::createNode(float width) {
     return SettingPosCornerNode::create(this, width);
 }
 
-#ifdef GEODE_IS_WINDOWS
-std::string GetOpenFileName() {
-    OPENFILENAME ofn;
-    char szFile[MAX_PATH] = { 0 };
-
-    ZeroMemory(&ofn, sizeof(ofn));
-    ofn.lStructSize = sizeof(ofn);
-    ofn.hwndOwner = NULL;
-    ofn.lpstrFilter = "Executable Files (*.exe)\0*.exe\0All Files (*.*)\0*.*\0";
-    ofn.lpstrFile = szFile;
-    ofn.nMaxFile = sizeof(szFile);
-    ofn.lpstrInitialDir = "\%appdata\%\\Spotify"; // Set your desired default path here
-    ofn.Flags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_HIDEREADONLY;
-    if (GetOpenFileName(&ofn))
-        return std::string(szFile);
-    else
-        return "";
-    return "";
-}
-#endif
-void SettingAppNode::onPickFile(CCObject*) {
-#ifdef GEODE_IS_MACOS
-    if (auto path = file::pickFile(
-        file::PickMode::OpenFile,
-        {
-            "/Applications", // sorry mac users but idk the path for spotify
-            {}
-        }
-    )) {
-        std::string strPath = path.unwrap().string();
-        size_t lastBackslashPos = strPath.find_last_of('/');
-        if (lastBackslashPos != std::string::npos) {
-            std::string lastPart = strPath.substr(lastBackslashPos + 1);
-            m_currentApp = lastPart;
-            defaultApp_input->setString(lastPart.c_str());
-            this->dispatchChanged();
-        }
-    }
-#else
-
-#endif
-}
 
 void SettingTestNode::onTestBtn(CCObject*) {
     auto scene = CCDirector::sharedDirector()->getRunningScene();
