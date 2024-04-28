@@ -281,7 +281,9 @@ protected:
         toggleOff->setScale(.7F);
         menu->setPosition(width / 2, 23.f);
 
-        auto labelcorner1 = CCLabelBMFont::create("Rounded", "bigfont.fnt");
+        //Thanks fireeDev <3
+
+        auto labelcorner1 = CCLabelBMFont::create("Rounded", "bigFont.fnt");
         option1Btn = CCMenuItemToggler::create(
             toggleOn,
             toggleOff,
@@ -289,7 +291,7 @@ protected:
             menu_selector(SettingPosCornerNode::onOptionsClick)
         );
 
-        auto labelcorner2 = CCLabelBMFont::create("Square", "bigfont.fnt");
+        auto labelcorner2 = CCLabelBMFont::create("Square", "bigFont.fnt");
         option2Btn = CCMenuItemToggler::create(
             toggleOn,
             toggleOff,
@@ -297,7 +299,7 @@ protected:
             menu_selector(SettingPosCornerNode::onOptionsClick)
         );
 
-        auto labelcorner3 = CCLabelBMFont::create("None", "bigfont.fnt");
+        auto labelcorner3 = CCLabelBMFont::create("None", "bigFont.fnt");
         option3Btn = CCMenuItemToggler::create(
             toggleOn,
             toggleOff,
