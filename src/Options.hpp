@@ -501,34 +501,17 @@ protected:
         menu->setPosition(width / 2, 23.f);
 
         auto labelcorner1 = CCLabelBMFont::create("Animate", "bigfont.fnt");
-        option1Btn = CCMenuItemToggler::create(
-            toggleOn,
-            toggleOff,
-            this,
-            menu_selector(SettingAppNode::onOptionsClick)
-        );
+
+        
+        option1Btn = CCMenuItemToggler::createWithStandardSprites(this, menu_selector(SettingAppNode::onOptionsClick), 0.6);
 
         auto labelcorner2 = CCLabelBMFont::create("Invert", "bigfont.fnt");
-        option2Btn = CCMenuItemToggler::create(
-            toggleOn,
-            toggleOff,
-            this,
-            menu_selector(SettingAppNode::onOptionsClick)
-        );
+        option2Btn = CCMenuItemToggler::createWithStandardSprites(this, menu_selector(SettingAppNode::onOptionsClick), 0.6);
 
         auto labelcorner3 = CCLabelBMFont::create("Normal", "bigfont.fnt");
-        option3Btn = CCMenuItemToggler::create(
-            toggleOn,
-            toggleOff,
-            this,
-            menu_selector(SettingAppNode::onOptionsClick)
-        );
-        brBtn = CCMenuItemToggler::create(
-            toggleOn,
-            toggleOff,
-            this,
-            menu_selector(SettingAppNode::onOptionsClick)
-        );
+        option3Btn = CCMenuItemToggler::createWithStandardSprites(this, menu_selector(SettingAppNode::onOptionsClick), 0.6);
+
+        brBtn = CCMenuItemToggler::createWithStandardSprites(this, menu_selector(SettingAppNode::onOptionsClick), 1.0);
         labelcorner1->setScale(.45f);
         labelcorner1->setPosition({ -130,-5 });
 
@@ -570,9 +553,9 @@ protected:
     }
 
     void onOptionsClick(CCObject* sender) {
-        option1Btn->toggle(true);
-        option2Btn->toggle(true);
-        option3Btn->toggle(true);
+        option1Btn->toggle(false);
+        option2Btn->toggle(false);
+        option3Btn->toggle(false);
         /*   brBtn->toggle(true);*/
         m_currentPos = tagToCorner(sender->getTag());
         this->dispatchChanged();
@@ -618,9 +601,9 @@ protected:
 
         // Geode calls this to reset the setting's value back to default
         void resetToDefault() override {
-            option1Btn->toggle(true);
-            option2Btn->toggle(true);
-            option3Btn->toggle(false);
+            option1Btn->toggle(false);
+            option2Btn->toggle(false);
+            option3Btn->toggle(true);
       /*      brBtn->toggle(false);*/
             m_currentPos = DEFAULT_POSS;
         }
