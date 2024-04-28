@@ -205,13 +205,9 @@ public:
         : SettingValue(key, modID), m_pos(position) {}
 
     bool load(matjson::Value const& json) override {
-        try {
-            m_pos = static_cast<int>(json.as<int>());
-            return true;
-        }
-        catch (...) {
-            return false;
-        }
+        if (!json.is_object()) return false;
+        m_pos = static_cast<int>(json.as<int>());
+        return true;
     }
     bool save(matjson::Value& json) const override {
         json = static_cast<int>(m_pos);
@@ -417,13 +413,9 @@ public:
         : SettingValue(key, modID), m_pos(position) {}
 
     bool load(matjson::Value const& json) override {
-        try {
-            m_pos = static_cast<int>(json.as<int>());
-            return true;
-        }
-        catch (...) {
-            return false;
-        }
+        if (!json.is_object()) return false;
+        m_pos = static_cast<int>(json.as<int>());
+        return true;
     }
     bool save(matjson::Value& json) const override {
         json = static_cast<int>(m_pos);

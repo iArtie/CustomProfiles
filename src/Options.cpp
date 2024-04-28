@@ -1,6 +1,7 @@
 #include "Options.hpp"
 #include <Geode/loader/Dirs.hpp>
 #include <filesystem>
+//#include "ownCCMenuItemToggler.h"
 int cycleTypes = -1;
 
 SettingNode* SettingsValues::createNode(float width) {
