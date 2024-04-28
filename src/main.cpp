@@ -114,7 +114,7 @@ cocos2d::ccColor4B ToColor4B(ccColor3B sourceColor)
 }
 
 $on_mod(Loaded) {
-	//Mod::get()->addCustomSetting<SettingsValues>("Corners-section", "none");
+	Mod::get()->addCustomSetting<SettingsValues>("Corners-section", "none");
 	//Mod::get()->addCustomSetting<SettingsValues>("Colors-section", "none");
 	//Mod::get()->addCustomSetting<SettingsValues>("Extras-section", "none");
 
