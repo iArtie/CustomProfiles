@@ -517,7 +517,7 @@ protected:
         toggleOff4->setScale(.7F);
         menu->setPosition(width / 2, 23.f);
 
-        auto labelcorner1 = CCLabelBMFont::create("Animate", "bigfont.fnt");
+     /*   auto labelcorner1 = CCLabelBMFont::create("Animate", "bigfont.fnt");*/
 
         
         option1Btn = CCMenuItemToggler::create(
@@ -527,7 +527,7 @@ protected:
             menu_selector(SettingAppNode::onOptionsClick)
         );
 
-        auto labelcorner2 = CCLabelBMFont::create("Invert", "bigfont.fnt");
+   /*     auto labelcorner2 = CCLabelBMFont::create("Invert", "bigfont.fnt");*/
         option2Btn = CCMenuItemToggler::create(
             toggleOn2,
             toggleOff2,
@@ -535,7 +535,7 @@ protected:
             menu_selector(SettingAppNode::onOptionsClick)
         );
 
-        auto labelcorner3 = CCLabelBMFont::create("Normal", "bigfont.fnt");
+        //auto labelcorner3 = CCLabelBMFont::create("Normal", "bigfont.fnt");
         option3Btn = CCMenuItemToggler::create(
             toggleOn3,
             toggleOff3,
@@ -548,18 +548,18 @@ protected:
             this,
             menu_selector(SettingAppNode::onOptionsClick)
         );
-        labelcorner1->setScale(.45f);
-        labelcorner1->setPosition({ -130,-5 });
+       /* labelcorner1->setScale(.45f);
+        labelcorner1->setPosition({ -130,-5 });*/
 
 
         option1Btn->setPosition({ -85, -5 });
 
-        labelcorner2->setScale(.45f);
-        labelcorner2->setPosition({ -20,-5 });
+   /*     labelcorner2->setScale(.45f);
+        labelcorner2->setPosition({ -20,-5 });*/
         option2Btn->setPosition({ 25, -5 });
 
-        labelcorner3->setScale(.45f);
-        labelcorner3->setPosition({ 105,-5 });
+        //labelcorner3->setScale(.45f);
+        //labelcorner3->setPosition({ 105,-5 });
         option3Btn->setPosition({ 150, -5 });
         brBtn->setPosition({ 100, -10 });
 
@@ -574,9 +574,9 @@ protected:
         brBtn->toggle(!(brBtn->getTag() == getOptionTag(currentCorner)));
 
 
-        menu->addChild(labelcorner1);
-        menu->addChild(labelcorner2);
-        menu->addChild(labelcorner3);
+        //menu->addChild(labelcorner1);
+        //menu->addChild(labelcorner2);
+        //menu->addChild(labelcorner3);
 
         menu->addChild(option1Btn);
         menu->addChild(option2Btn);
