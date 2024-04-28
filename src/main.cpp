@@ -4,7 +4,7 @@
 #include <Geode/modify/CommentCell.hpp>
 #include <Geode/modify/InfoLayer.hpp>
 #include <Geode/modify/GJAccountSettingsLayer.hpp>
-#include "ProfilesConfig.hpp"
+//#include "ProfilesConfig.hpp"
 #include "Options.hpp"
 #include <Geode/ui/GeodeUI.hpp>
 using namespace geode::prelude;

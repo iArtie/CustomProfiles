@@ -591,8 +591,7 @@ protected:
             }
         );
     }
-    void onPickFile(CCObject*);
-    // nvm cant use this because stupid geode, how are we supposed to get the desc for custom settings??? whats the point of custom settings??
+    
     void onInfoBtn(CCObject* sender) {
         /*FLAlertLayer::create(
             setting()->getDefinition().getDisplayName().c_str(),
