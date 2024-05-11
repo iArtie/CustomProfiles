@@ -205,9 +205,13 @@ public:
         : SettingValue(key, modID), m_pos(position) {}
 
     bool load(matjson::Value const& json) override {
-        if (!json.is_object()) return false;
-        m_pos = static_cast<int>(json.as<int>());
-        return true;
+        try {
+            m_pos = static_cast<int>(json.as<int>());
+            return true;
+        }
+        catch (...) {
+            return false;
+        }
     }
     bool save(matjson::Value& json) const override {
         json = static_cast<int>(m_pos);
@@ -402,33 +406,37 @@ public:
 //COLORS
 
 struct SettingAppStruct {
-    int m_pos;
+    int m_poss;
 };
 
 class SettingAppValue;
 
 class SettingAppValue : public SettingValue {
 protected:
-    int m_pos;
+    int m_poss;
 public:
     SettingAppValue(std::string const& key, std::string const& modID, int const& position)
-        : SettingValue(key, modID), m_pos(position) {}
+        : SettingValue(key, modID), m_poss(position) {}
 
     bool load(matjson::Value const& json) override {
-        if (!json.is_object()) return false;
-        m_pos = static_cast<int>(json.as<int>());
-        return true;
+        try {
+            m_poss = static_cast<int>(json.as<int>());
+            return true;
+        }
+        catch (...) {
+            return false;
+        }
     }
     bool save(matjson::Value& json) const override {
-        json = static_cast<int>(m_pos);
+        json = static_cast<int>(m_poss);
         return true;
     }
     SettingNode* createNode(float width) override;
     void setPos(int pos) {
-        m_pos = pos;
+        m_poss = pos;
     }
     int getPos() const {
-        return m_pos;
+        return m_poss;
     }
 };
 
@@ -440,7 +448,7 @@ struct SettingValueSetter<SettingAppStruct> {
         return defaultStruct;
     };
     static void set(SettingAppValue* setting, SettingAppStruct const& value) {
-        setting->setPos(value.m_pos);
+        setting->setPos(value.m_poss);
     };
 };
 
