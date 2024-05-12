@@ -46,11 +46,11 @@ void FixLayerv3(CCLayer* layer, int width, int height) {
 void FixLayerv2(CCLayer* layer, int width, int height) {
 	CCSize newNodeSize = { 0, 100 };
 	CCObject* pObj = nullptr;
-	auto layerChild = dynamic_cast<CCLayer*>(layer->getChildren()->objectAtIndex(0));
+	//auto layerChild = dynamic_cast<CCLayer*>(layer->getChildren()->objectAtIndex(0));
 	//auto weaiconos = (CCSprite*)layerChild->getChildren()->objectAtIndex(7);
 	//weaiconos->setVisible(false);
 	/*auto laweaxd = (CCSprite*)layerChild->getChildren()->objectAtIndex(0);*/
-	CCARRAY_FOREACH(layerChild->getChildren(), pObj) {
+	CCARRAY_FOREACH(layer->getChildren(), pObj) {
 		CCNode* currentNode = (CCNode*)pObj;
 		CCPoint xy = currentNode->getPosition();
 		currentNode->getContentSize();
@@ -66,13 +66,13 @@ void FixLayerv2(CCLayer* layer, int width, int height) {
 void FixLayer(CCLayer* layer, int width, int height) {
 	CCSize newNodeSize = { 0, 100 };
 	CCObject* pObj = nullptr;
-	auto layerChild = dynamic_cast<CCLayer*>(layer->getChildren()->objectAtIndex(0));
+	/*auto layerChild = dynamic_cast<CCLayer*>(layer->getChildren()->objectAtIndex(0));*/
 	
 	
 	//auto weaiconos = (CCSprite*)layerChild->getChildren()->objectAtIndex(7);
 	//weaiconos->setVisible(false);
 	/*auto laweaxd = (CCSprite*)layerChild->getChildren()->objectAtIndex(0);*/
-	CCARRAY_FOREACH(layerChild->getChildren(), pObj) {
+	CCARRAY_FOREACH(layer->getChildren(), pObj) {
 		CCNode* currentNode = (CCNode*)pObj;
 		CCPoint xy = currentNode->getPosition();
 		currentNode->getContentSize();
@@ -137,7 +137,7 @@ class $modify(InfoLayer)
 		
 		if (this->m_level == nullptr && this->m_levelList == nullptr)
 		{
-			FixLayer(this, 340, 234);
+			FixLayer(this->m_mainLayer, 340, 234);
 		}
 
 		/*if (this->m_levelList == nullptr)
@@ -381,7 +381,7 @@ class $modify(ProfilePage)
 	void setupCommentsBrowser(cocos2d::CCArray * a1)
 	{
 		ProfilePage::setupCommentsBrowser(a1);
-		FixLayer(this, 340, 100);
+		FixLayer(this->m_mainLayer, 340, 100);
 		
 		
 	}
@@ -392,9 +392,9 @@ class $modify(ProfilePage)
 	void onUpdate(CCObject* sender)
 	{
 		ProfilePage::onUpdate(sender);
-		auto Layer = (CCLayer*)this->getChildren()->objectAtIndex(0);
+		auto Layer = this->m_mainLayer;
 		CCObject* pObj = nullptr;
-
+		
 		auto menu = Layer->getChildByID("main-menu");
 
 		auto infobutton = menu->getChildByID("info-button");
@@ -414,7 +414,7 @@ class $modify(ProfilePage)
 		ProfilePage::loadPageFromUserInfo(asas);
 		//New corners option settings
 		int cornerID = Mod::get()->getSettingValue<SettingPosStruct>("CornersOptions").m_pos;//ConfigHandler::readConfigInt("notificationPlacement");
-		std::cout << "Corner ID:" << cornerID << std::endl;
+		/*std::cout << "Corner ID:" << cornerID << std::endl;*/
 		switch (cornerID)
 		{ 
 		case 1:
@@ -436,7 +436,7 @@ class $modify(ProfilePage)
 		
 		//New colors option settings
 		int colorID = Mod::get()->getSettingValue<SettingAppStruct>("ColorOptions").m_poss;//ConfigHandler::readConfigInt("notificationPlacement");
-		std::cout << "color ID:" << colorID << std::endl;
+		/*std::cout << "color ID:" << colorID << std::endl;*/
 		switch (colorID)
 		{
 			
@@ -539,7 +539,7 @@ class $modify(ProfilePage)
 		//color2 offset is 364
 		//color3 offset is 368
 		auto winSize = CCDirector::sharedDirector()->getWinSize();
-		auto Layer = (CCLayer*)this->getChildren()->objectAtIndex(0);
+		auto Layer = this->m_mainLayer;
 		auto blackSize = CCSize(438, 293);
 		auto laweaxd = (CCSprite*)Layer->getChildren()->objectAtIndex(0);
 
@@ -584,7 +584,7 @@ class $modify(ProfilePage)
 			pqwtest->setVisible(false);
 			laweaxd->setVisible(false);
 			auto BG = cocos2d::extension::CCScale9Sprite::create("GJ_square07.png");
-			FixLayerv2(this, 340, 45);
+			FixLayerv2(this->m_mainLayer, 340, 45);
 			int owo = winSize.height / 2;
 			int uwu = winSize.width / 2;
 			BG->setZOrder(7);
