@@ -381,7 +381,7 @@ class $modify(CommentCell)
 	{
 		auto scene = CCDirector::get()->getRunningScene();
 		if (!scene->getChildByID("ProfilePage")) {
-			StatsCell::draw();
+			CommentCell::draw();
 		}
 	}
 };
