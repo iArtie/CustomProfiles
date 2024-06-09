@@ -3,6 +3,7 @@
 #include <Geode/modify/ProfilePage.hpp>
 #include <Geode/modify/CommentCell.hpp>
 #include <Geode/modify/InfoLayer.hpp>
+#include <Geode/modify/StatsCell.hpp>
 #include <Geode/modify/GJAccountSettingsLayer.hpp>
 //#include "ProfilesConfig.hpp"
 #include "Options.hpp"
@@ -361,6 +362,18 @@ class $modify(InfoLayer)
 
 using OpenSettingsPopupFunction = std::function<void(Mod*)>;
 
+//New amazing code for clean comments
+class $modify(StatsCell)
+{
+	void draw()
+	{
+		auto scene = CCDirector::get()->getRunningScene();
+		if (!scene->getChildByID("ProfilePage")) {
+			StatsCell::draw();
+		}
+	}
+};
+
 class $modify(ProfilePage)
 {
 
@@ -372,11 +385,11 @@ class $modify(ProfilePage)
 		return true;
 	}
 
-	void onSettings(cocos2d::CCObject* sender)
-	{
-		
-		 geode::openSettingsPopup(Mod::get());
-	}
+	//void onSettings(cocos2d::CCObject* sender)
+	//{
+	//	
+	//	 geode::openSettingsPopup(Mod::get());
+	//}
 
 	void setupCommentsBrowser(cocos2d::CCArray * a1)
 	{
@@ -399,7 +412,7 @@ class $modify(ProfilePage)
 
 		auto infobutton = menu->getChildByID("info-button");
 
-		if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
+		if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true && infobutton != nullptr)
 		{
 			/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
 			infobutton->setPositionY(+100000);
@@ -407,6 +420,23 @@ class $modify(ProfilePage)
 	}
 	
 
+	class accManager
+	{
+		void callSet(CCObject* sender)
+		{
+		/*	auto sas = GJAccountSettingsLayer::init(1);*/
+		}
+	};
+
+
+	class ownSt {
+	public:
+		void SettingsPop(CCObject* sender)
+		{
+			geode::openSettingsPopup(Mod::get());
+		}
+	};
+	
 	
 	void loadPageFromUserInfo(GJUserScore* asas)
 	{
@@ -469,6 +499,8 @@ class $modify(ProfilePage)
 			GameManager::sharedState()->setGameVariable("disableinfolabel", false);
 
 		}
+
+
 //#ifdef GEODE_IS_MACOS
 //		if (Mod::get()->getSettingValue<bool>("Round-corners") == true)
 //		{
@@ -541,10 +573,10 @@ class $modify(ProfilePage)
 		auto winSize = CCDirector::sharedDirector()->getWinSize();
 		auto Layer = this->m_mainLayer;
 		auto blackSize = CCSize(438, 293);
-		auto laweaxd = (CCSprite*)Layer->getChildren()->objectAtIndex(0);
+		auto laweaxd = (CCSprite*)Layer->getChildByID("background");
 
 		//7121
-		auto pqwtest = (CCSprite*)Layer->getChildren()->objectAtIndex(3);
+		/*auto pqwtest = (CCSprite*)Layer->getChildren()->objectAtIndex(3);*/
 
 
 		if (GameManager::sharedState()->getGameVariable("startingmodsas") == false)
@@ -554,6 +586,19 @@ class $modify(ProfilePage)
 			GameManager::sharedState()->setGameVariable("startingmodsas", true);
 		}
 
+		//NEW FUNCTION TO SETTINGS BC GJACCOUNTSETTINGSLAYER::CREATE() IS INLINED
+
+		
+	
+		if (this->m_ownProfile == true)
+		{
+			auto bottomMenu = (CCMenu*)Layer->getChildByID("bottom-menu");
+			auto settingsButton = (CCMenuItemSpriteExtra*)bottomMenu->getChildByID("settings-button");
+
+			settingsButton->setTarget(this, menu_selector(ownSt::SettingsPop));
+
+		}
+		
 		auto menu = Layer->getChildByID("main-menu");
 
 		auto infobutton = menu->getChildByID("info-button");
@@ -581,7 +626,9 @@ class $modify(ProfilePage)
 			//		infobutton->setPositionY(+100000);
 			//	}
 			//}
-			pqwtest->setVisible(false);
+
+			/*pqwtest->setVisible(false);*/
+
 			laweaxd->setVisible(false);
 			auto BG = cocos2d::extension::CCScale9Sprite::create("GJ_square07.png");
 			FixLayerv2(this->m_mainLayer, 340, 45);
@@ -592,7 +639,8 @@ class $modify(ProfilePage)
 			
 			BG->setContentSize(blackSize);
 			
-			pqwtest->setVisible(false);
+			/*pqwtest->setVisible(false);*/
+
 			laweaxd->setVisible(false);
 			int color1 = 0;
 			int color2 = 0;
@@ -830,175 +878,176 @@ class $modify(CommentCell)
 	//	}
 	//}
 
+	//dklsnl
 	int weawa = 0;
 #include <sstream>
 #include <iostream>
 #include <cstdio>
 
+	//btbr
+	//void draw()
+	//{
+	//	if (weawa == 0)
+	//	{
+	//		weawa = 1;
+	//	}		
 
-	void draw()
-	{
-		if (weawa == 0)
-		{
-			weawa = 1;
-		}		
+	//	/*std::cout << "Referencia:" << this->m_uReference << std::endl;
+	//	
+	//	std::cout << "Width:" << this->m_width << std::endl;
+	//	std::cout << "Height:" << this->m_height << std::endl;*/
+	//	//21.5
+ //   //SOME SHIT FOR GEODE 
+	//	if (this->m_uReference == 3 && this->m_width == 0) {
+	//   	CommentCell::draw();
+	//   }
 
-		/*std::cout << "Referencia:" << this->m_uReference << std::endl;
-		
-		std::cout << "Width:" << this->m_width << std::endl;
-		std::cout << "Height:" << this->m_height << std::endl;*/
-		//21.5
-    //SOME SHIT FOR GEODE 
-		if (this->m_uReference == 3 && this->m_width == 0) {
-	   	CommentCell::draw();
-	   }
+	//	if (this->m_uReference == 3 && this->m_width <= 10) {
+	//		CommentCell::draw();
+	//	}
+	//	if (this->m_uReference == 3 && this->m_width == 358) {
+	//		CommentCell::draw();
+	//	}
 
-		if (this->m_uReference == 3 && this->m_width <= 10) {
-			CommentCell::draw();
-		}
-		if (this->m_uReference == 3 && this->m_width == 358) {
-			CommentCell::draw();
-		}
+	//	if (this->m_uReference == 3 && this->m_width <= 12) {
+	//		CommentCell::draw();
+	//	}
 
-		if (this->m_uReference == 3 && this->m_width <= 12) {
-			CommentCell::draw();
-		}
+	//	//Local leaderboard fix
+	//	/*if (this->m_uReference == 2 && this->m_height >= 21 && this->m_height <= 22) {
+	//		CommentCell::draw();
+	//	}*/
 
-		//Local leaderboard fix
-		/*if (this->m_uReference == 2 && this->m_height >= 21 && this->m_height <= 22) {
-			CommentCell::draw();
-		}*/
+	//	if (this->m_uReference == 3 && this->m_height >= 21 && this->m_height <= 22) {
+	//		CommentCell::draw();
+	//	}
 
-		if (this->m_uReference == 3 && this->m_height >= 21 && this->m_height <= 22) {
-			CommentCell::draw();
-		}
+	//	if (this->m_uReference == 2 && this->m_width <= 0) {
+	//		CommentCell::draw();
+	//	}
+	//	if (this->m_uReference == 2 && this->m_width <= 10) {
+	//		CommentCell::draw();
+	//	}
+	//	if (this->m_uReference == 2 && this->m_width == 358) {
+	//		CommentCell::draw();
+	//	}
 
-		if (this->m_uReference == 2 && this->m_width <= 0) {
-			CommentCell::draw();
-		}
-		if (this->m_uReference == 2 && this->m_width <= 10) {
-			CommentCell::draw();
-		}
-		if (this->m_uReference == 2 && this->m_width == 358) {
-			CommentCell::draw();
-		}
+	//	if (this->m_uReference == 2 && this->m_width == 0) {
+	//		CommentCell::draw();
+	//	}
 
-		if (this->m_uReference == 2 && this->m_width == 0) {
-			CommentCell::draw();
-		}
+	//	if (this->m_uReference ==2 && this->m_width >= 15)
+	//	{
+	//		if (this->m_height == 60) {
+	//			CommentCell::draw();
+	//		}
+	//		else
+	//		{
+	//			if (this->m_height == 55)
+	//			{
+	//				CommentCell::draw();
+	//			}
+	//			else
+	//			{
 
-		if (this->m_uReference ==2 && this->m_width >= 15)
-		{
-			if (this->m_height == 60) {
-				CommentCell::draw();
-			}
-			else
-			{
-				if (this->m_height == 55)
-				{
-					CommentCell::draw();
-				}
-				else
-				{
-
-					if (this->m_height == 45)
-					{
-						CommentCell::draw();
-					}
-					else
-					{
-						if (this->m_height == 50)
-						{
-							CommentCell::draw();
-						}
-						else
-						{
-							if (this->m_height == 40)
-							{
-								CommentCell::draw();
-							}
-							else
-							{
-								if (this->m_height == 30)
-								{
-									CommentCell::draw();
-								}
-								else
-								{
-									if (this->m_height == 24)
-									{
-										CommentCell::draw();
-									}
-									else
-									{
-										if (this->m_height >= 21 && this->m_height <= 22)
-										{
-											CommentCell::draw();
-										}
-										else
-										{
-											if (this->m_height == 20)
-											{
-												CommentCell::draw();
-											}
-											else
-											{
-												if (this->m_height == 100)
-												{
-													CommentCell::draw();
-												}
-												else
-												{
-													if (this->m_height == 90 && this->m_width == 356)
-													{
-														CommentCell::draw();
-													}
-													else
-													{
-														if (this->m_height == 80 && this->m_width == 356)
-														{
-															CommentCell::draw();
-														}
-														else
-														{
-
-
-															if (this->m_comment->m_levelID == 0 || this->m_comment->m_hasLevelID == 1 /*|| self->m_fHeight != 36*/) {
-
-																if (this->m_height == 36)
-																{
-
-																}
-															}
-															else
-															{
-																if (this->m_height == 36)
-																{
-																	CommentCell::draw();
-																}
+	//				if (this->m_height == 45)
+	//				{
+	//					CommentCell::draw();
+	//				}
+	//				else
+	//				{
+	//					if (this->m_height == 50)
+	//					{
+	//						CommentCell::draw();
+	//					}
+	//					else
+	//					{
+	//						if (this->m_height == 40)
+	//						{
+	//							CommentCell::draw();
+	//						}
+	//						else
+	//						{
+	//							if (this->m_height == 30)
+	//							{
+	//								CommentCell::draw();
+	//							}
+	//							else
+	//							{
+	//								if (this->m_height == 24)
+	//								{
+	//									CommentCell::draw();
+	//								}
+	//								else
+	//								{
+	//									if (this->m_height >= 21 && this->m_height <= 22)
+	//									{
+	//										CommentCell::draw();
+	//									}
+	//									else
+	//									{
+	//										if (this->m_height == 20)
+	//										{
+	//											CommentCell::draw();
+	//										}
+	//										else
+	//										{
+	//											if (this->m_height == 100)
+	//											{
+	//												CommentCell::draw();
+	//											}
+	//											else
+	//											{
+	//												if (this->m_height == 90 && this->m_width == 356)
+	//												{
+	//													CommentCell::draw();
+	//												}
+	//												else
+	//												{
+	//													if (this->m_height == 80 && this->m_width == 356)
+	//													{
+	//														CommentCell::draw();
+	//													}
+	//													else
+	//													{
 
 
+	//														if (this->m_comment->m_levelID == 0 || this->m_comment->m_hasLevelID == 1 /*|| self->m_fHeight != 36*/) {
 
-																if (this->m_comment->m_levelID != 0)
-																{
-																	CommentCell::draw();
-																}
+	//															if (this->m_height == 36)
+	//															{
 
-															}
+	//															}
+	//														}
+	//														else
+	//														{
+	//															if (this->m_height == 36)
+	//															{
+	//																CommentCell::draw();
+	//															}
 
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+
+
+	//															if (this->m_comment->m_levelID != 0)
+	//															{
+	//																CommentCell::draw();
+	//															}
+
+	//														}
+
+	//													}
+	//												}
+	//											}
+	//										}
+	//									}
+	//								}
+	//							}
+	//						}
+	//					}
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
 	
 };

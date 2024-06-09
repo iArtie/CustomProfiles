@@ -1,4 +1,5 @@
 #include "Options.hpp"
+#include "ownAccLayer.h"
 #include <Geode/loader/Dirs.hpp>
 #include <filesystem>
 //#include "ownCCMenuItemToggler.h"
@@ -18,9 +19,13 @@ SettingNode* CornerSettingsValue::createNode(float width) {
 }
 
 
-void SettingTestNode::onTestBtn(CCObject*) {
+void SettingTestNode::onTestBtn(CCObject* sender) {
     auto scene = CCDirector::sharedDirector()->getRunningScene();
     auto GAM = GJAccountManager::sharedState();
+
+   /* auto onSt = ProfilePage::onSettings(sender);*/
+
+
     auto stl = GJAccountSettingsLayer::create(GAM->m_accountID);
     stl->show();
    /* cycleTypes = cycleTypes + 1;

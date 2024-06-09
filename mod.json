@@ -1,14 +1,14 @@
 {
-	"geode": "2.0.0-beta.26",
-	"version": "v1.1.0",
+	"geode": "3.0.0-alpha.1",
+	"version": "v1.1.1",
 	"id": "bitz.customprofiles",
 	"name": "CustomProfiles",
 	"developer": "BitZ",
-	"description": "My first mod to geode, a port for the original CustomProfiles now available with new features!",
+	"description": "A nice mod to customize your profile",
 	"gd": {
-		"android": "2.205",
-		"mac": "2.200",
-		"win": "2.204"
+		"android": "2.206",
+		"mac": "2.206",
+		"win": "2.206"
 	},
 	"settings": {
 		"Corners-section": {
@@ -63,7 +63,7 @@
 	"dependencies": [
 		{
 			"id": "geode.node-ids",
-			"version": ">=v1.1.4",
+			"version": ">=v1.11.0",
 			"importance": "required"
 		}
 	]

@@ -3,7 +3,7 @@ Customize your profile with a new and interesting interface!
 
 
 ## **News!**
-- Blur mod crash fix!
+- Big code optimization! (There probably won't be any crashes with other mods anymore!)
 
 
 ## **Features**
