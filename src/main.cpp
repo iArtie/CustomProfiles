@@ -374,6 +374,20 @@ class $modify(StatsCell)
 	}
 };
 
+#ifdef GEODE_IS_ANDROID
+class $modify(CommentCell)
+{
+	void draw()
+	{
+		auto scene = CCDirector::get()->getRunningScene();
+		if (!scene->getChildByID("ProfilePage")) {
+			StatsCell::draw();
+		}
+	}
+};
+#endif
+
+
 class $modify(ProfilePage)
 {
 
