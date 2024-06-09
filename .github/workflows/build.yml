@@ -13,16 +13,18 @@ jobs:
         config:
         - name: Windows
           os: windows-latest
-          target: Win32
         # will uncomment mac only when it releases
-        - name: macOS
-          os: macos-latest
+        #- name: macOS
+        #  os: macos-latest
         - name: Android32
           os: ubuntu-latest
           target: Android32
         - name: Android64
           os: ubuntu-latest
           target: Android64
+        #- name: iOS
+        #  os: macos-latest
+        #  target: iOS
         
 
     name: ${{ matrix.config.name }}
@@ -34,13 +36,13 @@ jobs:
           submodules: 'recursive'
           
       - name: Build the mod
+        #uses: geode-sdk/build-geode-mod@main
         uses: geode-sdk/build-geode-mod@main
         with:
-          #sdk: nightly
-          bindings: FireMario211/bindings
-          bindings-ref: main
+          sdk: 'nightly'
+          cli: 'v3.0.0-beta.1'
           combine: true
-          configure-args: '-DGEODE_DISABLE_FMT_CONSTEVAL=1'
+          export-pdb: true
           target: ${{ matrix.config.target }}
 
   package:
@@ -53,5 +55,5 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: CustomProfiles Build Output
+          name: GDUtils Build Output
           path: ${{ steps.build.outputs.build-output }}
