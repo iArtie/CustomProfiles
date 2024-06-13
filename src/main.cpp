@@ -369,25 +369,37 @@ class $modify(StatsCell)
 	{
 		auto scene = CCDirector::get()->getRunningScene();
 		if (!scene->getChildByID("ProfilePage")) {
-			/*StatsCell::draw();*/
+			StatsCell::draw();
 		}
 	}
 };
 
-#ifdef GEODE_IS_ANDROID || GEODe_IS_MACOS
+#ifdef GEODE_IS_ANDROID
 class $modify(CommentCell)
 {
 	void draw()
 	{
 		auto scene = CCDirector::get()->getRunningScene();
 		if (!scene->getChildByID("ProfilePage")) {
-			/*CommentCell::draw();*/
+			CommentCell::draw();
 		}
 	}
 };
 #endif
 
-
+//When macOS is sus
+#ifdef GEODE_IS_MACOS
+class $modify(CommentCell)
+{
+	void draw()
+	{
+		auto scene = CCDirector::get()->getRunningScene();
+		if (!scene->getChildByID("ProfilePage")) {
+			CommentCell::draw();
+		}
+	}
+};
+#endif
 class $modify(ProfilePage)
 {
 
