@@ -5,7 +5,6 @@
 #include <Geode/modify/InfoLayer.hpp>
 #include <Geode/modify/StatsCell.hpp>
 #include <Geode/modify/GJAccountSettingsLayer.hpp>
-//#include "ProfilesConfig.hpp"
 #include "Options.hpp"
 #include <Geode/ui/GeodeUI.hpp>
 using namespace geode::prelude;
@@ -309,7 +308,7 @@ class $modify(InfoLayer)
 				laweaxd->addChild(layerlol2);
 
 				
-				 // Crea la acción de desvanecimiento para layerlol2 con un delay
+				 // Crea la acciÃ³n de desvanecimiento para layerlol2 con un delay
 				auto fadeIn2 = CCFadeIn::create(1.8f);
 				auto fadeOut2 = CCFadeOut::create(1.8f);
 				auto sequence2 = CCSequence::create(fadeOut2, fadeIn2, nullptr);
@@ -752,7 +751,7 @@ class $modify(ProfilePage)
 				Layer->addChild(layerlol2);
 
 
-				// Crea la acción de desvanecimiento para layerlol2 con un delay
+				// Crea la acciÃ³n de desvanecimiento para layerlol2 con un delay
 				auto fadeIn2 = CCFadeIn::create(1.8f);
 				auto fadeOut2 = CCFadeOut::create(1.8f);
 				auto sequence2 = CCSequence::create(fadeOut2, fadeIn2, nullptr);
