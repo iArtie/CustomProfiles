@@ -369,7 +369,7 @@ class $modify(StatsCell)
 	{
 		auto scene = CCDirector::get()->getRunningScene();
 		if (!scene->getChildByID("ProfilePage")) {
-			StatsCell::draw();
+			/*StatsCell::draw();*/
 		}
 	}
 };
@@ -381,7 +381,7 @@ class $modify(CommentCell)
 	{
 		auto scene = CCDirector::get()->getRunningScene();
 		if (!scene->getChildByID("ProfilePage")) {
-			CommentCell::draw();
+			/*CommentCell::draw();*/
 		}
 	}
 };
