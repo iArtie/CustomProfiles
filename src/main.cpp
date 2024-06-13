@@ -374,7 +374,7 @@ class $modify(StatsCell)
 	}
 };
 
-#ifdef GEODE_IS_ANDROID
+#ifdef GEODE_IS_ANDROID || GEODe_IS_MACOS
 class $modify(CommentCell)
 {
 	void draw()
