@@ -910,7 +910,6 @@ class $modify(CommentCell)
 #include <iostream>
 #include <cstdio>
 
-	//btbr
 	//void draw()
 	//{
 	//	if (weawa == 0)
