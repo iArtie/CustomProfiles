@@ -905,7 +905,7 @@ class $modify(CommentCell)
 	//}
 
 	//dklsnl
-	int weawa = 0;
+
 #include <sstream>
 #include <iostream>
 #include <cstdio>
