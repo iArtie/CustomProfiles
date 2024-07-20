@@ -1,6 +1,6 @@
 {
-	"geode": "3.0.0-beta.5",
-	"version": "v1.1.2-beta.3",
+	"geode": "3.2.0",
+	"version": "v1.1.2",
 	"id": "bitz.customprofiles",
 	"name": "CustomProfiles",
 	"developer": "BitZ",

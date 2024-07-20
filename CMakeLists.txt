@@ -8,10 +8,13 @@ project(CustomProfiles VERSION 1.0.0)
 
 file(GLOB SOURCES
 	src/*.cpp
+    src/hooks/*.cpp
+    src/settings/*.cpp
+    src/utils/*.cpp
 )
 
 
-add_library(${PROJECT_NAME} SHARED ${SOURCES}  "src/Options.cpp" )
+add_library(${PROJECT_NAME} SHARED ${SOURCES}  "src/settings/Options.cpp" "src/utils/ownUtils.cpp" "src/hooks/CommentCell.cpp" "src/hooks/InfoLayer.cpp" "src/hooks/ProfilePage.cpp")
 
 if (NOT DEFINED ENV{GEODE_SDK})
     message(FATAL_ERROR "Unable to find Geode SDK! Please define GEODE_SDK environment variable to point to Geode")
