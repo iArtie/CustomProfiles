@@ -57,8 +57,7 @@ class $modify(CommentCell)
 
 	//Clean comments for android and macOS
 #ifdef GEODE_IS_ANDROID
-	class $modify(CommentCell)
-	{
+
 		void draw()
 		{
 			auto scene = CCDirector::get()->getRunningScene();
@@ -66,13 +65,12 @@ class $modify(CommentCell)
 				CommentCell::draw();
 			}
 		}
-	};
+	
 #endif
 
 	//When macOS is sus
 #ifdef GEODE_IS_MACOS
-	class $modify(CommentCell)
-	{
+
 		void draw()
 		{
 			auto scene = CCDirector::get()->getRunningScene();
@@ -80,6 +78,5 @@ class $modify(CommentCell)
 				CommentCell::draw();
 			}
 		}
-	};
 #endif
 };
