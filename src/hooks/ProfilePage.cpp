@@ -114,10 +114,10 @@ class $modify(ProfilePage)
 
 			auto blackBGContentSize = CCSize(850, 559);
 			auto players = CCSize(356, 56);
-			auto lol = CCSize(435, 288);
+			auto gradientSize = CCSize(435, 288);
 
-			auto lolas = CCSize(435, 290);
-			auto comments = CCSize(356, 106);
+			auto cornersSize = CCSize(435, 290);
+			auto commentsSize = CCSize(356, 106);
 
 			auto normalGradient = CCLayerGradient::create(col1, col2);
 			auto invertGradient = CCLayerGradient::create(col2, col1);
@@ -185,14 +185,14 @@ class $modify(ProfilePage)
 			normalGradient->setZOrder(brownBG->getZOrder() - 2);
 			normalGradient->setScale(1.0);
 			normalGradient->setPosition(brownBG->getPositionX() - 217, brownBG->getPositionY() - 145);
-			normalGradient->setContentSize(lol);
+			normalGradient->setContentSize(gradientSize);
 
 			invertGradient->setZOrder(normalGradient->getZOrder() + 2);
 			invertGradient->setContentSize(normalGradient->getContentSize());
 			invertGradient->setPosition(normalGradient->getPosition());
 
 			whiteCorner->setZOrder(normalGradient->getZOrder() - 2);
-			whiteCorner->setContentSize(lolas);
+			whiteCorner->setContentSize(cornersSize);
 			whiteCorner->setPositionX(normalGradient->getPositionX());
 			whiteCorner->setPositionY(normalGradient->getPositionY() - 1);
 			whiteCorner->setScale(1.02);
@@ -237,7 +237,7 @@ class $modify(ProfilePage)
 
 			auto commentsContainer = cocos2d::extension::CCScale9Sprite::create("square02c_001.png");
 			commentsContainer->setPosition(winSize.width / 2, halfWindowHeight - 53);
-			commentsContainer->setContentSize(comments);
+			commentsContainer->setContentSize(commentsSize);
 			commentsContainer->setColor({ 154,154,154 });
 			commentsContainer->setOpacity(77);
 			commentsContainer->setID("ccscale-comments"_spr);
