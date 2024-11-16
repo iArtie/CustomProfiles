@@ -3,7 +3,8 @@ Customize your profile with a new and interesting interface!
 
 
 ## **News!**
-- Big code optimization!
+- Big code optimization! (There probably won't be any crashes with other mods anymore!)
+- Settings Crash fix! (on geode beta 5)
 
 ## **Features**
 
