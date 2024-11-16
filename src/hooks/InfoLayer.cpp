@@ -1,8 +1,8 @@
 #include <Geode/Geode.hpp>
 #include <Geode/modify/InfoLayer.hpp>
-
+#include "../settings/OptionsV3.hpp"
 #include "../utils/ownUtils.h"
-#include "../settings/Options.hpp"
+//#include "../settings/Options.hpp"
 using namespace geode::prelude;
 
 
@@ -107,13 +107,14 @@ class $modify(InfoLayer)
 			auto blackCorner = CCLayerGradient::create({ 0,0,0,255 }, { 0,0,0,255 });
 
 
-			//New colors option settings
-			int colorID = Mod::get()->getSettingValue<SettingAppStruct>("ColorOptions").m_poss;
-
+			////New colors option settings
+			//int colorID = Mod::get()->getSettingValue<SettingAppStruct>("ColorOptions").m_poss;
+			auto colorID = Mod::get()->getSettingValue<SettingPosEnumColor>("color-options");
+			/*int colorID = 3;*/
 			switch (colorID)
 			{
 
-			case 1: { //Animate color
+			case SettingPosEnumColor::Animnate: { //Animate color
 				color1 = a2->m_color1;
 				color2 = a2->m_color2;
 
@@ -132,7 +133,7 @@ class $modify(InfoLayer)
 				backgroundLayer->addChild(invertGradient, -5);
 				break;
 			}
-			case 2: { //Invert Color
+			case SettingPosEnumColor::Invert: { //Invert Color
 
 				color1 = a2->m_color2;
 				color2 = a2->m_color1;
@@ -145,7 +146,7 @@ class $modify(InfoLayer)
 				backgroundLayer->addChild(normalGradient, -4);
 				break;
 			}
-			case 3: { //Normal color
+			case SettingPosEnumColor::Normal: { //Normal color
 				color1 = a2->m_color1;
 				color2 = a2->m_color2;
 
@@ -160,18 +161,20 @@ class $modify(InfoLayer)
 			//Corners
 
 			//New corners option settings
-			int cornerID = Mod::get()->getSettingValue<SettingPosStruct>("CornersOptions").m_pos;
+		/*	int cornerID = Mod::get()->getSettingValue<SettingPosStruct>("CornersOptions").m_pos;*/
+			auto cornerID = Mod::get()->getSettingValue<SettingPosEnum>("corner-options");
 
+			/*int cornerID = 1;*/
 			switch (cornerID)
 			{
-			case 1: //Round corners
+			case SettingPosEnum::Rounded: //Round corners
 				backgroundLayer->addChild(roundCorner);
 				break;
-			case 2: //Square corners
+			case SettingPosEnum::Square: //Square corners
 				backgroundLayer->addChild(whiteCorner);
 				backgroundLayer->addChild(blackCorner);
 				break;
-			case 3: // No corners (idk why but some people like it)
+			case SettingPosEnum::None: // No corners (idk why but some people like it)
 				break;
 			}
 
