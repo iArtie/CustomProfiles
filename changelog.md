@@ -1,5 +1,9 @@
 # CustomProfiles Changelog
 
+##v1.1.3-alpha.1 (2024-11-16)
+- New update for 2.2074
+- New settings merge for geode v4
+
 ## v1.1.2 (2024-07-19)
 - Improved code divided on parts
 - Code optimization (again)
