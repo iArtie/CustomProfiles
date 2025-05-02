@@ -38,6 +38,7 @@ jobs:
         #uses: geode-sdk/build-geode-mod@main
         uses: geode-sdk/build-geode-mod@main
         with:
+          sdk: nightly
           bindings: iArtie/bindings
           combine: true
           export-pdb: true
