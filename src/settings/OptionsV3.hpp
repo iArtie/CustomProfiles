@@ -415,7 +415,7 @@ protected:
             menu_selector(SettingPosNodeColor::onColorClick)
         );
 
-        auto labelcolor3 = CCLabelBMFont::create("Nomal", "bigFont.fnt");
+        auto labelcolor3 = CCLabelBMFont::create("Normal", "bigFont.fnt");
         color3Btn = CCMenuItemToggler::create(
             toggleOn,
             toggleOff,

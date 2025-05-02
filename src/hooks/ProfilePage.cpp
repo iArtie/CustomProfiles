@@ -11,8 +11,7 @@ class $modify(ProfilePage)
 	{
 		ProfilePage::setupCommentsBrowser(a1);
 		ownUtils::FixLayer(this->m_mainLayer, 340, 100);
-
-
+		
 	}
 
 	/*void onUpdate(CCObject * sender)
@@ -31,7 +30,6 @@ class $modify(ProfilePage)
 			infobutton->setPositionY(+100000);
 		}
 	}*/
-
 
 	class ownSt {
 	public:
@@ -57,7 +55,8 @@ class $modify(ProfilePage)
 
 		//7121
 		/*auto pqwtest = (CCSprite*)Layer->getChildren()->objectAtIndex(3);*/
-
+	
+		
 
 		if (GameManager::sharedState()->getGameVariable("startingmodsas") == false)
 		{

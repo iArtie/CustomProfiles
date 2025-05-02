@@ -1,5 +1,10 @@
 # CustomProfiles Changelog
 
+## v1.1.3 (2025-05-02)
+- Comment Borders showing on transitions fix
+- Change text for "Nomal" to "Normal" on color settings
+- iOS SUPPORT! CustomProfiles is now available for iOS devices!
+
 ## v1.1.3-alpha.1 (2024-11-16)
 - New update for 2.2074
 - New settings merge for geode v4

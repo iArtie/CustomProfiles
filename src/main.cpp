@@ -29,15 +29,28 @@ $on_mod(Loaded) {
 
 }
 
-//New amazing code for clean comments
-class $modify(StatsCell)
-{
-	void draw()
-	{
+////New amazing code for clean comments
+class $modify(StatsCell) {
+
+	struct Fields {
+		bool m_wasInProfilePage = false;
+	};
+	
+
+	void draw() {
 		auto scene = CCDirector::get()->getRunningScene();
-		if (!scene->getChildByID("ProfilePage")) {
+
+		
+		//Border comments showing on transition fix
+		if (scene->getChildByID("ProfilePage")) {
+			this->m_fields->m_wasInProfilePage = true;
+		}
+
+		
+		if (!this->m_fields->m_wasInProfilePage) {
 			StatsCell::draw();
 		}
 	}
 };
+
 

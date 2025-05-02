@@ -9,6 +9,10 @@ inline bool instanceof(const T* ptr) {
 }
 class $modify(CommentCell)
 {
+	struct Fields {
+		bool m_wasInProfilePage = false;
+	};
+
 	void loadFromComment(GJComment * a1)
 	{
 		CommentCell::loadFromComment(a1);
@@ -61,7 +65,15 @@ class $modify(CommentCell)
 		void draw()
 		{
 			auto scene = CCDirector::get()->getRunningScene();
-			if (!scene->getChildByID("ProfilePage")) {
+
+
+			//Border comments showing on transition fix
+			if (scene->getChildByID("ProfilePage")) {
+				this->m_fields->m_wasInProfilePage = true;
+			}
+
+
+			if (!this->m_fields->m_wasInProfilePage) {
 				CommentCell::draw();
 			}
 		}
@@ -74,7 +86,35 @@ class $modify(CommentCell)
 		void draw()
 		{
 			auto scene = CCDirector::get()->getRunningScene();
-			if (!scene->getChildByID("ProfilePage")) {
+
+
+			//Border comments showing on transition fix
+			if (scene->getChildByID("ProfilePage")) {
+				this->m_fields->m_wasInProfilePage = true;
+			}
+
+
+			if (!this->m_fields->m_wasInProfilePage) {
+				CommentCell::draw();
+			}
+		}
+#endif
+
+	//My first try to port one of my mods to iOS omg omg
+#ifdef GEODE_IS_IOS
+
+		void draw()
+		{
+			auto scene = CCDirector::get()->getRunningScene();
+
+
+			//Border comments showing on transition fix
+			if (scene->getChildByID("ProfilePage")) {
+				this->m_fields->m_wasInProfilePage = true;
+			}
+
+
+			if (!this->m_fields->m_wasInProfilePage) {
 				CommentCell::draw();
 			}
 		}
