@@ -30,7 +30,7 @@ jobs:
     runs-on: ${{ matrix.config.os }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: 'recursive'
           
@@ -38,8 +38,7 @@ jobs:
         #uses: geode-sdk/build-geode-mod@main
         uses: geode-sdk/build-geode-mod@main
         with:
-          sdk: 'nightly'
-          cli: 'v3.0.0-beta.1'
+          bindings: iArtie/bindings
           combine: true
           export-pdb: true
           target: ${{ matrix.config.target }}
@@ -52,7 +51,7 @@ jobs:
       - uses: geode-sdk/build-geode-mod/combine@main
         id: build
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: CustomProfiles Build Output
           path: ${{ steps.build.outputs.build-output }}
