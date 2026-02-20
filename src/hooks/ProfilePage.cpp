@@ -2,278 +2,253 @@
 #include <Geode/modify/ProfilePage.hpp>
 #include <Geode/ui/GeodeUI.hpp>
 #include "../utils/ownUtils.h"
-//#include "settings/OptionsV3.hpp"
 #include "../settings/OptionsV3.hpp"
-class $modify(ProfilePage)
-{
 
-	void setupCommentsBrowser(cocos2d::CCArray * a1)
-	{
-		ProfilePage::setupCommentsBrowser(a1);
-		ownUtils::FixLayer(this->m_mainLayer, 340, 100);
-		
-	}
+class $modify(CustomProfilesPage,ProfilePage) {
 
-	/*void onUpdate(CCObject * sender)
-	{
-		ProfilePage::onUpdate(sender);
-		auto Layer = this->m_mainLayer;
-		CCObject* pObj = nullptr;
+    struct Fields
+    {
+        gd::string discordUsername;
+    };
 
-		auto menu = Layer->getChildByID("main-menu");
+    void onDiscordProfile(CCObject* sender)
+    {
+       
+        FLAlertLayer::create("Discord", m_fields->discordUsername.c_str(), "OK")->show();
+    }
 
-		auto infobutton = menu->getChildByID("info-button");
+    void setupCommentsBrowser(CCArray* array) {
+        
+        ProfilePage::setupCommentsBrowser(array);
+        ownUtils::FixLayer(m_mainLayer, 340, 100);
+    }
 
-		if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true && infobutton != nullptr)
-		{
+    void loadPageFromUserInfo(GJUserScore* score) {
+        ProfilePage::loadPageFromUserInfo(score);
 
-			infobutton->setPositionY(+100000);
-		}
-	}*/
+        if (!Mod::get()->getSavedValue<bool>("first-start")) {
 
-	class ownSt {
-	public:
-		void SettingsPop(CCObject* sender) //Method for open the mod settings popup
-		{
-			geode::openSettingsPopup(Mod::get());
-		}
-	};
+            Mod::get()->setSettingValue("color-options", SettingPosEnumColor::Normal);
+            Mod::get()->setSettingValue("corner-options", SettingPosEnum::Rounded);
+            Mod::get()->setSavedValue("first-start", true);
+        }
 
 
-	void loadPageFromUserInfo(GJUserScore * asas)
-	{
+        auto winSize = CCDirector::sharedDirector()->getWinSize();
 
-		ProfilePage::loadPageFromUserInfo(asas);
-		int color1 = 0;
-		int color2 = 0;
+        if (auto socialsMenu = m_mainLayer->getChildByID("socials-menu")) {
 
+            if (!Mod::get()->getSettingValue<bool>("Disable-discord-button")) {
 
-		auto winSize = CCDirector::sharedDirector()->getWinSize();
-		auto Layer = this->m_mainLayer;
-		auto blackSize = CCSize(438, 293);
-		auto brownBG = (CCSprite*)Layer->getChildByID("background");
+                if (score->m_discordUsername != "")
+                {
+                    if (!socialsMenu->getChildByID("discord-button"))
+                    {
+                        this->m_fields->discordUsername = "@" + score->m_discordUsername;
+                        
+                        auto discordSpr = CCSprite::createWithSpriteFrameName("gj_discordIcon_001.png");
 
-		//7121
-		/*auto pqwtest = (CCSprite*)Layer->getChildren()->objectAtIndex(3);*/
-	
-		
+                        auto discordButton = CCMenuItemSpriteExtra::create(
+                            discordSpr,
+                            discordSpr,
+                            this,
+                            menu_selector(CustomProfilesPage::onDiscordProfile)
+                        );
 
-		if (GameManager::sharedState()->getGameVariable("startingmodsas") == false)
-		{
-			GameManager::sharedState()->setGameVariable("profilecorner1", true);
-			GameManager::sharedState()->setGameVariable("profilecolor3", true);
-			GameManager::sharedState()->setGameVariable("startingmodsas", true);
-		}
+                        float referenceScale = 1.f;
 
-		if (this->m_ownProfile == true)
-		{
-			auto bottomMenu = (CCMenu*)Layer->getChildByID("bottom-menu");
-			auto settingsButton = (CCMenuItemSpriteExtra*)bottomMenu->getChildByID("settings-button");
+                        int buttonCount = 0;
 
-			settingsButton->setTarget(this, menu_selector(ownSt::SettingsPop));
-
-		}
-
-		auto menu = Layer->getChildByID("main-menu");
-
-		auto infobutton = menu->getChildByID("info-button");
-
-		if (GameManager::sharedState()->getGameVariable("disableinfolabel") == true)
-		{
-			/*FLAlertLayer::create("Yes", "We are here!", "OK")->show();*/
-			if (infobutton != nullptr)
-			{
-				infobutton->setPositionY(+100000);
-			}
-
-		}
-
-		if (Layer->getChildByTag(3) == nullptr)
-		{
-
-			brownBG->setVisible(false);
-
-			auto roundCorner = cocos2d::extension::CCScale9Sprite::create("GJ_square07.png");
-
-			ownUtils::FixLayerv2(this->m_mainLayer, 340, 45);
-
-			int halfWindowHeight = winSize.height / 2;
-			int halfWindowWidth = winSize.width / 2;
-
-
-			roundCorner->setZOrder(7);
-			roundCorner->setContentSize(blackSize);
-
-
-			brownBG->setVisible(false);
-
-
-
-			ccColor4B col1 = ownUtils::ToColor4B(GameManager::sharedState()->colorForIdx(color1));
-			ccColor4B col2 = ownUtils::ToColor4B(GameManager::sharedState()->colorForIdx(color2));
-
-			auto blackBGContentSize = CCSize(850, 559);
-			auto players = CCSize(356, 56);
-			auto gradientSize = CCSize(435, 288);
-
-			auto cornersSize = CCSize(435, 290);
-			auto commentsSize = CCSize(356, 106);
-
-			auto normalGradient = CCLayerGradient::create(col1, col2);
-			auto invertGradient = CCLayerGradient::create(col2, col1);
-
-
-
-			////New colors option settings
-			//int colorID = Mod::get()->getSettingValue<SettingAppStruct>("ColorOptions").m_poss;
-			auto colorID = Mod::get()->getSettingValue<SettingPosEnumColor>("color-options");
-		
-			/*std::cout << "color ID:" << colorID << std::endl;*/
-			switch (colorID)
-			{
-
-			case SettingPosEnumColor::Animnate: { //Animate color
-				color1 = asas->m_color1;
-				color2 = asas->m_color2;
-
-				col1 = ownUtils::ToColor4B(GameManager::sharedState()->colorForIdx(color1));
-				col2 = ownUtils::ToColor4B(GameManager::sharedState()->colorForIdx(color2));
-				normalGradient = CCLayerGradient::create(col1, col2);
-				invertGradient = CCLayerGradient::create(col2, col1);
-
-				// Animation loop
-				auto fadeIn = CCFadeIn::create(1.8f);
-				auto fadeOut = CCFadeOut::create(1.8f);
-				auto sequence = CCSequence::create(fadeOut, fadeIn, nullptr);
-				auto repeatedSequence = CCRepeatForever::create(sequence);
-				invertGradient->runAction(repeatedSequence);
-				Layer->addChild(normalGradient);
-				Layer->addChild(invertGradient);
-				break;
-			}
-			case SettingPosEnumColor::Invert: { //Invert Color
-
-				color1 = asas->m_color2;
-				color2 = asas->m_color1;
-
-				col1 = ownUtils::ToColor4B(GameManager::sharedState()->colorForIdx(color1));
-				col2 = ownUtils::ToColor4B(GameManager::sharedState()->colorForIdx(color2));
-
-				normalGradient = CCLayerGradient::create(col1, col2);
-				Layer->addChild(normalGradient);
-				break;
-			}
-			case SettingPosEnumColor::Normal: { //Normal color
-				color1 = asas->m_color1;
-				color2 = asas->m_color2;
-
-				col1 = ownUtils::ToColor4B(GameManager::sharedState()->colorForIdx(color1));
-				col2 = ownUtils::ToColor4B(GameManager::sharedState()->colorForIdx(color2));
-
-				normalGradient = CCLayerGradient::create(col1, col2);
-				Layer->addChild(normalGradient);
-				break;
-			}
-			}
-
-
-			normalGradient->setID("normal-gradient"_spr);
-			invertGradient->setID("invert-gradient"_spr);
-
-			auto whiteCorner = CCLayerGradient::create({ 255,255,255,255 }, { 255,255,255,255 });
-
-			auto blackCorner = CCLayerGradient::create({ 0,0,0,255 }, { 0,0,0,255 });
-
-			normalGradient->setZOrder(brownBG->getZOrder() - 2);
-			normalGradient->setScale(1.0);
-			normalGradient->setPosition(brownBG->getPositionX() - 217, brownBG->getPositionY() - 145);
-			normalGradient->setContentSize(gradientSize);
-
-			invertGradient->setZOrder(normalGradient->getZOrder() + 2);
-			invertGradient->setContentSize(normalGradient->getContentSize());
-			invertGradient->setPosition(normalGradient->getPosition());
-
-			whiteCorner->setZOrder(normalGradient->getZOrder() - 2);
-			whiteCorner->setContentSize(cornersSize);
-			whiteCorner->setPositionX(normalGradient->getPositionX());
-			whiteCorner->setPositionY(normalGradient->getPositionY() - 1);
-			whiteCorner->setScale(1.02);
-
-			blackCorner->setZOrder(normalGradient->getZOrder() - 1);
-			blackCorner->setContentSize(whiteCorner->getContentSize());
-			blackCorner->setPosition(whiteCorner->getPosition());
-			blackCorner->setScale(1.01);
-
-
-			//Corners
-			auto cornerID = Mod::get()->getSettingValue<SettingPosEnum>("corner-options");
-		
-			////New corners option settings
-			//int cornerID = Mod::get()->getSettingValue<SettingPosStruct>("CornersOptions").m_pos;//ConfigHandler::readConfigInt("notificationPlacement");
-
-			switch (cornerID)
-			{
-			case SettingPosEnum::Rounded: //Round corners
-				Layer->addChild(roundCorner);
-				break;
-			case SettingPosEnum::Square: //Square corners
-				Layer->addChild(whiteCorner);
-				Layer->addChild(blackCorner);
-				break;
-			case SettingPosEnum::None: // No corners (idk why but some people like it)
-				break;
-			}
-
-			roundCorner->setPosition(winSize / 2);
-			roundCorner->setPositionY(roundCorner->getPositionY() - 1);
-			roundCorner->setScale(1.006);
-
-			auto iconsContainer = cocos2d::extension::CCScale9Sprite::create("square02c_001.png");
-
-			iconsContainer->setPosition(winSize.width / 2, halfWindowHeight + 40);
-			iconsContainer->setZOrder(normalGradient->getZOrder() + 3);
-			iconsContainer->setContentSize(players);
-			iconsContainer->setColor({ 154,154,154 });
-			iconsContainer->setOpacity(77);
-			iconsContainer->setID("ccscale-icons"_spr);
-			Layer->addChild(iconsContainer);
-
-			auto commentsContainer = cocos2d::extension::CCScale9Sprite::create("square02c_001.png");
-			commentsContainer->setPosition(winSize.width / 2, halfWindowHeight - 53);
-			commentsContainer->setContentSize(commentsSize);
-			commentsContainer->setColor({ 154,154,154 });
-			commentsContainer->setOpacity(77);
-			commentsContainer->setID("ccscale-comments"_spr);
-
-
-			commentsContainer->setZOrder(normalGradient->getZOrder() + 3);
-
-			Layer->addChild(commentsContainer);
-
-
-			normalGradient->setTag(3);
-			auto blackBG = cocos2d::extension::CCScale9Sprite::create("square02b_001.png");
-			blackBG->setPosition(brownBG->getPositionX(), brownBG->getPositionY() - 1);
-			blackBG->setZOrder(brownBG->getZOrder());
-			blackBG->setColor(ccBLACK);
-			blackBG->setOpacity(50);
-			blackBG->setContentSize(blackBGContentSize);
-			blackBG->setScale(0.5);
-			Layer->addChild(blackBG);
-
-
-
-			//New infobutton settings - maked with gamevariable bc upload method have bugs with settingsValue
-			if (Mod::get()->getSettingValue<bool>("Disable-info-button") == true)
-			{
-				GameManager::sharedState()->setGameVariable("disableinfolabel", true);
-
-			}
-			if (Mod::get()->getSettingValue<bool>("Disable-info-button") == false)
-			{
-				GameManager::sharedState()->setGameVariable("disableinfolabel", false);
-
-			}
-		}
-	}
+                        for (auto node : CCArrayExt<CCNode*>(socialsMenu->getChildren())) {
+                            if (auto btn = typeinfo_cast<CCMenuItemSpriteExtra*>(node)) {
+                                referenceScale = btn->getScale();
+
+                                buttonCount++;
+                            }
+                        }
+
+                        if (buttonCount > 0) {
+                            discordButton->setScale(referenceScale);
+
+                        }
+
+                        if (buttonCount == 4) {
+                            discordSpr->setScale(0.9f);
+                            discordButton->setAnchorPoint({ 0.5,0.45 });
+                            discordButton->setContentHeight(discordButton->getContentHeight() - 2);
+                        }
+                        else if (buttonCount == 5) {
+                            discordSpr->setScale(0.825f);
+                            discordButton->setAnchorPoint({ 0.5,0.4 });
+                            discordButton->setContentHeight(discordButton->getContentHeight() - 2.5);
+                        }
+
+                        if (buttonCount == 1) {
+                            if (auto statsMenu = m_mainLayer->getChildByID("stats-menu")) {
+                                statsMenu->setScale(0.825f);
+
+                                if (auto myStuffHint = typeinfo_cast<CCSprite*>(m_mainLayer->getChildByID("my-stuff-hint"))) {
+
+                                    auto* frame = cocos2d::CCSpriteFrameCache::get()->spriteFrameByName("GJ_stuffTxt_001.png");
+                                    myStuffHint->setDisplayFrame(frame);
+
+
+                                }
+
+                            }
+                        }
+
+                        discordButton->setTag(buttonCount + 1);
+                        discordButton->setID("discord-button");
+                        socialsMenu->addChild(discordButton);
+
+                        if (!m_mainLayer->getChildByID("my-stuff-hint")) {
+
+                            auto myStuffHint = CCSprite::createWithSpriteFrameName("GJ_stuffTxt_001.png");
+                            myStuffHint->setPosition({ (winSize.width / 2) + 139.f, (winSize.height / 2) + 124.1f });
+
+                            myStuffHint->setID("my-stuff-hint");
+                            m_mainLayer->addChild(myStuffHint);
+                            m_buttons->addObject(myStuffHint);
+                        }
+
+                        if (m_buttons) {
+                            m_buttons->addObject(discordButton);
+                        }
+
+                    }
+                    socialsMenu->updateLayout();
+                }
+            }
+        }
+
+        if (m_ownProfile) {
+            auto bottomMenu = (CCMenu*)m_mainLayer->getChildByID("bottom-menu");
+            auto settingsButton = (CCMenuItemSpriteExtra*)bottomMenu->getChildByID("settings-button");
+            settingsButton->setTarget(this, menu_selector(ProfilePage::onSettings));
+        }
+
+        if (Mod::get()->getSettingValue<bool>("Disable-info-button")) {
+            auto menu = m_mainLayer->getChildByID("main-menu");
+            auto infobutton = menu->getChildByID("info-button");
+            if (infobutton) infobutton->setPositionY(100000);
+        }
+
+        if (m_mainLayer->getChildByTag(3)) return;
+
+        auto Layer = m_mainLayer;
+        auto brownBG = (CCSprite*)Layer->getChildByID("background");
+        brownBG->setVisible(false);
+        ownUtils::FixLayerv2(Layer, 340, 45);
+
+        int color1 = score->m_color1;
+        int color2 = score->m_color2;
+        auto col1 = ownUtils::ToColor4B(GameManager::sharedState()->colorForIdx(color1));
+        auto col2 = ownUtils::ToColor4B(GameManager::sharedState()->colorForIdx(color2));
+
+        auto normalGradient = CCLayerGradient::create(col1, col2);
+        auto invertGradient = CCLayerGradient::create(col2, col1);
+
+        switch (Mod::get()->getSettingValue<SettingPosEnumColor>("color-options")) {
+        case SettingPosEnumColor::Animate:
+            color1 = score->m_color1;
+            color2 = score->m_color2;
+            col1 = ownUtils::ToColor4B(GameManager::sharedState()->colorForIdx(color1));
+            col2 = ownUtils::ToColor4B(GameManager::sharedState()->colorForIdx(color2));
+            normalGradient = CCLayerGradient::create(col1, col2);
+            invertGradient = CCLayerGradient::create(col2, col1);
+            invertGradient->runAction(CCRepeatForever::create(CCSequence::create(CCFadeOut::create(1.8f), CCFadeIn::create(1.8f), nullptr)));
+            Layer->addChild(normalGradient);
+            Layer->addChild(invertGradient);
+            break;
+        case SettingPosEnumColor::Invert:
+            color1 = score->m_color2;
+            color2 = score->m_color1;
+            col1 = ownUtils::ToColor4B(GameManager::sharedState()->colorForIdx(color1));
+            col2 = ownUtils::ToColor4B(GameManager::sharedState()->colorForIdx(color2));
+            normalGradient = CCLayerGradient::create(col1, col2);
+            Layer->addChild(normalGradient);
+            break;
+        case SettingPosEnumColor::Normal:
+            Layer->addChild(normalGradient);
+            break;
+        }
+
+        normalGradient->setID("normal-gradient"_spr);
+        invertGradient->setID("invert-gradient"_spr);
+        normalGradient->setTag(3);
+        normalGradient->setZOrder(-5);
+        normalGradient->setContentSize({ 435, 288 });
+        normalGradient->setPosition(winSize.width / 2 - 217, winSize.height / 2 - 145);
+
+        invertGradient->setZOrder(-3);
+        invertGradient->setContentSize(normalGradient->getContentSize());
+        invertGradient->setPosition(normalGradient->getPosition());
+
+        // Corners
+        auto roundCorner = cocos2d::extension::CCScale9Sprite::create("GJ_square07.png");
+        roundCorner->setContentSize({ 438, 293 });
+        roundCorner->setPosition(winSize / 2);
+        roundCorner->setPositionY(roundCorner->getPositionY() - 1);
+        roundCorner->setScale(1.006);
+        roundCorner->setZOrder(7);
+
+        auto whiteCorner = CCLayerGradient::create({ 255,255,255,255 }, { 255,255,255,255 });
+        whiteCorner->setContentSize({ 435, 290 });
+        whiteCorner->setPosition(normalGradient->getPosition());
+        whiteCorner->setPositionY(whiteCorner->getPositionY() - 1);
+        whiteCorner->setScale(1.02);
+        whiteCorner->setZOrder(-7);
+
+        auto blackCorner = CCLayerGradient::create({ 0,0,0,255 }, { 0,0,0,255 });
+        blackCorner->setContentSize(whiteCorner->getContentSize());
+        blackCorner->setPosition(whiteCorner->getPosition());
+        blackCorner->setScale(1.01);
+        blackCorner->setZOrder(-6);
+
+        switch (Mod::get()->getSettingValue<SettingPosEnum>("corner-options")) {
+        case SettingPosEnum::Rounded: 
+            Layer->addChild(roundCorner); 
+            break;
+        case SettingPosEnum::Square: 
+            Layer->addChild(whiteCorner); 
+            Layer->addChild(blackCorner); 
+            break;
+        case SettingPosEnum::None: 
+            break;
+        }
+
+        auto blackBG = cocos2d::extension::CCScale9Sprite::create("square02b_001.png");
+        blackBG->setPosition(winSize.width / 2, winSize.height / 2 - 1);
+        blackBG->setColor(ccBLACK);
+        blackBG->setOpacity(50);
+        blackBG->setZOrder(-1);
+        blackBG->setContentSize({ 850, 559 });
+        blackBG->setScale(0.5f);
+        Layer->addChild(blackBG);
+
+        auto iconsContainer = cocos2d::extension::CCScale9Sprite::create("square02c_001.png");
+        iconsContainer->setPosition(winSize.width / 2, winSize.height / 2 + 40);
+        iconsContainer->setContentSize({ 356, 56 });
+        iconsContainer->setColor({ 154,154,154 });
+        iconsContainer->setOpacity(77);
+        iconsContainer->setID("ccscale-icons"_spr);
+        iconsContainer->setZOrder(-2);
+        Layer->addChild(iconsContainer);
+
+        auto commentsContainer = cocos2d::extension::CCScale9Sprite::create("square02c_001.png");
+        commentsContainer->setPosition(winSize.width / 2, winSize.height / 2 - 53);
+        commentsContainer->setContentSize({ 356, 106 });
+        commentsContainer->setColor({ 154,154,154 });
+        commentsContainer->setOpacity(77);
+        commentsContainer->setID("ccscale-comments"_spr);
+        commentsContainer->setZOrder(-2);
+        Layer->addChild(commentsContainer);
+    }
+
+    void onSettings(CCObject* sender) { 
+        geode::openSettingsPopup(Mod::get()); 
+    }
+
+   
 };

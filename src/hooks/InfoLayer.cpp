@@ -18,30 +18,11 @@ class $modify(InfoLayer)
 			ownUtils::FixLayer(this->m_mainLayer, 340, 234);
 		}
 
-		/*if (this->m_levelList == nullptr)
-		{
-			FixLayer(this, 340, 234);
-		}*/
 	}
 
 	bool init(GJGameLevel * a1, GJUserScore * a2, GJLevelList * a3)
 	{
 		if (!InfoLayer::init(a1, a2, a3)) return false;
-
-
-		/*	if (a2 == nullptr)
-			{
-				FLAlertLayer::create("SI", "Es nulo!", "OK")->show();
-			}
-			else
-			{
-				if (a2 != nullptr)
-				{
-					FLAlertLayer::create("NO", "No es nulo!", "OK")->show();
-
-				}
-			}*/
-
 
 		if (a1 == nullptr && a2 != nullptr)
 		{
@@ -50,8 +31,6 @@ class $modify(InfoLayer)
 
 			auto winSize = CCDirector::sharedDirector()->getWinSize();
 			auto Layer = (CCLayer*)this->getChildren()->objectAtIndex(0);
-			/*auto brownsquare = (CCSprite*)Layer->getChildren()->objectAtIndex(0);
-			brownsquare->setVisible(false);*/
 
 			auto roundCorner = cocos2d::extension::CCScale9Sprite::create("GJ_square07.png");
 			int halfWindowHeight = winSize.height / 2;
@@ -108,13 +87,13 @@ class $modify(InfoLayer)
 
 
 			////New colors option settings
-			//int colorID = Mod::get()->getSettingValue<SettingAppStruct>("ColorOptions").m_poss;
+		
 			auto colorID = Mod::get()->getSettingValue<SettingPosEnumColor>("color-options");
-			/*int colorID = 3;*/
+
 			switch (colorID)
 			{
 
-			case SettingPosEnumColor::Animnate: { //Animate color
+			case SettingPosEnumColor::Animate: { //Animate color
 				color1 = a2->m_color1;
 				color2 = a2->m_color2;
 
@@ -158,13 +137,10 @@ class $modify(InfoLayer)
 				break;
 			}
 			}
-			//Corners
 
-			//New corners option settings
-		/*	int cornerID = Mod::get()->getSettingValue<SettingPosStruct>("CornersOptions").m_pos;*/
+			//Corners
 			auto cornerID = Mod::get()->getSettingValue<SettingPosEnum>("corner-options");
 
-			/*int cornerID = 1;*/
 			switch (cornerID)
 			{
 			case SettingPosEnum::Rounded: //Round corners
@@ -198,17 +174,14 @@ class $modify(InfoLayer)
 			blackCorner->setPosition(whiteCorner->getPosition());
 			blackCorner->setScale(1.01);
 
-			auto boton = (CCSprite*)Layer->getChildren()->objectAtIndex(1);
-			boton->setZOrder(-1);
-			auto loadCommentsButton = (CCSprite*)boton->getChildren()->objectAtIndex(1);
-			commentsContainer->setPosition(loadCommentsButton->getPositionX(), loadCommentsButton->getPositionY() - 0.5);
-			loadCommentsButton->setZOrder(2);
+			
+			this->m_buttonMenu->setZOrder(-1);
+			commentsContainer->setPosition(m_commentsBtn->getPositionX(), m_commentsBtn->getPositionY() - 0.5);
+			m_commentsBtn->setZOrder(2);
 			normalGradient->setTag(3);
 
-
-			/*laweaxd->addChild(BG);*/
 			backgroundLayer->addChild(blackBG);
-			boton->addChild(commentsContainer);
+			m_buttonMenu->addChild(commentsContainer);
 
 
 		}

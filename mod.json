@@ -1,15 +1,15 @@
 {
-	"geode": "4.3.1",
-	"version": "v1.1.3",
+	"geode": "5.0.0-beta.3",
+	"version": "v1.1.4-beta.1",
 	"id": "bitz.customprofiles",
 	"name": "CustomProfiles",
 	"developer": "BitZ",
 	"description": "A nice mod to customize your profile",
 	"gd": {
-		"android": "2.2074",
-		"mac": "2.2074",
-		"win": "2.2074",
-        "ios": "2.2074"
+		"android": "2.2081",
+		"mac": "2.2081",
+		"win": "2.2081",
+		"ios": "2.2081"
 	},
 	"settings": {
 		"Corners-section": {
@@ -45,6 +45,12 @@
 			"type": "bool",
 			"default": false
 		},
+		"Disable-discord-button": {
+			"name": "Disable discord button",
+			"description": "This hide the discord button from socials",
+			"type": "bool",
+			"default": false
+		},
 		"Account-settings": {
 			"name": "",
 			"type": "custom:account-settings"
@@ -63,11 +69,7 @@
 		"info": "Post your issues on the <cp>Issue tracking repository</c>.",
 		"url": "https://github.com/iArtie/CustomProfiles/issues/new/choose"
 	},
-	"dependencies": [
-		{
-			"id": "geode.node-ids",
-			"version": ">=v1.11.0",
-			"importance": "required"
-		}
-	]
+	"dependencies": {
+		"geode.node-ids": ">=v1.20.0"
+	}
 }

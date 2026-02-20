@@ -303,7 +303,7 @@ public:
 const int DEFAULT_POSS = 4;
 
 enum class SettingPosEnumColor : int {
-    Animnate,
+    Animate,
     Invert,
     Normal,
     BottomRight
@@ -313,7 +313,7 @@ template <>
 struct matjson::Serialize<SettingPosEnumColor> {
     static matjson::Value toJson(SettingPosEnumColor const& value) {
         switch (value) {
-        case SettingPosEnumColor::Animnate:
+        case SettingPosEnumColor::Animate:
             return 1;
         case SettingPosEnumColor::Invert:
             return 2;
@@ -326,7 +326,7 @@ struct matjson::Serialize<SettingPosEnumColor> {
     }
     static Result<SettingPosEnumColor> fromJson(matjson::Value const& value) {
         switch (value.asInt().unwrapOrDefault()) {
-        case 1: return Ok(SettingPosEnumColor::Animnate);
+        case 1: return Ok(SettingPosEnumColor::Animate);
         case 2: return Ok(SettingPosEnumColor::Invert);
         case 3: return Ok(SettingPosEnumColor::Normal);
         case 4: return Ok(SettingPosEnumColor::BottomRight);
@@ -365,7 +365,7 @@ protected:
 
     int getActiveColorTag(SettingPosEnumColor color) {
         switch (color) {
-        case SettingPosEnumColor::Animnate: // Animate color
+        case SettingPosEnumColor::Animate: // Animate color
             return 3004;
         case SettingPosEnumColor::Invert: // Invert color
             return 3005;
@@ -379,7 +379,7 @@ protected:
     SettingPosEnumColor tagToColor(int tag) {
         switch (tag) {
         case 3004: // Animate color
-            return SettingPosEnumColor::Animnate;
+            return SettingPosEnumColor::Animate;
         case 3005: // Invert color
             return SettingPosEnumColor::Invert;
         case 3006: // Normnal color
@@ -438,7 +438,7 @@ protected:
         labelcolor3->setScale(.45f);
         labelcolor3->setPosition({ 180,22 });
 
-        color1Btn->setTag(getActiveColorTag(SettingPosEnumColor::Animnate));
+        color1Btn->setTag(getActiveColorTag(SettingPosEnumColor::Animate));
         color2Btn->setTag(getActiveColorTag(SettingPosEnumColor::Invert));
         color3Btn->setTag(getActiveColorTag(SettingPosEnumColor::Normal));
         color4Btn->setTag(getActiveColorTag(SettingPosEnumColor::BottomRight));
