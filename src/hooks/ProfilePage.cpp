@@ -44,7 +44,7 @@ class $modify(CustomProfilesPage,ProfilePage) {
                 {
                     if (!socialsMenu->getChildByID("discord-button"))
                     {
-                        this->m_fields->discordUsername = "@" + score->m_discordUsername;
+                        this->m_fields->discordUsername = std::string("@") + score->m_discordUsername;
                         
                         auto discordSpr = CCSprite::createWithSpriteFrameName("gj_discordIcon_001.png");
 
