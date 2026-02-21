@@ -3,7 +3,7 @@
 #include <Geode/ui/GeodeUI.hpp>
 #include "../utils/ownUtils.h"
 #include "../settings/OptionsV3.hpp"
-
+#include "../utils/DiscordPopup.cpp"
 class $modify(CustomProfilesPage,ProfilePage) {
 
     struct Fields
@@ -13,8 +13,8 @@ class $modify(CustomProfilesPage,ProfilePage) {
 
     void onDiscordProfile(CCObject* sender)
     {
-       
-        FLAlertLayer::create("Discord", m_fields->discordUsername.c_str(), "OK")->show();
+        DiscordPopup::create(m_fields->discordUsername.c_str())->show();
+        /*FLAlertLayer::create("Discord", m_fields->discordUsername.c_str(), "OK")->show();*/
     }
 
     void setupCommentsBrowser(CCArray* array) {
