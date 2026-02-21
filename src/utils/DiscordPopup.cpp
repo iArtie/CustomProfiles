@@ -4,7 +4,7 @@ using namespace geode::prelude;
 
 class DiscordPopup : public geode::Popup {
 protected:
-    TextArea* m_textArea = nullptr;
+    CCLabelBMFont* m_tagLabel = nullptr;
     std::string m_value;
 
     bool init(std::string const& value) {
@@ -15,16 +15,18 @@ protected:
 
         m_value = value;
 
-        m_textArea = TextArea::create(
-            m_value.c_str(),"chatFont.fnt",1.0f,100.0f,{ 0.5f, 0.5f },30.0f,false
-        );
+        m_tagLabel = CCLabelBMFont::create(
+            m_value.c_str(),"chatFont.fnt");
+        
+		m_tagLabel->limitLabelWidth(m_mainLayer->getContentWidth() - 30, 1.f, 0);
 
         auto btn = CCMenuItemSpriteExtra::create(
-            m_textArea,
+            m_tagLabel,
             this,
             menu_selector(DiscordPopup::onCopytoClipboard)
         );
 
+        m_tagLabel->setPosition(CCDirector::sharedDirector()->getWinSize()/2);
 		m_closeBtn->setVisible(false);
 		auto btn1Spr = ButtonSprite::create("OK", 90, 0, 0.95, false);
 
@@ -38,11 +40,12 @@ protected:
             menu_selector(DiscordPopup::onClose)
 		);
         btn->setContentSize({ 400.f, 17.f });
-        m_textArea->setPositionY(10);
+        m_tagLabel->setPositionY(10);
 
 
         m_buttonMenu->addChildAtPosition(btn, Anchor::Center);
 
+		m_tagLabel->setPositionX(m_tagLabel->getPositionX() - btn->getPositionX());
         m_buttonMenu->addChildAtPosition(btn1, Anchor::Bottom);
 
 		btn1->setPositionY(28);
