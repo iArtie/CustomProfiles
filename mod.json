@@ -4,14 +4,13 @@
 	"id": "bitz.customprofiles",
 	"name": "CustomProfiles",
 	"developer": "BitZ",
-	"description": "A nice mod to customize your profile",
+	"description": "Customize your profile and give it a fresh new look!",
 	"gd": {
 		"android": "2.2081",
 		"mac": "2.2081",
 		"win": "2.2081",
 		"ios": "2.2081"
 	},
-	"early-load": true,
 	"settings": {
 		"Corners-section": {
 			"name": "Corners",

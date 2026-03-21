@@ -30,15 +30,6 @@ class $modify(CustomProfilesPage,ProfilePage) {
     
         ProfilePage::setupCommentsBrowser(array);
 
-      /*  if (auto commentsLayer = m_mainLayer->getChildByID("GJCommentListLayer"))
-        {
-
-            if (auto child = commentsLayer->getChildByID("alphalaneous.happy_textures/outline"))
-            {
-                child->setVisible(false);
-            }
-
-        }*/
         ownUtils::FixLayer(m_mainLayer, 340, 100);
     }
 
