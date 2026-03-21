@@ -1,5 +1,14 @@
 # CustomProfiles Changelog
 
+## v1.1.4 (2025-03-20)
+- Bump to geode v5.0
+- Comment Line border bug fix
+- Compatibility with happy textures mod
+- New Discord Button!
+- Clickeable popup for discord popup
+- Code optimization
+- All game variables removed, now all works with geode save system!
+
 ## v1.1.3 (2025-05-02)
 - Comment Borders showing on transitions fix
 - Change text for "Nomal" to "Normal" on color settings

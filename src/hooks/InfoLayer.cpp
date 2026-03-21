@@ -8,11 +8,28 @@ using namespace geode::prelude;
 
 class $modify(InfoLayer)
 {
+	static void onModify(auto& self) {
+		if (!self.setHookPriorityAfterPost(
+			"InfoLayer::setupCommentsBrowser",
+			"alphalaneous.happy_textures"
+		)) {
+			log::warn("Failed to set hook priority AfterPost");
+		}
+	}
+
 	void setupCommentsBrowser(cocos2d::CCArray * a1)
 	{
 		InfoLayer::setupCommentsBrowser(a1);
 
+		/*if (auto commentsLayer = m_mainLayer->getChildByID("GJCommentListLayer"))
+		{
 
+			if (auto child = commentsLayer->getChildByID("alphalaneous.happy_textures/outline"))
+			{
+				child->setVisible(false);
+			}
+
+		}*/
 		if (this->m_level == nullptr && this->m_levelList == nullptr)
 		{
 			ownUtils::FixLayer(this->m_mainLayer, 340, 234);

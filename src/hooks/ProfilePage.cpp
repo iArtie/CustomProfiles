@@ -4,24 +4,44 @@
 #include "../utils/ownUtils.h"
 #include "../settings/OptionsV3.hpp"
 #include "../utils/DiscordPopup.cpp"
+
+
 class $modify(CustomProfilesPage,ProfilePage) {
 
     struct Fields
     {
         gd::string discordUsername;
     };
+    static void onModify(auto& self) {
+        if (!self.setHookPriorityAfterPost(
+            "ProfilePage::setupCommentsBrowser",
+            "alphalaneous.happy_textures"
+        )) {
+            log::warn("Failed to set hook priority AfterPost");
+        }
+    
+    }
 
-    void onDiscordProfile(CCObject* sender)
-    {
+    void onDiscordProfile(CCObject* sender) {
         DiscordPopup::create(m_fields->discordUsername.c_str())->show();
-        /*FLAlertLayer::create("Discord", m_fields->discordUsername.c_str(), "OK")->show();*/
     }
 
     void setupCommentsBrowser(CCArray* array) {
-        
+    
         ProfilePage::setupCommentsBrowser(array);
+
+      /*  if (auto commentsLayer = m_mainLayer->getChildByID("GJCommentListLayer"))
+        {
+
+            if (auto child = commentsLayer->getChildByID("alphalaneous.happy_textures/outline"))
+            {
+                child->setVisible(false);
+            }
+
+        }*/
         ownUtils::FixLayer(m_mainLayer, 340, 100);
     }
+
 
     void loadPageFromUserInfo(GJUserScore* score) {
         ProfilePage::loadPageFromUserInfo(score);
@@ -244,6 +264,7 @@ class $modify(CustomProfilesPage,ProfilePage) {
         commentsContainer->setID("ccscale-comments"_spr);
         commentsContainer->setZOrder(-2);
         Layer->addChild(commentsContainer);
+  
     }
 
     void onSettings(CCObject* sender) { 

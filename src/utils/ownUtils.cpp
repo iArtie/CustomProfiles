@@ -32,36 +32,54 @@ void ownUtils::FixLayerv2(CCLayer* layer, int width, int height) {
 
 		if (contentSize.height == height && contentSize.width == width) {
 			currentNode->setVisible(false);
-		}
+		}	
 	}
 
+	
 }
 void ownUtils::FixLayer(CCLayer* layer, int width, int height) {
-	CCSize newNodeSize = { 0, 100 };
-	
-	for (auto currentNode : CCArrayExt<CCNode*>(layer->getChildren())) {
-		CCSize contentSize = currentNode->getContentSize();
+    for (auto* node : CCArrayExt<CCNode*>(layer->getChildren())) {
 
-		if (contentSize.height == height && contentSize.width == width) {
-			currentNode->setContentSize(newNodeSize);
-			currentNode->setZOrder(1);
+		if (node->getContentSize().width == width && node->getContentSize().height == height)
+		{
+            if (auto* list = typeinfo_cast<GJCommentListLayer*>(node)) {
 
-			if (auto children = currentNode->getChildren()) {
-				
+                list->setOpacity(0);
+                for (auto* child : CCArrayExt<CCNode*>(list->getChildren())) {
+                    auto id = child->getID();
+                    if (id == "left-border" || id == "right-border" || id == "top-border" ||
+                        id == "bottom-border" || id == "alphalaneous.happy_textures/outline" ||
+                        id == "alphalaneous.happy_textures/special-border") {
+                        child->setVisible(false);
+                    }
+                }
 
-				for (int i = 0; i < 4; i++) {
-					if (auto sprite = static_cast<CCSprite*>(children->objectAtIndex(i))) {
-						sprite->setVisible(false); // remove brown corners
-					}
-				}
-			}
-
-			currentNode->setZOrder(2);
+            }
 		}
-	}
-
+    }
 }
 
+void ownUtils::FixIconLayer(CCLayer* layer, int width, int height) {
+    for (auto* node : CCArrayExt<CCNode*>(layer->getChildren())) {
+
+		if (node->getContentSize().width == width && node->getContentSize().height == height)
+		{
+            if (auto* list = typeinfo_cast<GJCommentListLayer*>(node)) {
+
+                list->setOpacity(0);
+                for (auto* child : CCArrayExt<CCNode*>(list->getChildren())) {
+                    auto id = child->getID();
+                    if (id == "left-border" || id == "right-border" || id == "top-border" ||
+                        id == "bottom-border" || id == "alphalaneous.happy_textures/outline" ||
+                        id == "alphalaneous.happy_textures/special-border") {
+                        child->setVisible(false);
+                    }
+                }
+
+            }
+		}
+    }
+}
 
 cocos2d::ccColor4B ownUtils::ToColor4B(ccColor3B sourceColor)
 {
