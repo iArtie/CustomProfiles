@@ -1,3 +1,0 @@
-/home/delivel/CustomProfiles/build-win/_deps/result-subbuild/CMakeFiles/result-populate.dir
-/home/delivel/CustomProfiles/build-win/_deps/result-subbuild/CMakeFiles/edit_cache.dir
-/home/delivel/CustomProfiles/build-win/_deps/result-subbuild/CMakeFiles/rebuild_cache.dir
