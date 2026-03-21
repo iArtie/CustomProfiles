@@ -4,6 +4,7 @@
 #include "../utils/ownUtils.h"
 #include "../settings/OptionsV3.hpp"
 #include "../utils/DiscordPopup.cpp"
+#include "Geode/loader/Loader.hpp"
 
 
 class $modify(CustomProfilesPage,ProfilePage) {
@@ -95,17 +96,16 @@ class $modify(CustomProfilesPage,ProfilePage) {
                         }
 
                         if (buttonCount == 1) {
-                            if (auto statsMenu = m_mainLayer->getChildByID("stats-menu")) {
-                                statsMenu->setScale(0.825f);
+                            auto loader = geode::Loader::get();
+                            if (!loader->isModLoaded("itzkiba.better_progression")) {
+                                if (auto statsMenu = m_mainLayer->getChildByID("stats-menu")) {
+                                    statsMenu->setScale(0.825f);
 
-                                if (auto myStuffHint = typeinfo_cast<CCSprite*>(m_mainLayer->getChildByID("my-stuff-hint"))) {
-
-                                    auto* frame = cocos2d::CCSpriteFrameCache::get()->spriteFrameByName("GJ_stuffTxt_001.png");
-                                    myStuffHint->setDisplayFrame(frame);
-
-
+                                    if (auto myStuffHint = typeinfo_cast<CCSprite*>(m_mainLayer->getChildByID("my-stuff-hint"))) {
+                                        auto* frame = cocos2d::CCSpriteFrameCache::get()->spriteFrameByName("GJ_stuffTxt_001.png");
+                                        myStuffHint->setDisplayFrame(frame);
+                                    }
                                 }
-
                             }
                         }
 

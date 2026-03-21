@@ -1,6 +1,9 @@
 # CustomProfiles Changelog
 
-## v1.1.4 (2025-03-20)
+## v1.1.5 (2026-03-21)
+- (Delivel) Fixed incompatibility with Better Progression
+
+## v1.1.4 (2026-03-20)
 - Bump to geode v5.0
 - Comment Line border bug fix
 - Compatibility with happy textures mod
