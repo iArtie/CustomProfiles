@@ -27,6 +27,12 @@ protected:
         );
 
         m_tagLabel->setPosition(CCDirector::sharedDirector()->getWinSize()/2);
+        btn->setLayout(SimpleAxisLayout::create(geode::Axis::Row)
+            ->setMainAxisScaling(geode::AxisScaling::ScaleDownGaps)
+            ->setCrossAxisScaling(geode::AxisScaling::None)
+            ->setMainAxisAlignment(geode::MainAxisAlignment::Center));
+		
+
 		m_closeBtn->setVisible(false);
 		auto btn1Spr = ButtonSprite::create("OK", 90, 0, 0.95, false);
 
@@ -45,13 +51,15 @@ protected:
 
         m_buttonMenu->addChildAtPosition(btn, Anchor::Center);
 
+        /*btn->updateLayout();*/
+
 		m_tagLabel->setPositionX(m_tagLabel->getPositionX() - btn->getPositionX());
         m_buttonMenu->addChildAtPosition(btn1, Anchor::Bottom);
 
 		btn1->setPositionY(28);
 		
 
-        
+        btn->updateLayout();
         return true;
     }
 

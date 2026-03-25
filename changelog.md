@@ -1,5 +1,9 @@
 # CustomProfiles Changelog
 
+## v1.1.5 (2026-03-25)
+- Better proggresion incompat bugfix
+- Tag position fix for mobile devices
+
 ## v1.1.4 (2025-03-20)
 - Bump to geode v5.0
 - Comment Line border bug fix

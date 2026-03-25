@@ -95,18 +95,17 @@ class $modify(CustomProfilesPage,ProfilePage) {
                         }
 
                         if (buttonCount == 1) {
-                            if (auto statsMenu = m_mainLayer->getChildByID("stats-menu")) {
-                                statsMenu->setScale(0.825f);
-
-                                if (auto myStuffHint = typeinfo_cast<CCSprite*>(m_mainLayer->getChildByID("my-stuff-hint"))) {
-
-                                    auto* frame = cocos2d::CCSpriteFrameCache::get()->spriteFrameByName("GJ_stuffTxt_001.png");
-                                    myStuffHint->setDisplayFrame(frame);
-
-
+                            auto loader = geode::Loader::get();
+               
+                                if (auto statsMenu = m_mainLayer->getChildByID("stats-menu")) {
+                                    if (!loader->isModLoaded("itzkiba.better_progression")) {
+                                        statsMenu->setScale(0.825f);
+                                    }
+                                    if (auto myStuffHint = typeinfo_cast<CCSprite*>(m_mainLayer->getChildByID("my-stuff-hint"))) {
+                                        auto* frame = cocos2d::CCSpriteFrameCache::get()->spriteFrameByName("GJ_stuffTxt_001.png");
+                                        myStuffHint->setDisplayFrame(frame);
+                                    }
                                 }
-
-                            }
                         }
 
                         discordButton->setTag(buttonCount + 1);
