@@ -42,7 +42,7 @@ class $modify(CustomMyStuffPopup, MyStuffPopup) {
         auto btn = CCMenuItemSpriteExtra::create(
             label, this, menu_selector(CustomMyStuffPopup::onDiscordProfile));
         btn->setAnchorPoint({ 0.f, 0.5f });
-        btn->setPosition({ -5.f, 0.f });
+        btn->setPosition({ -2.f, 0.f });
 
         auto row = CCMenu::create();
         row->addChild(prefix);
@@ -54,4 +54,4 @@ class $modify(CustomMyStuffPopup, MyStuffPopup) {
 
         return true;
     }
-};
+};  
