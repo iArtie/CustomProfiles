@@ -19,7 +19,7 @@ file(GLOB SOURCES
 )
 
 
-add_library(${PROJECT_NAME} SHARED ${SOURCES}   "src/utils/ownUtils.cpp" "src/hooks/CommentCell.cpp" "src/hooks/InfoLayer.cpp" "src/hooks/ProfilePage.cpp" "src/utils/DiscordPopup.cpp")
+add_library(${PROJECT_NAME} SHARED ${SOURCES}   "src/utils/ownUtils.cpp" "src/hooks/CommentCell.cpp" "src/hooks/InfoLayer.cpp" "src/hooks/ProfilePage.cpp" "src/utils/DiscordPopup.cpp" "src/hooks/MyStuff.cpp")
 
 if (NOT DEFINED ENV{GEODE_SDK})
     message(FATAL_ERROR "Unable to find Geode SDK! Please define GEODE_SDK environment variable to point to Geode")

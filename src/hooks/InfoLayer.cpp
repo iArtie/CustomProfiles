@@ -37,9 +37,9 @@ class $modify(InfoLayer)
 
 	}
 
-	bool init(GJGameLevel * a1, GJUserScore * a2, GJLevelList * a3)
+	bool init(GJGameLevel * a1, GJUserScore * a2, GJLevelList * a3, GJEditorSoundConfig * a4)
 	{
-		if (!InfoLayer::init(a1, a2, a3)) return false;
+		if (!InfoLayer::init(a1, a2, a3, a4)) return false;
 
 		if (a1 == nullptr && a2 != nullptr)
 		{
@@ -193,13 +193,13 @@ class $modify(InfoLayer)
 
 			
 			this->m_buttonMenu->setZOrder(-1);
-			commentsContainer->setPosition(m_commentsBtn->getPositionX(), m_commentsBtn->getPositionY() - 0.5);
-			m_commentsBtn->setZOrder(2);
+		    auto mainBG = typeinfo_cast<CCScale9Sprite*>(m_mainLayer->getChildByID("background"));
+
+			commentsContainer->setPosition(mainBG->getPositionX(), mainBG->getPositionY() - 4.5);
 			normalGradient->setTag(3);
 
 			backgroundLayer->addChild(blackBG);
-			m_buttonMenu->addChild(commentsContainer);
-
+			m_mainLayer->addChild(commentsContainer,-1);
 
 		}
 		return true;

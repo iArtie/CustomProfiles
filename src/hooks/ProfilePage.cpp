@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 #include <Geode/modify/ProfilePage.hpp>
+#include <Geode/modify/MyStuffPopup.hpp>
 #include <Geode/ui/GeodeUI.hpp>
 #include "../utils/ownUtils.h"
 #include "../settings/OptionsV3.hpp"
@@ -10,7 +11,7 @@ class $modify(CustomProfilesPage,ProfilePage) {
 
     struct Fields
     {
-        gd::string discordUsername;
+        std::string discordUsername;
     };
     static void onModify(auto& self) {
         if (!self.setHookPriorityAfterPost(
@@ -20,10 +21,6 @@ class $modify(CustomProfilesPage,ProfilePage) {
             log::warn("Failed to set hook priority AfterPost");
         }
     
-    }
-
-    void onDiscordProfile(CCObject* sender) {
-        DiscordPopup::create(m_fields->discordUsername.c_str())->show();
     }
 
     void setupCommentsBrowser(CCArray* array) {
@@ -46,91 +43,6 @@ class $modify(CustomProfilesPage,ProfilePage) {
 
 
         auto winSize = CCDirector::sharedDirector()->getWinSize();
-
-        if (auto socialsMenu = m_mainLayer->getChildByID("socials-menu")) {
-
-            if (!Mod::get()->getSettingValue<bool>("Disable-discord-button")) {
-
-                if (score->m_discordUsername != "")
-                {
-                    if (!socialsMenu->getChildByID("discord-button"))
-                    {
-                        this->m_fields->discordUsername = fmt::format("@{}", score->m_discordUsername);
-                        
-                        auto discordSpr = CCSprite::createWithSpriteFrameName("gj_discordIcon_001.png");
-
-                        auto discordButton = CCMenuItemSpriteExtra::create(
-                            discordSpr,
-                            discordSpr,
-                            this,
-                            menu_selector(CustomProfilesPage::onDiscordProfile)
-                        );
-
-                        float referenceScale = 1.f;
-
-                        int buttonCount = 0;
-
-                        for (auto node : CCArrayExt<CCNode*>(socialsMenu->getChildren())) {
-                            if (auto btn = typeinfo_cast<CCMenuItemSpriteExtra*>(node)) {
-                                referenceScale = btn->getScale();
-
-                                buttonCount++;
-                            }
-                        }
-
-                        if (buttonCount > 0) {
-                            discordButton->setScale(referenceScale);
-
-                        }
-
-                        if (buttonCount == 4) {
-                            discordSpr->setScale(0.9f);
-                            discordButton->setAnchorPoint({ 0.5,0.45 });
-                            discordButton->setContentHeight(discordButton->getContentHeight() - 2);
-                        }
-                        else if (buttonCount == 5) {
-                            discordSpr->setScale(0.825f);
-                            discordButton->setAnchorPoint({ 0.5,0.4 });
-                            discordButton->setContentHeight(discordButton->getContentHeight() - 2.5);
-                        }
-
-                        if (buttonCount == 1) {
-                            auto loader = geode::Loader::get();
-               
-                                if (auto statsMenu = m_mainLayer->getChildByID("stats-menu")) {
-                                    if (!loader->isModLoaded("itzkiba.better_progression")) {
-                                        statsMenu->setScale(0.825f);
-                                    }
-                                    if (auto myStuffHint = typeinfo_cast<CCSprite*>(m_mainLayer->getChildByID("my-stuff-hint"))) {
-                                        auto* frame = cocos2d::CCSpriteFrameCache::get()->spriteFrameByName("GJ_stuffTxt_001.png");
-                                        myStuffHint->setDisplayFrame(frame);
-                                    }
-                                }
-                        }
-
-                        discordButton->setTag(buttonCount + 1);
-                        discordButton->setID("discord-button");
-                        socialsMenu->addChild(discordButton);
-
-                        if (!m_mainLayer->getChildByID("my-stuff-hint")) {
-
-                            auto myStuffHint = CCSprite::createWithSpriteFrameName("GJ_stuffTxt_001.png");
-                            myStuffHint->setPosition({ (winSize.width / 2) + 139.f, (winSize.height / 2) + 124.1f });
-
-                            myStuffHint->setID("my-stuff-hint");
-                            m_mainLayer->addChild(myStuffHint);
-                            m_buttons->addObject(myStuffHint);
-                        }
-
-                        if (m_buttons) {
-                            m_buttons->addObject(discordButton);
-                        }
-
-                    }
-                    socialsMenu->updateLayout();
-                }
-            }
-        }
 
         if (m_ownProfile) {
             auto bottomMenu = (CCMenu*)m_mainLayer->getChildByID("bottom-menu");
@@ -239,12 +151,23 @@ class $modify(CustomProfilesPage,ProfilePage) {
 
         auto iconsContainer = cocos2d::extension::CCScale9Sprite::create("square02c_001.png");
         iconsContainer->setPosition(winSize.width / 2, winSize.height / 2 + 40);
-        iconsContainer->setContentSize({ 356, 56 });
+        iconsContainer->setContentSize({ 400, 56 });
         iconsContainer->setColor({ 154,154,154 });
         iconsContainer->setOpacity(77);
         iconsContainer->setID("ccscale-icons"_spr);
         iconsContainer->setZOrder(-2);
         Layer->addChild(iconsContainer);
+
+
+        auto iconBorder = typeinfo_cast<CCScale9Sprite*>(m_mainLayer->getChildByID("icon-background-border"));
+		if (iconBorder) {
+			iconBorder->setVisible(false);
+		}
+
+		auto iconBG = typeinfo_cast<CCScale9Sprite*>(m_mainLayer->getChildByID("icon-background"));
+		if (iconBG) {
+			iconBG->setVisible(false);
+		}
 
         auto commentsContainer = cocos2d::extension::CCScale9Sprite::create("square02c_001.png");
         commentsContainer->setPosition(winSize.width / 2, winSize.height / 2 - 53);

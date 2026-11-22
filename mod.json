@@ -1,15 +1,15 @@
 {
-	"geode": "5.4.1",
-	"version": "v1.1.5",
+	"geode": "6.0.0-beta.1",
+	"version": "v1.1.6-beta.1",
 	"id": "bitz.customprofiles",
 	"name": "CustomProfiles",
 	"developer": "BitZ",
 	"description": "Customize your profile and give it a fresh new look!",
 	"gd": {
-		"android": "2.2081",
-		"mac": "2.2081",
-		"win": "2.2081",
-		"ios": "2.2081"
+		"android": "2.2091",
+		"mac": "2.2091",
+		"win": "2.2091",
+		"ios": "2.2091"
 	},
 	"settings": {
 		"Corners-section": {
@@ -42,12 +42,6 @@
 		"Disable-info-button": {
 			"name": "Disable info button",
 			"description": "This hide the info button from profile",
-			"type": "bool",
-			"default": false
-		},
-		"Disable-discord-button": {
-			"name": "Disable discord button",
-			"description": "This hide the discord button from socials",
 			"type": "bool",
 			"default": false
 		},

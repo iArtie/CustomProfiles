@@ -1,10 +1,15 @@
 # CustomProfiles Changelog
 
+## v1.1.6-beta.1 (2026-11-22)
+- Geode bump version
+- New discord tag idea
+- Profile extended to the new robtop ui (awful)
+
 ## v1.1.5 (2026-03-25)
 - Better proggresion incompat bugfix
 - Tag position fix for mobile devices
 
-## v1.1.4 (2025-03-20)
+## v1.1.4 (2026-03-20)
 - Bump to geode v5.0
 - Comment Line border bug fix
 - Compatibility with happy textures mod
