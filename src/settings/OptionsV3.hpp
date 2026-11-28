@@ -1,5 +1,6 @@
 #pragma once
 #include <Geode/ui/TextInput.hpp>
+#include <Geode/ui/Toggler.hpp>
 using namespace geode::prelude;
 
 
@@ -146,10 +147,10 @@ struct geode::SettingTypeForValueType<SettingPosEnum> {
 
 class SettingPosNode : public SettingValueNodeV3<SettingPosValue> {
 protected:
-    CCMenuItemToggler* corner1Btn;
-    CCMenuItemToggler* corner2Btn;
-    CCMenuItemToggler* corner3Btn;
-    CCMenuItemToggler* corner4Btn;
+    geode::Toggler* corner1Btn;
+    geode::Toggler* corner2Btn;
+    geode::Toggler* corner3Btn;
+    geode::Toggler* corner4Btn;
 
     int getActiveCornerTag(SettingPosEnum corner) {
         switch (corner) {
@@ -182,39 +183,36 @@ protected:
         if (!SettingValueNodeV3::init(setting, width))
             return false;
         this->setContentSize({ width, 50.f });
-        CCSprite* toggleOn = CCSprite::createWithSpriteFrameName("GJ_checkOn_001.png");
-        CCSprite* toggleOff = CCSprite::createWithSpriteFrameName("GJ_checkOff_001.png");
-        toggleOn->setScale(.7F);
-        toggleOff->setScale(.7F);
 
         auto labelcorner1 = CCLabelBMFont::create("Rounded", "bigFont.fnt");
-        corner1Btn = CCMenuItemToggler::create(
-            toggleOn,
-            toggleOff,
-            this,
-            menu_selector(SettingPosNode::onCornerClick)
+        corner1Btn = Toggler::createWithSpriteFrameNames(
+            "GJ_checkOff_001.png",
+            "GJ_checkOn_001.png",
+            0.7f,
+            [this](Toggler* sender, bool) { this->onCornerClick(sender); }
         );
 
         auto labelcorner2 = CCLabelBMFont::create("Square", "bigFont.fnt");
-        corner2Btn = CCMenuItemToggler::create(
-            toggleOn,
-            toggleOff,
-            this,
-            menu_selector(SettingPosNode::onCornerClick)
+        corner2Btn = Toggler::createWithSpriteFrameNames(
+            "GJ_checkOff_001.png",
+            "GJ_checkOn_001.png",
+            0.7f,
+            [this](Toggler* sender, bool) { this->onCornerClick(sender); }
         );
 
         auto labelcorner3 = CCLabelBMFont::create("None", "bigFont.fnt");
-        corner3Btn = CCMenuItemToggler::create(
-            toggleOn,
-            toggleOff,
-            this,
-            menu_selector(SettingPosNode::onCornerClick)
+        corner3Btn = Toggler::createWithSpriteFrameNames(
+            "GJ_checkOff_001.png",
+            "GJ_checkOn_001.png",
+            0.7f,
+            [this](Toggler* sender, bool) { this->onCornerClick(sender); }
         );
-        corner4Btn = CCMenuItemToggler::create(
-            toggleOn,
-            toggleOff,
-            this,
-            menu_selector(SettingPosNode::onCornerClick)
+  
+        corner4Btn = Toggler::createWithSpriteFrameNames(
+            "GJ_checkOff_001.png",
+            "GJ_checkOn_001.png",
+            0.7f,
+            [this](Toggler* sender, bool) { this->onCornerClick(sender); }
         );
 
         labelcorner1->setScale(.45f);
@@ -257,10 +255,10 @@ protected:
         getButtonMenu()->updateAnchoredPosition(Anchor::Center, { 0, 0 });
         this->getNameLabel()->setVisible(false);
         auto currentCorner = static_cast<SettingPosEnum>(this->getValue());
-        corner1Btn->toggle(!(corner1Btn->getTag() == getActiveCornerTag(currentCorner)));
-        corner2Btn->toggle(!(corner2Btn->getTag() == getActiveCornerTag(currentCorner)));
-        corner3Btn->toggle(!(corner3Btn->getTag() == getActiveCornerTag(currentCorner)));
-        corner4Btn->toggle(!(corner4Btn->getTag() == getActiveCornerTag(currentCorner)));
+        corner1Btn->setToggled((corner1Btn->getTag() == getActiveCornerTag(currentCorner)));
+        corner2Btn->setToggled((corner2Btn->getTag() == getActiveCornerTag(currentCorner)));
+        corner3Btn->setToggled((corner3Btn->getTag() == getActiveCornerTag(currentCorner)));
+        corner4Btn->setToggled((corner4Btn->getTag() == getActiveCornerTag(currentCorner)));
         this->updateState(nullptr);
         return true;
     }
@@ -269,19 +267,19 @@ protected:
         SettingValueNodeV3::updateState(invoker);
         auto currentCorner = static_cast<SettingPosEnum>(this->getValue());
     }
-    void onCornerClick(CCObject* sender) {
-        corner1Btn->toggle(true);
-        corner2Btn->toggle(true);
-        corner3Btn->toggle(true);
-       /* brBtn->toggle(true);*/
+    void onCornerClick(Toggler* sender) {
+        corner1Btn->setToggled(false);
+        corner2Btn->setToggled(false);
+        corner3Btn->setToggled(false);
+        sender->setToggled(true);
         SettingPosEnum value = tagToCorner(sender->getTag());
         this->setValue(value, static_cast<CCNode*>(sender));
     };
     void onResetToDefault() override {
-        corner1Btn->toggle(false);
-        corner2Btn->toggle(true);
-        corner3Btn->toggle(true);
-     /*   brBtn->toggle(false);*/
+        corner1Btn->setToggled(true);
+        corner2Btn->setToggled(false);
+        corner3Btn->setToggled(false);
+     /*   brBtn->setToggled(false);*/
         this->setValue(SettingPosEnum::Rounded, nullptr);
     }
 public:
@@ -358,10 +356,10 @@ struct geode::SettingTypeForValueType<SettingPosEnumColor> {
 
 class SettingPosNodeColor : public SettingValueNodeV3<SettingPosValueColor> {
 protected:
-    CCMenuItemToggler* color1Btn;
-    CCMenuItemToggler* color2Btn;
-    CCMenuItemToggler* color3Btn;
-    CCMenuItemToggler* color4Btn;
+    geode::Toggler* color1Btn;
+    geode::Toggler* color2Btn;
+    geode::Toggler* color3Btn;
+    geode::Toggler* color4Btn;
 
     int getActiveColorTag(SettingPosEnumColor color) {
         switch (color) {
@@ -400,33 +398,33 @@ protected:
         toggleOff->setScale(.7F);
 
         auto labelcolor1 = CCLabelBMFont::create("Animate", "bigFont.fnt");
-        color1Btn = CCMenuItemToggler::create(
-            toggleOn,
-            toggleOff,
-            this,
-            menu_selector(SettingPosNodeColor::onColorClick)
+        color1Btn = geode::Toggler::createWithSpriteFrameNames(
+            "GJ_checkOff_001.png",
+            "GJ_checkOn_001.png",
+            0.7f,
+            [this](geode::Toggler* sender, bool) { this->onColorClick(sender); }
         );
 
         auto labelcolor2 = CCLabelBMFont::create("Invert", "bigFont.fnt");
-        color2Btn = CCMenuItemToggler::create(
-            toggleOn,
-            toggleOff,
-            this,
-            menu_selector(SettingPosNodeColor::onColorClick)
+        color2Btn = geode::Toggler::createWithSpriteFrameNames(
+            "GJ_checkOff_001.png",
+            "GJ_checkOn_001.png",
+            0.7f,
+            [this](geode::Toggler* sender, bool) { this->onColorClick(sender); }
         );
 
         auto labelcolor3 = CCLabelBMFont::create("Normal", "bigFont.fnt");
-        color3Btn = CCMenuItemToggler::create(
-            toggleOn,
-            toggleOff,
-            this,
-            menu_selector(SettingPosNodeColor::onColorClick)
+        color3Btn = geode::Toggler::createWithSpriteFrameNames(
+            "GJ_checkOff_001.png",
+            "GJ_checkOn_001.png",
+            0.7f,
+            [this](geode::Toggler* sender, bool) { this->onColorClick(sender); }
         );
-        color4Btn = CCMenuItemToggler::create(
-            toggleOn,
-            toggleOff,
-            this,
-            menu_selector(SettingPosNodeColor::onColorClick)
+        color4Btn = geode::Toggler::createWithSpriteFrameNames(
+            "GJ_checkOff_001.png",
+            "GJ_checkOn_001.png",
+            0.7f,
+            [this](geode::Toggler* sender, bool) { this->onColorClick(sender); }
         );
 
         labelcolor1->setScale(.45f);
@@ -469,10 +467,10 @@ protected:
         getButtonMenu()->updateAnchoredPosition(Anchor::Center, { 0, 0 });
         this->getNameLabel()->setVisible(false);
         auto currentColor = static_cast<SettingPosEnumColor>(this->getValue());
-        color1Btn->toggle(!(color1Btn->getTag() == getActiveColorTag(currentColor)));
-        color2Btn->toggle(!(color2Btn->getTag() == getActiveColorTag(currentColor)));
-        color3Btn->toggle(!(color3Btn->getTag() == getActiveColorTag(currentColor)));
-        color4Btn->toggle(!(color4Btn->getTag() == getActiveColorTag(currentColor)));
+        color1Btn->setToggled((color1Btn->getTag() == getActiveColorTag(currentColor)));
+        color2Btn->setToggled((color2Btn->getTag() == getActiveColorTag(currentColor)));
+        color3Btn->setToggled((color3Btn->getTag() == getActiveColorTag(currentColor)));
+        color4Btn->setToggled((color4Btn->getTag() == getActiveColorTag(currentColor)));
         this->updateState(nullptr);
         return true;
     }
@@ -481,18 +479,18 @@ protected:
         SettingValueNodeV3::updateState(invoker);
         auto currentCorner = static_cast<SettingPosEnumColor>(this->getValue());
     }
-    void onColorClick(CCObject* sender) {
-        color1Btn->toggle(true);
-        color2Btn->toggle(true);
-        color3Btn->toggle(true);
-        /* brBtn->toggle(true);*/
+    void onColorClick(Toggler* sender) {
+        color1Btn->setToggled(false);
+        color2Btn->setToggled(false);
+        color3Btn->setToggled(false);
+        sender->setToggled(true);
         SettingPosEnumColor value = tagToColor(sender->getTag());
-        this->setValue(value, static_cast<CCNode*>(sender));
+        this->setValue(value, sender);
     };
     void onResetToDefault() override {
-        color1Btn->toggle(true);
-        color2Btn->toggle(true);
-        color3Btn->toggle(false);
+        color1Btn->setToggled(false);
+        color2Btn->setToggled(false);
+        color3Btn->setToggled(true);
         /*   brBtn->toggle(false);*/
         this->setValue(SettingPosEnumColor::Normal, nullptr);
     }

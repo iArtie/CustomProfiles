@@ -11,7 +11,7 @@ class $modify(InfoLayer)
 	static void onModify(auto& self) {
 		if (!self.setHookPriorityAfterPost(
 			"InfoLayer::setupCommentsBrowser",
-			"alphalaneous.happy_textures"
+			"uproxide.happy_textures"
 		)) {
 			log::warn("Failed to set hook priority AfterPost");
 		}
@@ -194,12 +194,12 @@ class $modify(InfoLayer)
 			
 			this->m_buttonMenu->setZOrder(-1);
 		    auto mainBG = typeinfo_cast<CCScale9Sprite*>(m_mainLayer->getChildByID("background"));
-
+			mainBG->setZOrder(-3);
 			commentsContainer->setPosition(mainBG->getPositionX(), mainBG->getPositionY() - 4.5);
 			normalGradient->setTag(3);
 
 			backgroundLayer->addChild(blackBG);
-			m_mainLayer->addChild(commentsContainer,-1);
+			m_mainLayer->addChild(commentsContainer,-2);
 
 		}
 		return true;

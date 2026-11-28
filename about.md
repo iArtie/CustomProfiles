@@ -3,7 +3,7 @@ Customize your profile with a new and interesting interface!
 
 
 ## **News!**
-- Discord Button ![discord button](frame:gj_discordIcon_001.png?scale=0.375) on Socials Menu!
+- Discord tag ![discord button](frame:gj_discordIcon_001.png?scale=0.375) on my stuff Menu ![myStuff button](frame:accountBtn_social_001.png?scale=0.375)!
 - Clickeable tag `@username` for copy to clipboard!
 - Comment lines bug fix! ![check](frame:GJ_completesIcon_001.png?scale=0.375)
 

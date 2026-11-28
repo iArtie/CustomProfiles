@@ -1,5 +1,10 @@
 # CustomProfiles Changelog
 
+## v1.1.6-beta.2 (2026-11-27)
+- Settings touch fix
+- Load comments button z order fix
+- mac and iOS support with bindings fix
+
 ## v1.1.6-beta.1 (2026-11-22)
 - Geode bump version
 - New discord tag idea
